@@ -1,0 +1,70 @@
+<div id="content" class="cleared constrained content-connect">
+	<div class="section">
+		<form id="facebook" class="boxed" name="form-facebook" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+			<fieldset>
+				<?php 
+					print Form::getHidden('action', $strActionType); 
+					print Form::getHidden($strTokenField, Token::initToken());
+				?>
+			
+				<div id="fields">
+					<div class="blurb">
+						You're almost done. All you have to do now is choose a <?php echo($strSiteTitle); ?> username, enter your email address, and you'll be good to go.
+					</div>
+					
+					<div class="input-block labeled first">
+						<label for="username" class="js-hide">Username</label>
+						<div>
+							<?php echo(Form::getTextbox('username', !empty($_POST['username']) ? $_POST['username'] : null, array(
+								'id' 		=> 'username',
+								'maxlength'	=> 15,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled">
+						<label for="email" class="js-hide">Email address</label>
+						<div>
+							<?php echo(Form::getTextbox('email', !empty($_POST['email']) ? $_POST['email'] : null, array(
+								'id' 		=> 'email',
+								'maxlength'	=> 80,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block last">
+						<div class="preview">
+							<img src="<?php echo($strFacebookImage); ?>" alt="facebook profile image" />
+						</div>
+						<div class="choice">
+							Do you want to import your photo from Facebook?
+							<div>
+								<?php echo(Form::getRadioButton('import', 1, $blnImport = empty($_POST) || !empty($_POST['import']), array(
+									'id' 		=> 'import-yes',
+									'class'		=> 'input-checkbox'
+								))); ?>
+								<label for="import-yes">Yes</label>
+								
+								<?php echo(Form::getRadioButton('import', 0, !$blnImport, array(
+									'id' 		=> 'import-no',
+									'class'		=> 'input-checkbox'
+								))); ?>
+								<label for="import-no">No</label>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="button">
+					<?php echo(Form::getSubmit('submit', 'Finish signing up')); ?>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	
+	<div class="arrow right">
+		<a href="<?php echo($strBaseUrl); ?>/account/login/">Already a member? <strong>Sign in!</strong></a>
+	</div>
+</div>

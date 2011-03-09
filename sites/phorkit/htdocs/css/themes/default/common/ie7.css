@@ -1,0 +1,69 @@
+* html #shell {
+	height: 100%;
+}
+
+.clear {
+	overflow: hidden;
+	zoom: 1;
+	word-wrap: break-word;
+}
+
+.cleared {
+	zoom: 1;
+}
+
+#header .constrained {
+	z-index: 1000;
+}
+
+#header-logo {
+	z-index: 900;
+}
+
+#header-nav li .tooltip {
+	z-index: 800;
+}
+
+
+/* INPUT */
+
+.input-block.labeled {
+	margin-left: -5px !important;
+}
+
+.input-block.labeled label {
+	text-indent: 5px;
+}
+
+.input-block.labeled input[type=text],
+.input-block.labeled input[type=password] {
+	margin-left: 0 !important;
+}
+
+
+/* FORMS */
+
+input[type=text],
+input[type=password] {
+	margin-left: -5px !important;
+}
+
+input[type=submit] {
+	overflow: visible;
+}
+
+
+/* JAVASCRIPT */
+
+.overlay-login .input-block {
+	margin-left: 20px !important;
+}
+
+.overlay .overlay-buttons button {
+	float: left;
+	margin-left: 15px;
+}
+
+.overlay .overlay-buttons {
+	height: 30px;
+}

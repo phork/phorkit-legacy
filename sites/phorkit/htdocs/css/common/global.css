@@ -1,0 +1,76 @@
+html, body, div, p, ul, li, a, img, h1, h2, h3, pre, form, fieldset, label, input, select, textarea { 
+	margin: 0; 
+	padding: 0; 
+	font-size: 100%;
+	font-weight: normal;
+	vertical-align: baseline;
+}
+
+ul {
+	list-style-position: outside;
+	list-style-type: none;
+	list-style-image: none;
+}
+
+body, input, textarea, button {
+	font-size: 11px;
+	font-family: Helvetica, Arial, sans-serif;
+	line-height: 15px;
+	letter-spacing: 1.2px;
+	background-color: #FFF;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+table th {
+	text-align: left;
+	font-weight: normal;
+}
+
+iframe {
+	border: none;
+}
+
+form, fieldset, img {
+	border: none;
+}
+
+a:link, a:visited, a:active { 
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+
+/* ETC */
+
+.hidden {
+	display: none;
+}
+
+.block {
+	display: block;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.clear {
+	clear: both;
+	height: 0;
+	font-size: 0px;
+}
+
+.pointer {
+	cursor: pointer;
+}

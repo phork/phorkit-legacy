@@ -1,0 +1,28 @@
+<div id="content" class="constrained content-verify">
+	<form id="verify" class="boxed" name="form-verify" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="get">
+		<fieldset>
+			<?php 
+				print Form::getHidden('action', $strActionType);
+			?>
+			
+			<div class="blurb">
+				If you have a code to verify your account enter it below.
+			</div>
+			
+			<div class="input-block labeled first">
+				<label for="code" class="js-hide">Verification code</label>
+				<div>
+					<?php echo(Form::getTextbox('code', '', array(
+						'id' 		=> 'code',
+						'maxlength' => 32,
+						'class'		=> 'input-textbox'
+					))); ?>
+				</div>
+			</div>
+			
+			<div class="button">
+				<?php echo(Form::getSubmit('submit', 'Verify account')); ?>
+			</div>
+		</fieldset>
+	</form>
+</div>

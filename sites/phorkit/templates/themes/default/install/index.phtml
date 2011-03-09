@@ -1,0 +1,50 @@
+<div id="content" class="constrained">
+	<h1 class="chunkfive">Installation Tests</h1>
+	<div class="filepath">Your configuration files are located in <?php echo($strConfigPath); ?></div>
+
+	<div class="highlight">
+		<table id="tests">
+			<thead>
+				<tr>
+					<th class="name first">Test</th>
+					<th class="enabled">Enabled</th>
+					<th class="passed">Passed</th>
+					<th class="notices last" colspan="2">Notices</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php foreach ($arrTests as $strTest=>$arrTest) { ?>
+				<tr class="smooth <?php echo($arrTest['enabled'] ? ($arrTest['passed'] ? 'passed' : 'failed') : 'disabled'); ?>">
+					<td class="name"><?php echo($arrTest['name']); ?></td>
+					<td class="enabled"><span><?php echo($arrTest['enabled'] ? 'Yes' : '&nbsp;'); ?></span></td>
+					<td class="passed"><span><?php echo($arrTest['passed'] ? 'Yes' : '&nbsp;'); ?></span></td>
+					<td class="notices"><?php echo($arrTest['errors'] ? implode('<br />', $arrTest['errors']) : '&nbsp;'); ?></td>
+					<td class="tips">
+						<?php if (!empty($arrTips[$strTest])) { ?>
+						<a href="#<?php echo($strTest); ?>-tips" title="Learn more"><span>?</span></a>
+						<?php } else { ?>
+						&nbsp;
+						<?php } ?>
+					</td>
+				</tr>
+				<?php } ?>
+			</tbody>
+		</table>
+	</div>
+	
+	<?php if (!empty($arrTips)) { ?>
+	<div id="tips">
+		<?php foreach ($arrTips as $strTest=>$arrTestTips) { ?>
+		<div id="<?php echo($strTest); ?>-tips">
+			<div class="title"><?php echo($arrTests[$strTest]['name']); ?> tips</div>
+			<hr />
+			<ul>
+				<?php foreach ($arrTestTips as $strTip) { ?>
+				<li><?php echo($strTip); ?></li>
+				<?php } ?>
+			</ul>
+		</div>
+		<?php } ?>
+	</div>
+	<?php } ?>
+</div>

@@ -1,0 +1,70 @@
+<div id="content" class="constrained content-reset cleared">
+	<div class="section">
+		<form id="reset" class="boxed" name="form-reset" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+			<fieldset>
+				<?php 
+					print Form::getHidden('action', $strActionType); 
+					print Form::getHidden($strTokenField, Token::initToken());
+				?>
+			
+				<div id="fields">
+					<h1>Reset your forgotten password</h1>
+					<div class="blurb">
+						If you have a code to reset your password enter it below and
+						then choose a new password for your account.
+					</div>
+					
+					<div class="input-block labeled first">
+						<label for="email" class="js-hide">Email address</label>
+						<div>
+							<?php echo(Form::getTextbox('email', !empty($_GET['email']) ? $_GET['email'] : null, array(
+								'id' 	=> 'email',
+								'class'	=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled">
+						<label for="code" class="js-hide">Reset code</label>
+						<div>
+							<?php echo(Form::getTextbox('code', !empty($_GET['code']) ? $_GET['code'] : null, array(
+								'id' 	=> 'code',
+								'class'	=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled break">
+						<label for="password" class="js-hide">Password</label>
+						<div>
+							<?php echo(Form::getPasswordBox('password', null, array(
+								'id' 		=> 'password',
+								'maxlength'	=> 15,
+								'class'		=> 'input-password'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled last">
+						<label for="password_again" class="js-hide">Confirm password</label>
+						<div>
+							<?php echo(Form::getPasswordBox('password_again', null, array(
+								'id' 		=> 'password_again',
+								'maxlength'	=> 15,
+								'class'		=> 'input-password'
+							))); ?>
+						</div>
+					</div>
+				</div>
+				
+				<div class="button">
+					<?php echo(Form::getSubmit('submit', 'Reset password')); ?>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	
+	<div class="arrow right">
+		<a href="<?php echo($strBaseUrl); ?>/account/login/">Remembered it? <strong>Sign in!</strong></a>
+	</div>
+</div>

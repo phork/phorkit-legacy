@@ -1,0 +1,61 @@
+<div id="content" class="constrained content-login">
+	<div class="section arrowed cleared">
+		<div id="login-local" class="arrow left">
+			<h1>Sign in with your <?php echo($strSiteTitle); ?> account</h1>
+		</div>
+		
+		<form id="login" class="boxed" name="form-login" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+			<fieldset>
+				<?php 
+					print Form::getHidden($strLoginFlag, 1);
+					print Form::getHidden($strTokenField, Token::initToken());
+				?>
+				<div id="fields">
+					<div class="input-block labeled first">
+						<label for="username" class="js-hide">Username</label>
+						<div>
+							<?php echo(Form::getTextbox($strUsernameField, null, array(
+								'id' 	=> 'username',
+								'class'	=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled last">
+						<label for="password" class="js-hide">Password</label>
+						<div>
+							<?php echo(Form::getPasswordBox($strPasswordField, null, array(
+								'id' 	=> 'password',
+								'class'	=> 'input-password'
+							))); ?>
+						</div>
+					</div>
+				</div>
+				
+				<div class="button">
+					<?php echo(Form::getSubmit('submit', 'Sign in to ' . $strSiteTitle)); ?>
+					
+					<a href="<?php echo($strBaseUrl); ?>/account/password/">forgot your password?</a>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	
+	<?php if ($blnFacebookConnect || $blnTwitterConnect) { ?>
+	<div class="section arrowed cleared">
+		<div id="login-connect" class="arrow left">
+			<h2>Sign in using Facebook or Twitter</h2>
+		</div>
+		
+		<div id="connect" class="cleared boxed">
+			<?php if ($blnFacebookConnect) { ?>
+			<a href="<?php echo($strBaseUrl); ?>/account/connect/facebook/" class="facebook-connect" rel="nofollow"><span>Sign in with Facebook</span></a>
+			<?php } ?>
+			
+			<?php if ($blnTwitterConnect) { ?>
+			<a href="<?php echo($strBaseUrl); ?>/account/connect/twitter/" class="twitter-connect" rel="nofollow"><span>Sign in with Twitter</span></a>
+			<?php } ?>
+		</div>
+	</div>
+	<?php } ?>
+</div>

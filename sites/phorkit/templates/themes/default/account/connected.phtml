@@ -1,0 +1,47 @@
+<div id="content" class="constrained content-connected">
+	<div class="blurb">
+		Now that your <?php echo($strSiteTitle); ?> account is connected to <?php echo(ucfirst($strApplication)); ?> you can sign in using your <?php echo(ucfirst($strApplication)); ?> account and share your contests with your friends.	
+		
+		<?php if ($blnRetry = !empty($arrRetry)) { ?>
+		The following content can now be posted to <?php echo(ucfirst($strApplication)); ?>.
+		<?php } ?>
+	</div>
+	
+	<?php if ($blnRetry) { ?>
+	<div class="retry">
+		<form id="retry" name="form-retry" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+			<fieldset>
+				<?php 
+					print Form::getHidden('action', $strActionType); 
+					print Form::getHidden($strTokenField, Token::initToken());
+				?>
+				
+				<?php foreach ($arrRetry as $intKey=>$arrItem) { ?>
+				<div class="item">
+					<?php echo(Form::getCheckbox("retry[{$intKey}]", md5(serialize($arrItem)), false, array(
+						'id' => $strId = 'retry' . $intKey
+					))); ?>
+					
+					<label for="<?php echo($strId); ?>">
+						<?php 
+							switch ($arrItem[0]) {
+								case 'postStatus':
+									printf('%s <a href="%s">%s</a>', $arrItem[1][0], $arrItem[1][1], $arrItem[1][1]);
+									break;
+									
+								default:
+									break;
+							}
+						?>
+					</label>
+				</div>
+				<?php } ?>
+				
+				<div class="button">
+					<?php echo(Form::getSubmit('submit', 'Post to ' . $strApplication)); ?>
+				</div>
+			</fieldset>
+		</form>
+	</div>
+	<?php } ?>
+</div>

@@ -1,0 +1,9 @@
+Hey [NAME],
+
+Thanks for signing up! Please verify your account by following the link below:
+[URL]
+
+Your verification code is: [CODE]
+
+Thanks,
+Your friendly neighborhood robot

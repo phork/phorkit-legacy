@@ -1,0 +1,48 @@
+<?php
+	$intCurrentPage = $objPagination->getCurrentPage();
+	$intStartPage = $objPagination->getStartPage();
+	$intEndPage = $objPagination->getEndPage();
+	$intTotalPages = $objPagination->getTotalPages();
+?>
+
+<div class="paginate cleared">
+	<?php if (!empty($strLabel)) { ?>
+	<div class="label">
+		<span><?php echo($strLabel); ?></span>
+	</div>
+	<?php } ?>
+	
+	<div class="pages">
+		<?php if (true || $intStartPage != $intEndPage) { ?>
+		<ul>
+			<?php if ($intCurrentPage != 1) { ?>
+				<li class="arrow before"><a href="<?php printf($strPaginateUrl, $intCurrentPage - 1); ?>">&laquo;</a></li>
+			<?php } ?>
+			
+			<?php if ($intStartPage != 1) { ?>
+				<li<?php if ($intCurrentPage == 1) print ' class="on"'; ?>><a href="<?php printf($strPaginateUrl, 1); ?>">1</a></li>
+				
+				<?php if ($intStartPage != 2) { ?>
+				<li class="divider"><span>...</span></li>
+				<?php } ?>
+			<?php } ?>
+			
+			<?php for ($i = $intStartPage; $i <= $intEndPage; $i++) { ?>
+				<li<?php if ($intCurrentPage == $i) print ' class="on"'; ?>><a href="<?php printf($strPaginateUrl, $i); ?>"><?php echo($i); ?></a></li>
+			<?php } ?>
+			
+			<?php if ($intEndPage != $intTotalPages) { ?>
+				<?php if ($intEndPage != $intTotalPages - 1) { ?>
+				<li class="divider"><span>...</span></li>
+				<?php } ?>
+				
+				<li<?php if ($intCurrentPage == $intTotalPages) print ' class="on"'; ?>><a href="<?php printf($strPaginateUrl, $intTotalPages); ?>"><?php echo($intTotalPages); ?></a></li>
+			<?php } ?>
+			
+			<?php if ($intCurrentPage != $intTotalPages) { ?>
+				<li class="arrow after"><a href="<?php printf($strPaginateUrl, $intCurrentPage + 1); ?>">&raquo;</a></li>
+			<?php } ?>
+		</ul>
+		<?php } ?>
+	</div>
+</div>

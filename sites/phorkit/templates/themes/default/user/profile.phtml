@@ -1,0 +1,154 @@
+<?php $objController = AppRegistry::get('Controller'); ?>
+
+<div id="content" class="constrained content-user content-connections">
+	<div id="profile" class="cleared">
+		<div id="image"><img src="<?php echo($arrUser['avatars']['large']); ?>" width="100" height="100" alt="<?php echo($arrUser['displayname']); ?>"></div>
+		<div id="about">
+			<h1><?php echo($arrUser['displayname']); ?></h1>
+			
+			<?php if ($arrUser['location']) { ?>
+			<div id="location"><?php echo($arrUser['location']); ?></div>
+			<?php } ?>
+			
+			<div id="blurb"><?php echo($arrUser['blurb']); ?></div>
+		</div>
+		
+		<?php if ($blnLoggedIn && !$blnUserIsSelf) { ?>
+		<div id="connect">
+			<?php if ($blnUserIsFollowed) { ?>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/disconnect/follow/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Stop Following</a>
+			<?php } else { ?>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/connect/follow/' . $arrUser['username'] . '/')); ?>" class="button fan">Follow</a>
+			<?php } ?>
+			
+			<?php if ($blnUserIsFriend) { ?>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/disconnect/friend/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Unfriend</a>
+			<?php } else if ($blnUserIsFriendPending) { ?>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/approve/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Approve Friendship</a>
+			<?php } else { ?>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/connect/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Send Friend Request</a>
+			<?php } ?>
+		</div>
+		<?php } ?>
+	</div>
+	
+	<div id="columns" class="cleared">
+		<div id="events">
+			<h2>Recent Activity</h2>
+			
+			<?php if ($blnUserIsSelf) { ?>
+			<div id="status" class="labeled connected cleared">
+				<form method="post" action="<?php echo(htmlentities($strSubmitUrl)); ?>">
+					<?php 
+						print Form::getHidden('action', 'status'); 
+						print Form::getHidden($strTokenField, Token::initToken());
+					?>
+					
+					<label for="status-input" class="js-hide">Post to your activity stream</label>
+					<input type="text" id="status-input" name="status" maxlength="255" />
+					
+					<button type="submit" id="status-button">
+						Post
+					</button>
+				</form>
+			</div>
+			<?php } ?>
+			
+			<?php foreach ($arrEvents as $arrEvent) { ?>
+			<div class="event cleared">
+				<div class="avatar">
+					<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrEvent['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrEvent['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrEvent['username']); ?>" /></a>
+				</div>
+				<div class="blurb">
+					<?php echo($arrEvent['event']); ?>
+					
+					<?php if (!empty($arrEvent['created'])) { ?>
+					<span class="date"><?php echo(Date::getTimeAgo($arrEvent['created'], 24, 'M d')); ?></span>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+			
+			<?php 
+				if (!$arrEvents) {
+					$objController->includeCommon('message', array(
+						'strMessage' => 'Oh no, ' . $arrUser['displayname'] . " doesn't have any recent activity."
+					));	
+				}
+			?>
+		</div>
+		
+		<div id="connections" class="highlight">
+			<?php if (!empty($arrPending)) { ?>
+			<div class="pending group inner">
+				<h2 class="title">Pending Connections</h2>
+				
+				<?php foreach ($arrPending as $arrUser) { ?>
+				<div class="user cleared">
+					<div class="avatar">
+						<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="24" height="24" alt="<?php echo($arrUser['username']); ?>" /></a>
+					</div>
+					<div class="username">
+						<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" class="username"><?php echo($arrUser['username']); ?></a>
+					</div>
+					<div class="actions">
+						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/approve/friend/' . $arrUser['username'] . '.json')); ?>" class="confirm accept" data-confirm="accept friendship">accept</a>
+						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/deny/friend/' . $arrUser['username'] . '.json')); ?>" class="confirm deny" data-confirm="deny friendship">deny</a>
+					</div>
+				</div>
+				<?php } ?>
+			</div>
+			<?php } ?>
+				
+			<?php if (!empty($arrFriends)) { ?>
+			<div class="group inner">
+				<h2 class="title">Friends <strong><?php echo($intNumFriends); ?></strong></h2>
+				<div class="users cleared">
+					<?php foreach ($arrFriends as $arrUser) { ?>
+					<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+			
+			<?php if (!empty($arrFollowing)) { ?>
+			<div class="group inner">
+				<h2 class="title">Following <strong><?php echo($intNumFollowing); ?></strong></h2>
+				<div class="users cleared">
+					<?php foreach ($arrFollowing as $arrUser) { ?>
+					<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+			
+			<?php if (!empty($arrFollowers)) { ?>
+			<div class="group inner">
+				<h2 class="title">Followers <strong><?php echo($intNumFollowers); ?></strong></h2>
+				<div class="users cleared">
+					<?php foreach ($arrFollowers as $arrUser) { ?>
+					<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+<?php if (!AppConfig::get('UserTooltip', false)) { ?>
+<?php AppConfig::set('UserTooltip', true); ?>
+<script type="text/html" id="user-tmpl">
+	<div class="arrow"></div>
+	<div class="overlay-content noscroll cleared">
+		<div class="avatar">
+			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/"><img src="[[THUMBNAIL]]" width="60" height="60" alt="[[USERNAME]]" /></a>
+		</div>
+		<div class="info">
+			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/">[[DISPLAY-NAME]]</a>
+			<div class="location">[[LOCATION]]</div>
+		</div>
+		<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/" class="permalink">view profile</a>
+	</div>
+</script>
+<?php } ?>

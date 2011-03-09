@@ -1,0 +1,88 @@
+<div id="content" class="constrained content-signup cleared">
+	<div class="section arrowed cleared">
+		<div id="signup-local" class="arrow left">
+			<h1>Sign up free for a <?php echo($strSiteTitle); ?> account</h1>
+		</div>
+		
+		<form id="signup" class="boxed" name="form-signup" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+			<fieldset>
+				<?php 
+					print Form::getHidden('action', $strActionType); 
+					print Form::getHidden($strTokenField, Token::initToken());
+				?>
+				
+				<div id="fields">
+					<div class="input-block labeled first">
+						<label for="username" class="js-hide">Username</label>
+						<div>
+							<?php echo(Form::getTextbox('username', !empty($_POST['username']) ? $_POST['username'] : null, array(
+								'id' 		=> 'username',
+								'maxlength'	=> 15,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled">
+						<label for="email" class="js-hide">Email address</label>
+						<div>
+							<?php echo(Form::getTextbox('email', !empty($_POST['email']) ? $_POST['email'] : null, array(
+								'id' 		=> 'email',
+								'maxlength'	=> 80,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled break">
+						<label for="password" class="js-hide">Password</label>
+						<div>
+							<?php echo(Form::getPasswordBox('password', null, array(
+								'id' 		=> 'password',
+								'maxlength'	=> 15,
+								'class'		=> 'input-password'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block labeled last">
+						<label for="password_again" class="js-hide">Confirm password</label>
+						<div>
+							<?php echo(Form::getPasswordBox('password_again', null, array(
+								'id' 		=> 'password_again',
+								'maxlength'	=> 15,
+								'class'		=> 'input-password'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="agree">
+						By clicking on the sign up button below, you are agreeing to the <a href="<?php echo($strBaseUrl); ?>/terms/" target="_blank">Terms of Service</a> and the <a href="<?php echo($strBaseUrl); ?>/privacy/" target="_blank">Privacy Policy</a>.
+					</div>
+				</div>
+				
+				<div class="button">
+					<?php echo(Form::getSubmit('submit', 'Sign up for ' . $strSiteTitle)); ?>
+				</div>
+			</fieldset>
+		</form>	
+	</div>
+	
+	<?php if ($blnFacebookConnect || $blnTwitterConnect) { ?>
+	<div class="section arrowed cleared">
+		<div id="signup-connect" class="arrow left">
+			<h2>Sign up using Facebook or Twitter</h2>
+		</div>
+		
+		<div id="connect" class="boxed cleared">
+			<?php if ($blnFacebookConnect) { ?>
+			<a href="<?php echo($strBaseUrl); ?>/account/connect/facebook/" class="facebook-connect" rel="nofollow"><span>Sign up with Facebook</span></a>
+			<?php } ?>
+			
+			<?php if ($blnTwitterConnect) { ?>
+			<a href="<?php echo($strBaseUrl); ?>/account/connect/twitter/" class="twitter-connect" rel="nofollow"><span>Sign up with Twitter</span></a>
+			<?php } ?>
+		</div>
+	</div>
+	<?php } ?>
+</div>

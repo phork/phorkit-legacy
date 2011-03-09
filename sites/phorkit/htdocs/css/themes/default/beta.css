@@ -1,0 +1,111 @@
+body {
+	color: #666;
+}
+
+#form {
+	position: absolute;
+	top: 100px;
+	left: 50%;
+	width: 240px;
+	margin-left: -120px;
+}
+
+#form #blurb {
+	width: 242px;
+	height: 56px;
+	margin-bottom: 30px;
+	background: #CCC url('/img/themes/default/beta.png');
+	-moz-transition: all 0.2s linear;
+	-o-transition: all 0.2s linear;
+	-webkit-transition: all 0.2s linear;
+}
+
+#form:hover #blurb {
+	background-color: #24AFC9;
+}
+
+#form #blurb span {
+	display: none;
+}
+
+#form #error {
+	margin-top: -10px;
+	padding-bottom: 25px;
+	word-wrap: break-word;
+	color: #F00;
+}
+
+form {
+	margin-bottom: 40px;
+}
+
+form .input-block {
+	position: relative;
+}
+
+form label {
+	position: absolute;
+	top: 10px;
+	left: 8px;
+	font-size: 10px;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #CCC;
+}
+
+form input {
+	width: 240px;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+}
+
+form input:focus {
+	border-color: #24AFC9 !important;
+}
+
+form input[type=text],
+form input[type=password] {
+	height: 18px;
+	margin: 4px 0 4px 0;
+	padding: 6px 0 0 0;
+	border: 1px solid #CCC;
+	font-size: 13px;
+	line-height: 13px;
+	text-indent: 8px;
+	background-color: #EDEDED;
+}
+
+form input[type=text]:focus,
+form input[type=password]:focus,
+form input[type=submit]:focus {
+	outline: none;
+	border-color: #666;
+}
+
+form input[name=promo] {
+	font-size: 11px;
+}
+
+form input[type=submit] {
+	width: 242px;
+	height: 27px;
+	margin: 10px 0 0 0;
+	padding: 5px 0;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	text-transform: uppercase;
+	color: #FFF;
+	background: #CCC;
+	border: none;
+	cursor: pointer;
+}
+
+form input[type=submit]:hover {
+	background: #666;
+}
+
+form input[type=submit]:hover {
+	background-color: #24AFC9 !important;
+}

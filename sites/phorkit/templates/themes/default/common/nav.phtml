@@ -1,0 +1,23 @@
+<div id="header">
+	<div id="header-bar"></div>
+	<div id="header-content" class="constrained">
+		<a id="header-text" href="<?php echo($strBaseUrl); ?>/" class="chunkfive"><?php echo($strSiteTitle); ?></a>
+		<a id="header-logo" class="sprite" href="<?php echo($strBaseUrl); ?>/"><strong>Home</strong></a>
+		
+		<ul id="header-nav">
+			<li id="nav-about"><a href="<?php echo($strBaseUrl); ?>/about/">About Us</a></li>
+			<li id="nav-install"><a href="<?php echo($strBaseUrl); ?>/install/">Installation Tests</a></li>
+			
+			<?php if ($blnLoggedIn) { ?>
+			<li id="nav-profile"><a href="<?php echo($strBaseUrl); ?>/user/<?php echo($strUsername); ?>/">My Profile</a></li>
+			<li id="nav-settings"><a href="<?php echo($strBaseUrl); ?>/account/settings/">Settings</a></li>
+			<li id="nav-logout"><a href="<?php echo($strBaseUrl); ?>/logout/">Log out</a></li>
+			<?php } else { ?>
+			<li id="nav-login"><a href="<?php echo($strBaseUrl); ?>/account/login/" class="overlay-login-trigger">Login</a></li>
+			<li id="nav-signup"><a href="<?php echo($strBaseUrl); ?>/account/signup/">Sign up <div class="tooltip sprite"><em>it's free</em></div></a></li>
+			<?php } ?>
+		</ul>
+	</div>
+</div>
+<div id="header-dots"></div>
+<div id="header-shift"></div>

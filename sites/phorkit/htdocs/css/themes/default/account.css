@@ -1,0 +1,418 @@
+/* SUBNAV */
+
+#content #subnav {
+	margin-bottom: 35px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #666;
+	-moz-box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+	-webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+	box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+}
+
+#content #subnav h1 {
+	font-size: 15px;
+	font-weight: normal;
+}
+
+#content #subnav h1,
+#content #subnav ul li {
+	float: left;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+#content #subnav ul {
+	float: right;
+}
+
+
+/* SECTIONS */
+
+#content .section .arrow {
+	float: right;
+}
+
+#content .section .boxed {
+	float: left;
+}
+
+
+/* GIANT ARROWS */
+
+#content .arrow {
+	width: 416px;
+	height: 64px;
+	margin: 40px 20px 10px 0;
+	background: url('/img/themes/default/account.png') no-repeat 0 0;
+}
+
+#content .arrow.left {
+	background-position: 0 0;
+	border-right: 2px solid #DDD;
+}
+
+#content .arrow.right {
+	background-position: 0 -75px;
+	border-left: 2px solid #DDD;
+}
+
+#content .arrow.left.active {
+	background-position: 0 -148px;
+	border-right: 2px solid #24AFC9;
+}
+
+#content .arrow.right.active {
+	background-position: 0 -222px;
+	border-left: 2px solid #24AFC9;
+}
+
+#content .arrow a,
+#content .arrow h1,
+#content .arrow h2,
+#content .arrow div {
+	display: block;
+	width: 100%;
+	height: 100%;
+	padding: 20px 0;
+	font-size: 20px;
+	font-weight: normal;
+	line-height: 28px;
+	text-decoration: none;
+	color: #333;
+}
+
+#content .arrow a:hover strong {
+	border-bottom: 1px dotted #999;
+}
+
+#content .arrow.active a,
+#content .arrow.active h1,
+#content .arrow.active h2,
+#content .arrow.active div {
+	color: #FFF;
+}
+
+#content .arrow.left a,
+#content .arrow.left h1,
+#content .arrow.left h2,
+#content .arrow.left div {
+	text-indent: 45px;
+}
+
+#content .arrow.right a,
+#content .arrow.right h1,
+#content .arrow.right h2,
+#content .arrow.right div {
+	text-indent: 30px;
+}
+
+
+/* BOXED */
+
+#content .boxed {
+	width: 375px;
+	padding: 30px 40px;
+	border: 1px solid #000;
+	color: #FFF;
+	background-color: #000;
+	background: -webkit-gradient(linear, center top, center bottom, from(#444444), to(#000000));
+	background: -moz-linear-gradient(top, #444444, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#444444, endColorstr=#000000);
+	-moz-border-radius: 6px; 
+	-webkit-border-radius: 6px; 
+	border-radius: 6px;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+#content .boxed .input-block {
+	margin-bottom: 15px;
+}
+
+#content .boxed label {
+	font-size: 12px;
+	color: #FFF;
+	text-shadow: none;
+}
+
+#content .boxed input[type=text],
+#content .boxed input[type=password] {
+	width: 330px;
+	-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+#content .boxed input[type=submit] {
+	border-color: #CCC;
+	color: #666;
+}
+
+#content .boxed input[type=submit]:hover,
+#content .boxed input[type=submit]:active {
+	border-color: #5CCDE8;
+	color: #FFF;
+}
+
+#content .boxed .button {
+	margin: 20px 0 0 0;
+}
+
+#content .boxed h1 {
+	font-size: 14px;
+	margin-bottom: 15px;
+}
+
+#content .boxed .blurb {
+	margin: 0 0 15px 0;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+
+/* BOXED CONNECT */
+
+#connect.boxed {
+	margin-top: 10px;
+	padding: 20px 40px;
+}
+
+#connect.boxed .facebook-connect,
+#connect.boxed .twitter-connect {
+	float: left;
+}
+
+#connect.boxed .facebook-connect {
+	margin-right: 30px;
+}
+
+
+/* LOGIN */
+
+.content-login #login-connect {
+	margin-top: 10px;
+}
+
+.content-login #login .button a {
+	margin-left: 38px;
+	padding-bottom: 3px;
+	font-size: 10px;
+	font-style: italic;
+	color: #999;
+	text-decoration: none;
+}
+
+.content-login #login .button a:hover {
+	color: #FFF;
+}
+
+
+/* SIGN UP */
+
+.content-signup #signup-connect {
+	margin-top: 10px;
+}
+
+.content-signup .agree {
+	margin: 12px 0 20px 0;
+	color: #999;
+}
+
+
+/* ACCOUNT & PROFILE SETTINGS */
+
+.content-settings .primary {
+	float: left;
+	width: 365px;
+}
+
+.content-settings .secondary {
+	float: right;
+	width: 320px;
+}
+
+.content-settings .secondary .highlight {
+	margin-top: 20px;
+}
+
+.content-settings .secondary .input-block {
+	margin-bottom: 0 !important;
+}
+
+.content-settings .secondary .input-block.last input {
+	margin-bottom: 0;
+}
+
+.content-settings .spacer {
+	margin-top: 20px !important;
+}
+
+.content-settings input[type=text], 
+.content-settings input[type=password] {
+	width: 100%;
+}
+
+.content-settings textarea {
+	width: 300px;
+	height: 66px;
+}
+
+.content-settings .count {
+	position: absolute;
+	top: -15px;
+	right: 0;
+	color: #24AFC9;
+}
+
+.content-settings .password {
+	padding-bottom: 10px;
+}
+
+.content-settings .firstname,
+.content-settings .lastname {
+	float: left;
+	clear: none !important;
+	width: 48%;
+	margin-top: 0 !important;
+}
+
+.content-settings .lastname {
+	float: right;
+}
+
+.content-settings .country select,
+.content-settings .timezone select {
+	width: 100%;
+}
+
+.content-settings .birthdate select {
+	margin-right: 7px;
+}
+
+.content-settings .avatar img {
+	margin: 0 10px 0 0;
+	border: 1px solid #666;
+	vertical-align: middle;
+}
+
+.content-settings .noavatar {
+	margin-top: 5px !important;
+}
+
+.content-settings .bio {
+	padding-top: 23px;
+}
+
+.content-settings .button {
+	margin: 20px 0 0 0;
+}
+
+.content-settings .connect {
+	margin-top: 30px;
+}
+
+.content-settings .connect .remove-icon {
+	float: right;
+	margin-right: 16px;
+}
+
+.content-settings .facebook-icon,
+.content-settings .twitter-icon {
+	margin: 7px 0 0 22px;
+	color: #2A2A2A;
+}
+
+.content-settings .verification {
+	height: 22px;
+	margin: 30px 0 0 17px;
+	line-height: 22px;
+	font-size: 13px;	
+}
+
+.content-settings .verification .verified {
+	padding: 0 0 0 28px;
+	background: url('/img/themes/default/icons.png') no-repeat 0 0;
+}
+
+.content-settings .verification .pending {
+	padding: 0 0 0 25px;
+	background: url('/img/themes/default/icons.png') no-repeat 0 -33px;
+}
+
+.content-settings .verification .resend {
+	font-size: 10px;
+	margin: -2px 0 0 25px;
+	color: #666;
+}
+
+.content-settings .verification .resend a {
+	text-decoration: underline;
+}
+
+
+/* FACEBOOK & TWITTER */
+
+.content-connect .blurb {
+	margin: 0 15px 0 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.content-connect #fields .last {
+	padding-bottom: 12px;
+	height: 60px !important;
+}
+
+.content-connect #fields .last .preview {
+	float: left;
+	width: 70px;
+	padding: 10px 0;
+	overflow: hidden;
+}
+
+.content-connect #fields .last .choice {
+	float: left;
+	width: 280px;
+	padding-top: 15px;
+}
+
+.content-connect #fields .last .choice div {
+	margin-top: 5px;
+}
+
+.content-connect .arrow {
+	margin-top: 40px !important;
+}
+
+
+/* CONNECTED */
+
+.content-connected .blurb {
+	margin: 0 15px 0 0;
+	font-size: 12px;
+	line-height: 18px;
+}
+
+.content-connected .retry {
+	padding: 30px 0 0 0;
+	font-size: 12px;
+}
+
+.content-connected .retry .item {
+	padding: 0 0 10px 0;
+}
+
+.content-connected .retry .item label {
+	display: inline;
+	padding: 0 0 0 5px;
+	font-size: 12px;
+	font-weight: normal;
+}
+
+.content-connected .retry .item label a {
+	text-decoration: underline;
+}
+
+.content-connected .retry .button {
+	padding: 15px 0 10px 0;
+}

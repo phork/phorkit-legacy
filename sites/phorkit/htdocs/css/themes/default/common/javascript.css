@@ -1,0 +1,352 @@
+.loading {
+	width: 31px;
+	height: 31px;
+	margin: 80px auto 0 auto;
+	padding: 0 0 80px 0;
+	background: url('/img/loading-circle.gif') no-repeat;
+}
+
+ul#alert li {
+	padding-right: 25px;
+}
+
+.count.error {
+	color: #F00;
+}
+
+.pointer {
+	cursor: pointer;
+}
+
+
+/* DISABLED CONTENT */
+
+div.disabled {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #000 url('/img/modal-bg.png') 50% 50% repeat; 
+	opacity: .7;
+	filter: alpha(opacity=70);
+	z-index: 1500;
+}
+
+
+/* LABELED FORMS */
+
+div.labeled {
+	position: relative;
+}
+
+div.labeled label {
+	position: absolute;
+	top: 11px;
+	left: 7px;
+	font-size: 10px !important;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: #000 !important;
+	opacity: .3;
+	filter: alpha(opacity=30);
+	z-index: 50;
+}
+
+div.labeled.connected label {
+	font-size: 11px !important;
+	font-weight: normal;
+	font-style: italic;
+	text-transform: none;
+	opacity: 1;
+	filter: alpha(opacity=100);
+	color: #AAA !important;
+}
+
+
+/* NAVIGATION */
+
+#header-nav li.hover {
+	-moz-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#header-nav li a.subnav {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	width: 13px;
+	height: 12px;
+	margin: 0 0 0 -8px;
+	background: url('/img/themes/default/javascript.png') no-repeat -1px -1px;
+	cursor: pointer;
+}
+
+#header-nav li.hover a.subnav,
+#header-nav li a.subnav:hover {
+	background-position: -16px -1px;
+}
+
+ul.subnav {
+	margin: 0 0 0 2px;
+	border: 3px solid #24AFC9;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px;
+	z-index: 350;
+}
+
+ul.subnav li {
+	width: 200px;
+	height: 30px;
+}
+
+ul.subnav li.spacer {
+	border-bottom: 1px solid #6ADAEE;
+}
+
+ul.subnav li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	color: #FFF;
+	line-height: 30px;
+	text-indent: 9px;
+	text-decoration: none;
+	background: #24AFC9;
+}
+
+ul.subnav li a:hover {
+	background: #FFF;
+	color: #24AFC9;
+	text-shadow: none;
+}
+
+
+/* OVERLAYS */
+
+.overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	background: #FFF;
+	border: 10px solid #EEE;
+	-moz-border-radius: 8px; 
+	-webkit-border-radius: 8px; 
+	border-radius: 8px;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
+	overflow: hidden;
+	z-index: 2000;
+}
+
+.overlay .overlay-toolbar {
+	position: relative;
+	height: 40px;
+}
+
+.overlay .overlay-toolbar .overlay-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 22px;
+	height: 22px;
+	background: url('/img/themes/default/javascript.png') no-repeat 0 -18px;
+	cursor: pointer;
+}
+
+.overlay .overlay-buttons {
+	display: none;
+	padding: 0 15px 15px 0;
+	text-align: center;
+}
+
+.overlay.initialized .overlay-buttons {
+	display: block;
+	padding-bottom: 30px;
+}
+
+.overlay .overlay-buttons button {
+	margin-left: 15px;
+}
+
+.overlay .overlay-buttons button.cancel {
+	color: #999;
+}
+
+.overlay .overlay-buttons button.cancel:hover {
+	color: #FFF;
+}
+
+.overlay .overlay-content {
+	overflow: auto;
+}
+
+.overlay.error .overlay-content {
+	margin-bottom: 30px;
+	color: #F00;
+	font-size: 14px;
+	text-align: center;
+}
+
+.overlay .overlay-content.noscroll {
+	overflow: hidden;
+}
+
+
+/* NOTIFY OVERLAY */
+
+.overlay.notify .overlay-content {
+	max-width: 400px;
+	padding: 5px 30px 30px 20px;	
+	font-size: 12px;
+	line-height: 16px;
+}
+
+
+/* TOOLTIP OVERLAY */
+
+.overlay.tooltip {
+	margin: -10px 0 0 4px;
+	padding: 7px 15px;
+	border: 1px solid #24AFC9;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	background-color: #24AFC9;
+	background: -webkit-gradient(linear, center top, center bottom, from(#5CCDE8), to(#24AFC9));
+	background: -moz-linear-gradient(top, #5CCDE8, #24AFC9);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#5CCDE8, endColorstr=#24AFC9);
+	color: #FFF;
+	z-index: 1000;
+}
+
+.overlay.tooltip .overlay-content {
+	white-space: nowrap;
+}
+
+
+/* USERBOX OVERLAY */
+
+.overlay.userbox {
+	margin: 14px 0 0 -14px;
+	width: 200px;
+	padding: 10px;
+	border-width: 4px;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	overflow: visible;
+}
+
+.overlay.userbox .arrow {
+	position: absolute;
+	top: -13px;
+	width: 21px;
+	height: 13px;
+	background: url('/img/themes/default/javascript.png') no-repeat -39px 0;
+	z-index: 2001;
+}
+
+.overlay.userbox .overlay-content .avatar {
+	float: left;
+	margin-right: 10px;
+}
+
+.overlay.userbox .overlay-content .avatar img {
+	float: left;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+}
+
+.overlay.userbox .overlay-content .info {
+	float: left;
+	margin-top: 8px;
+}
+
+.overlay.userbox .overlay-content .info a {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.overlay.userbox .overlay-content .permalink {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	font-size: 10px;
+}
+
+
+/* LOGIN OVERLAY */
+
+.overlay.login .input-block {
+	height: 34px;
+	margin: 15px 35px 0 30px;
+}
+
+.overlay.login .button {
+	margin: 20px 0 0 115px;
+}
+
+.overlay.login form .error {
+	padding: 10px 30px;
+	color: #F00;
+}
+
+.overlay.login form input[type=text],
+.overlay.login form input[type=password] {
+	width: 100%;
+}
+
+.overlay.login form.posting .button {
+	background: url('/img/loading-arrows.gif') no-repeat 190px 7px;
+}
+
+.overlay.login .connect {
+	margin: 60px 18px 0 15px;
+	padding: 13px 0;
+	border-top: 1px dotted #999;
+	border-bottom: 1px dotted #999;
+}
+
+.overlay.login .connect .facebook-connect {
+	float: left;
+	margin-left: 15px;
+}
+
+.overlay.login .connect .twitter-connect {
+	float: right;
+	margin-right: 15px;
+}
+
+.overlay.login .links {
+	margin: 30px 15px 8px 15px;
+	padding: 10px 0 0 0;
+	font-size: 11px;
+}
+
+.overlay.login .links .signup {
+	float: left;
+}
+
+.overlay.login .links .password {
+	float: right;
+}
+
+.overlay.login .links a {
+	text-decoration: none;
+	color: #666;
+}
+
+.overlay.login .links a:hover span {
+	text-decoration: underline;
+}

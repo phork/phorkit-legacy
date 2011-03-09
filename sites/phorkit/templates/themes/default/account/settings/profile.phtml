@@ -1,0 +1,94 @@
+<div id="content" class="constrained content-settings content-profile">
+	<div id="subnav" class="cleared">
+		<h1>Profile Settings</h1>
+		<ul>
+			<li><a href="<?php echo($strBaseUrl); ?>/account/settings/">Account Settings</a></li>
+		</ul>
+	</div>
+	
+	<form name="form-profile" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post" enctype="multipart/form-data">
+		<fieldset>
+			<?php 
+				print Form::getHidden('action', $strActionType); 
+				print Form::getHidden($strTokenField, Token::initToken());
+			?>
+			
+			<div class="column primary">
+				<div class="input-block displayname">
+					<label for="displayname">Display name <span class="tooltip">This is not the same as username</span></label>
+					<div>
+						<?php echo(Form::getTextbox('displayname', $arrUser['displayname'], array(
+							'id' 		=> 'displayname',
+							'maxlength' => 20,
+							'class'		=> 'input-textbox'
+						))); ?>
+					</div>
+				</div>
+				
+				<div class="input-block location">
+					<label for="location">Location</label>
+					<div>
+						<?php echo(Form::getTextbox('location', $arrUser['location'], array(
+							'id' 		=> 'location',
+							'maxlength' => 30,
+							'class'		=> 'input-textbox'
+						))); ?>
+					</div>
+				</div>
+				
+				<div class="input-block url">
+					<label for="url">Website URL</label>
+					<div>
+						<?php echo(Form::getTextbox('url', $arrUser['url'], array(
+							'id' 		=> 'url',
+							'maxlength' => 100,
+							'class'		=> 'input-textbox'
+						))); ?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="column secondary">
+				<div class="input-block avatar">
+					<label for="avatar">Picture</label>
+					<div>
+						<?php if ($arrUser['avatar']) { ?>
+						<img src="<?php echo(sprintf($arrUser['avatar'], 'thumb') . '?' . time()); ?>" height="43" alt="avatar" />
+						<?php } ?>
+						
+						<?php echo(Form::getFile('avatar', array(
+							'id' => 'avatar'
+						))); ?>
+					</div>
+				</div>
+				
+				<?php if ($arrUser['avatar']) { ?>
+				<div class="input-block noavatar checkbox">
+					<?php echo(Form::getCheckbox('noavatar', 1, false, array(
+						'id' 	=> 'noavatar',
+						'class'	=> 'input-checkbox'
+					))); ?>
+					<label for="noavatar">Or remove custom picture</label>
+				</div>
+				<?php } ?>
+				
+				<div class="input-block bio">
+					<label for="bio">Bio <span class="tooltip">160 chars or less</span></label>
+					<div>
+						<?php echo(Form::getTextarea('blurb', $arrUser['blurb'], array(
+							'id' 	=> 'bio',
+							'class'	=> 'input-textarea counted range-0-160'
+						))); ?>
+						<span class="count"></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="button">
+				<?php echo(Form::getSubmit('submit', 'Update profile')); ?>
+			</div>
+		</fieldset>
+	</form>
+</div>

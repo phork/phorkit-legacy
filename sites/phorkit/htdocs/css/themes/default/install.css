@@ -1,0 +1,126 @@
+#header-nav.notice {
+	line-height: 28px;
+	text-transform: uppercase;
+	text-indent: 20px;
+	color: #666;
+}
+
+#content .highlight {
+	margin-top: 20px;
+	padding: 1px 0 2px 1px;
+}
+
+#content table {
+	width: 100%;	
+}
+
+#content table thead tr {
+	border: none;
+	color: #FFF;
+	text-transform: uppercase;
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, .1);
+}
+
+#content table thead tr th {
+	background: #24AFC9;
+	background: -webkit-gradient(linear, center top, center bottom, from(#59CBE6), to(#24AFC9));
+	background: -moz-linear-gradient(top, #59CBE6, #24AFC9);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#59CBE6, endColorstr=#24AFC9);
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+}
+
+#content table thead tr th.first {
+	-moz-border-radius-topleft: 6px;
+	-webkit-border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
+}
+
+#content table thead tr th.last {
+	-moz-border-radius-topright: 6px;
+	-webkit-border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
+}
+
+#content table tbody tr:nth-child(2n+1) {
+	background: url('/img/themes/default/highlight.png') repeat;
+}
+
+#content table tbody tr:hover {
+	background: #FFF;
+}
+
+#content table tr th,
+#content table tr td {
+	padding: 10px 12px;
+	vertical-align: top;
+}
+
+#content table tr td {
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+#content table tr .name {
+	width: 200px;
+}
+
+#content table tr.passed td.enabled,
+#content table tr.failed td.enabled,
+#content table tr.passed td.passed {
+	background: url('/img/themes/default/icons.png') no-repeat center 8px;
+}
+
+#content table tr td.enabled span,
+#content table tr td.passed span {
+	display: none;
+}
+
+#content table tr.disabled .name {
+	color: #999;
+}
+
+#content table tr.failed .name {
+	color: #F00;
+}
+
+#content table tr .enabled,
+#content table tr .passed {
+	width: 80px;
+	text-align: center;
+}
+
+#content table tr .tips {
+	width: 10px;
+}
+
+#content table tr .tips a {
+	padding: 3px 6px;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	background: #24AFC9;
+	background: -webkit-gradient(linear, center top, center bottom, from(#59CBE6), to(#24AFC9));
+	background: -moz-linear-gradient(top, #59CBE6, #24AFC9);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#59CBE6, endColorstr=#24AFC9);
+	-moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) ;
+	-webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) ;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) ;
+	text-shadow: none;
+	color: #FFF;
+	text-decoration: none;
+}
+
+#content table tr .tips a:hover {
+	background: -webkit-gradient(linear, center top, center bottom, from(#1E1E1E), to(#000000));
+	background: -moz-linear-gradient(top, #1E1E1E, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#1E1E1E, endColorstr=#000000);
+}
+
+#content #tips .title {
+	margin-top: 40px;
+	font-size: 14px;
+}
+
+#content #tips ul li {
+	margin-bottom: 15px;
+}

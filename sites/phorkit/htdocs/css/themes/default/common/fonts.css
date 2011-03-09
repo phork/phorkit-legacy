@@ -1,0 +1,28 @@
+/* CHUNK FIVE */
+
+@font-face {
+	font-family: 'ChunkFiveRegular';
+	src: url('/css/fonts/chunkfive/Chunkfive-webfont.eot');
+	src: local('☺'), url('/css/fonts/chunkfive/Chunkfive-webfont.woff') format('woff'), url('/css/fonts/chunkfive/Chunkfive-webfont.ttf') format('truetype'), url('/css/fonts/chunkfive/Chunkfive-webfont.svg#webfontb5K2fJwj') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.chunkfive {
+	font-family: 'ChunkFiveRegular', Helvetica, Arial, sans-serif;
+}
+
+
+/* PT SANS */
+
+@font-face {
+	font-family: 'PTSansRegular';
+	src: url('/css/fonts/pt-sans/PTS55F-webfont.eot');
+	src: local('â˜º'), url('/css/fonts/pt-sans/PTS55F-webfont.woff') format('woff'), url('/css/fonts/pt-sans/PTS55F-webfont.ttf') format('truetype'), url('/css/fonts/pt-sans/PTS55F-webfont.svg#webfontmBFaK3EM') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.pt-sans {
+	font-family: 'PTSansRegular', Helvetica, Arial, sans-serif;
+}

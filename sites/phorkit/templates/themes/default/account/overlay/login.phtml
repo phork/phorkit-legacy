@@ -1,0 +1,58 @@
+<div class="overlay-login">
+	<form id="login" name="form-login" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post" class="ajax">
+		<fieldset>
+			<?php 
+				print Form::getHidden($strLoginFlag, 1);
+				print Form::getHidden($strTokenField, Token::initToken());
+			?>
+			
+			<div class="fields">
+				<div class="input-block labeled first">
+					<label for="username" class="js-hide">Username</label>
+					<div>
+						<?php echo(Form::getTextbox($strUsernameField, null, array(
+							'id' 	=> 'username',
+							'class'	=> 'input-textbox'
+						))); ?>
+					</div>
+				</div>
+				
+				<div class="input-block labeled last">
+					<label for="password" class="js-hide">Password</label>
+					<div>
+						<?php echo(Form::getPasswordBox($strPasswordField, null, array(
+							'id' 	=> 'password',
+							'class'	=> 'input-password'
+						))); ?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="button">
+				<?php echo(Form::getSubmit('submit', 'Sign in to ' . $strSiteTitle)); ?>
+			</div>
+		</fieldset>
+	</form>
+	
+	<?php if ($blnFacebookConnect || $blnTwitterConnect) { ?>
+	<div class="connect cleared">
+		<?php if ($blnFacebookConnect) { ?>
+		<a href="<?php echo($strBaseUrl); ?>/account/connect/facebook/" class="facebook-connect" rel="nofollow"><span>Sign in with Facebook</span></a>
+		<?php } ?>
+		
+		<?php if ($blnTwitterConnect) { ?>
+		<a href="<?php echo($strBaseUrl); ?>/account/connect/twitter/" class="twitter-connect" rel="nofollow"><span>Sign in with Twitter</span></a>
+		<?php } ?>
+	</div>
+	<?php } ?>
+	
+	<div class="links cleared">
+		<div class="signup">
+			<a href="<?php echo($strBaseUrl); ?>/account/signup/">Not a member? <span>Sign up</span>!</a>
+		</div>
+		
+		<div class="password">
+			<a href="<?php echo($strBaseUrl); ?>/account/password/"><span>Forgot your password</span>?</a>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,172 @@
+<div id="content" class="constrained content-settings content-account">
+	<div id="subnav" class="cleared">
+		<h1>Account Settings</h1>
+		<ul>
+			<li><a href="<?php echo($strBaseUrl); ?>/account/profile/">Profile Settings</a></li>
+		</ul>
+	</div>
+	
+	<form name="form-account" action="<?php echo(htmlentities($strSubmitUrl)); ?>" method="post">
+		<fieldset>
+			<?php 
+				print Form::getHidden('action', $strActionType); 
+				print Form::getHidden($strTokenField, Token::initToken());
+			?>
+			
+			<div class="column primary">
+				<?php if ($arrUser['password']) { ?>
+				<div class="input-block password">
+					<label for="current">Current password <span class="tooltip"><a href="<?php echo($strBaseUrl); ?>/account/password/">Forgot your password?</a></span></label>
+					<div>
+						<?php echo(Form::getPasswordBox('current', null, array(
+							'id' 		=> 'current',
+							'maxlength' => 80,
+							'class'		=> 'input-textbox focused'
+						))); ?>
+					</div>
+				</div>
+				<?php } ?>
+				
+				<div>
+					<div class="input-block firstname">
+						<label for="firstname">First name</label>
+						<div>
+							<?php echo(Form::getTextbox('firstname', $arrUser['firstname'], array(
+								'id' 		=> 'firstname',
+								'maxlength' => 30,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+					
+					<div class="input-block lastname">
+						<label for="lastname">Last name</label>
+						<div>
+							<?php echo(Form::getTextbox('lastname', $arrUser['lastname'], array(
+								'id' 		=> 'lastname',
+								'maxlength' => 40,
+								'class'		=> 'input-textbox'
+							))); ?>
+						</div>
+					</div>
+				</div>
+				
+				<div class="input-block email">
+					<label for="email">Email</label>
+					<div>
+						<?php echo(Form::getTextbox('email', $arrUser['email'], array(
+							'id' 		=> 'email',
+							'maxlength' => 80,
+							'class'		=> 'input-textbox'
+						))); ?>
+					</div>
+				</div>
+				
+				<div class="input-block birthdate spacer">
+					<label for="birthdate">Birthdate</label>
+					<div>
+						<?php echo(Form::getSelectMonth('birthdate_month', array($arrUser['birthdate_month']), array(), '--') 
+							     . Form::getSelectRange('birthdate_day', 1, 31, array($arrUser['birthdate_day']), array(), '--')
+							     . Form::getSelectRange('birthdate_year', date('Y'), 1900, array($arrUser['birthdate_year']), array(), '--')
+						); ?>
+					</div>
+				</div>
+				
+				<div class="input-block country">
+					<label for="country">Country</label>
+					<div>
+						<?php echo(Form::getSelect('country', $arrCountries, array($arrUser['countryid']), array(
+							'id' 	=> 'country',
+							'class'	=> 'input-select'
+						), '-- Choose your country --')); ?>
+					</div>
+				</div>
+				
+				<div class="input-block timezone">
+					<label for="timezone">Timezone</label>
+					<div>
+						<?php echo(Form::getSelect('timezone', $arrTimezones, array($arrUser['timezone']), array(
+							'id' 	=> 'timezone',
+							'class'	=> 'input-select'
+						), '-- Choose your timezone --')); ?>
+					</div>
+				</div>
+			</div>
+			
+			<div class="column secondary">
+				<div class="highlight">
+					<div class="inner">
+						<?php if ($arrUser['password']) { ?>
+						<div class="title">Change your password (optional)</div>
+						<div class="blurb">Use these fields to change your password. If you leave them blank your password won't change.</div>
+						<?php } else { ?>
+						<div class="title">Set your password (optional)</div>
+						<div class="blurb">This will enable you to sign in directly from <?php echo($strSiteTitle); ?> if Twitter or Facebook go down.</div>
+						<?php } ?>
+					
+						<div class="input-block labeled first">
+							<label for="password" class="js-hide">New password</label>
+							<div>
+								<?php echo(Form::getPasswordBox('password', null, array(
+									'id' 		=> 'password',
+									'maxlength' => 30,
+									'class'		=> 'input-password'
+								))); ?>
+							</div>
+						</div>
+						
+						<div class="input-block labeled last">
+							<label for="confirm" class="js-hide">Confirm new password</label>
+							<div>
+								<?php echo(Form::getPasswordBox('confirm', null, array(
+									'id' 		=> 'confirm',
+									'maxlength' => 30,
+									'class'		=> 'input-password'
+								))); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<?php if ($blnFacebookConnect || $blnTwitterConnect) { ?>
+				<div class="connect">
+					<?php if ($strFacebook) { ?>
+					<span class="facebook-icon">
+						connected to <?php echo($strFacebook); ?>
+						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/facebook/" class="icon remove-icon confirm" title="disconnect from your Facebook account"><span>disconnect</span></a>
+					</span>
+					<?php } else if ($blnFacebookConnect) { ?>
+					<a href="<?php echo($strBaseUrl); ?>/account/connect/facebook/" class="facebook-icon">connect to your Facebook account</a>
+					<?php } ?>
+					
+					<?php if ($strTwitter) { ?>
+					<span class="twitter-icon">
+						connected to <?php echo($strTwitter); ?>
+						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/twitter/" class="icon remove-icon confirm" title="disconnect from your Twitter account"><span>disconnect</span></a>
+					</span>
+					<?php } else if ($blnTwitterConnect) { ?>
+					<a href="<?php echo($strBaseUrl); ?>/account/connect/twitter/" class="twitter-icon">connect to your Twitter account</a>
+					<?php } ?>
+				</div>
+				<?php } ?>
+				
+				<?php if ($arrUser['email']) { ?>
+				<div class="verification">
+					<?php if ($arrUser['verified']) { ?>
+					<div class="verified">Your account has been verified</div>
+					<?php } else { ?>
+					<div class="pending">Your account is pending verification</div>
+					<div class="resend"><a href="<?php echo($strBaseUrl); ?>/account/verify/?action=send">Click here</a> to re-send the verification email</div>
+					<?php } ?>
+				</div>
+				<?php } ?>
+			</div>
+			
+			<div class="clear"></div>
+			
+			<div class="button">
+				<?php echo(Form::getSubmit('submit', 'Update account')); ?>
+			</div>
+		</fieldset>
+	</form>
+</div>

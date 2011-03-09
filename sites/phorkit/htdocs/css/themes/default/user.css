@@ -1,0 +1,185 @@
+#content #profile {
+	margin-bottom: 60px;
+	background: #FFF;
+	border: 10px solid #FFF;
+	-moz-border-radius: 8px; 
+	-webkit-border-radius: 8px; 
+	border-radius: 8px;
+	-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+#content #profile #image {
+	float: left;
+	margin-right: 20px;
+}
+
+#content #profile #image img {
+	float: left;
+	-moz-border-radius: 4px; 
+	-webkit-border-radius: 4px; 
+	border-radius: 4px;
+}
+
+#content #profile #about {
+	float: left;
+	width: 520px;
+	margin-top: 15px;
+}
+
+#content #profile #about h1 {
+	margin-bottom: 5px;
+	font-size: 20px;
+	font-weight: bold;
+	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+}
+
+#content #profile #about #location {
+	font-style: italic;
+	color: #666;
+}
+
+#content #profile #about #blurb {
+	margin-top: 10px;
+	font-size: 12px;
+	line-height: 16px;
+}
+
+#content #profile #connect {
+	float: right;
+	width: 190px;
+	margin: 4px 10px 0 0;
+	padding-left: 20px;
+}
+
+#content #profile #connect a {
+	margin: 10px 0;
+}
+
+#content #columns {
+	padding: 0 0 20px 10px;
+}
+
+#content #columns h2 {
+	margin-bottom: 10px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+#content #columns h2 strong {
+	float: right;
+	padding: 0 6px;
+	border: 1px solid #EEE;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px; 
+	border-radius: 10px;
+	background: #FFF;
+	font-size: 10px;
+	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+#content #columns img {
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px;
+}
+
+#content #columns #events {
+	float: left;
+	width: 640px;
+}
+
+#content #columns #events h2 {
+	margin-bottom: 10px;
+	font-size: 16px;
+	color: #333;
+}
+
+#content #columns #events #status {
+	margin: 5px 0 15px 0;
+}
+
+#content #columns #events #status label {
+	text-indent: 4px;
+}
+
+#content #columns #events #status input {
+	width: 320px;
+}
+
+#content #columns #events #status button {
+	width: 80px;
+	font-size: 11px;
+	letter-spacing: 1.2px;
+}
+
+#content #columns #events .event {
+	clear: both;
+	margin-bottom: 10px;
+}
+
+#content #columns #events .event .avatar {
+	float: left;
+	width: 32px;
+	margin-right: 3px;
+}
+
+#content #columns #events .event .blurb {
+	float: left;
+	margin-top: 3px;
+	font-size: 14px;
+	line-height: 18px;
+}
+
+#content #columns #events .event .date {
+	padding-left: 10px;
+	font-size: 10px;
+	font-style: italic;
+	color: #999;
+}
+
+#content #columns #connections {
+	float: right;
+	width: 230px;
+}
+
+#content #columns #connections .inner {
+	padding: 15px 15px 0 15px;
+}
+
+#content #columns #connections .inner:last-child {
+	padding-bottom: 15px;
+}
+
+#content #columns #connections .pending {
+	padding-bottom: 20px;
+	border-bottom: 1px solid #DDD;
+	line-height: 25px;
+}
+
+#content #columns #connections .pending .user {
+	margin-bottom: 5px;
+}
+
+#content #columns #connections .pending .user .avatar,
+#content #columns #connections .pending .user .username {
+	float: left;
+}
+
+#content #columns #connections .pending .user .avatar img {
+	margin-right: 10px;
+}
+
+#content #columns #connections .pending .user .actions {
+	float: right;
+}
+
+#content #columns #connections .pending .user .actions a.accept,
+#content #columns #connections .pending .user .actions a.deny {
+	margin-left: 10px;
+}

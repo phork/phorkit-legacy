@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title><?php echo($strSiteTitle = AppConfig::get('SiteTitle')); ?> - Fatal Error</title>
+		
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta http-equiv="imagetoolbar" content="no" />
+		
+		<link rel="stylesheet" type="text/css" href="/css/common/global.css" media="screen" />
+		<style text="text/css">
+			body {
+				color: #CCC;
+			}
+			
+			body a,
+			body a:hover {
+				color: #CCC;
+				text-decoration: none;
+			}
+			
+			#mask h1 {
+				display: none;
+			}
+			
+			#content {
+				position: absolute;
+				top: 5px;
+				left: 30px;
+			}
+			
+			#content h2 {
+				height: 205px;
+				overflow: hidden;
+			}
+					
+			#content h2.single {
+				font-size: 220px;
+				line-height: 220px;
+			}
+			
+			#content h2.double {
+				float: right;
+				margin-top: 22px;
+				font-size: 110px;
+				line-height: 88px;
+				text-transform: uppercase;
+			}
+			
+			#content h3 {
+				clear: both;
+				margin: 0 10px 30px 0;
+				padding: 5px 0 0 0;
+				font-size: 42px;
+			}
+			
+			#errors {
+				clear: both;
+				width: 420px;
+				padding: 0 10px 0 0;
+				font-size: 20px;
+				line-height: 28px;
+			}
+			
+			#errors a {
+				border-bottom: 1px dotted #CCC;
+			}
+			
+			#home {
+				position: absolute;
+				width: 120px;
+				bottom: 20px;
+				right: 0;
+				background: #00AEDB;
+			}
+			
+			#home a {
+				display: block;
+				padding: 10px;
+				font-size: 25px;
+				line-height: 22px;
+				color: #FFF;
+				text-decoration: none;
+				outline: none;
+				-moz-transition: all 0.2s linear;
+				-o-transition: all 0.2s linear;
+				-webkit-transition: all 0.2s linear;
+			}
+			
+			#home a:hover {
+				background: #FFF;
+				color: #00AEDB;
+			}
+			
+			@font-face {
+				font-family: 'LeagueGothicRegular';
+				src: url('/css/fonts/league-gothic/League_Gothic-webfont.eot');
+				src: local('☺'), url('/css/fonts/league-gothic/League_Gothic-webfont.woff') format('woff'), url('/css/fonts/league-gothic/League_Gothic-webfont.ttf') format('truetype'), url('/css/fonts/league-gothic/League_Gothic-webfont.svg#webfontOTINA1xY') format('svg');
+				font-weight: normal;
+				font-style: normal;
+			}
+			
+			.fancy {
+				font-family: 'LeagueGothicRegular', Helvetica, Arial, sans-serif;
+				text-transform: uppercase;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="content">
+			<?php
+				if (class_exists('AppDisplay')) {
+					switch ($intStatusCode = AppDisplay::getInstance()->getStatusCode()) {
+						case 403:
+							$strByline = 'Permission denied';
+							$arrErrors = array('No touching!');
+							break;
+							
+						case 404:
+							$strByline = 'Page not found';
+							$arrErrors = array('Have we made a huge mistake? If this is our fault, please <a href="' . AppConfig::get('BaseUrl') . '/contact/">tell us about it</a>.');
+							break;
+							
+						default:
+							if (!$objException || !($strByline = $objException->getMessage())) {
+								$strByline = 'System error';
+							}
+							break;
+					}
+				}
+			?>
+		
+			<?php if (!empty($intStatusCode)) { ?>
+			<h2 class="single fancy"><?php echo($intStatusCode); ?></h2>
+			<?php } else { ?>
+			<h2 class="double fancy">Fatal<br />Error</h2>
+			<?php } ?>
+			
+			<?php if (!empty($strByline)) { ?>
+			<h3 class="fancy"><?php echo($strByline); ?></h3>
+			<?php } ?>
+			
+			<?php if (!empty($arrErrors)) { ?>
+			<div id="errors">
+				<ul>
+					<?php foreach ($arrErrors as $strError) { ?>
+					<li><?php echo($strError); ?></li>
+					<?php } ?>
+				</ul>
+			</div>
+			<?php } ?>
+		</div>
+		
+		<div id="home">
+			<a href="/" class="fancy">Go back to <?php echo($strSiteTitle); ?></a>
+		</div>
+	</body>
+</html>
