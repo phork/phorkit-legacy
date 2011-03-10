@@ -133,7 +133,7 @@
 					<?php if ($strFacebook) { ?>
 					<span class="facebook-icon">
 						connected to <?php echo($strFacebook); ?>
-						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/facebook/" class="icon remove-icon confirm" title="disconnect from your Facebook account"><span>disconnect</span></a>
+						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/facebook/" class="icon remove-icon confirm" title="disconnect from your Facebook account" data-confirm="disconnect from Facebook"><span>disconnect</span></a>
 					</span>
 					<?php } else if ($blnFacebookConnect) { ?>
 					<a href="<?php echo($strBaseUrl); ?>/account/connect/facebook/" class="facebook-icon">connect to your Facebook account</a>
@@ -142,7 +142,7 @@
 					<?php if ($strTwitter) { ?>
 					<span class="twitter-icon">
 						connected to <?php echo($strTwitter); ?>
-						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/twitter/" class="icon remove-icon confirm" title="disconnect from your Twitter account"><span>disconnect</span></a>
+						<a href="<?php echo($strBaseUrl); ?>/account/disconnect/twitter/" class="icon remove-icon confirm" title="disconnect from your Twitter account" data-confirm="disconnect from Twitter"><span>disconnect</span></a>
 					</span>
 					<?php } else if ($blnTwitterConnect) { ?>
 					<a href="<?php echo($strBaseUrl); ?>/account/connect/twitter/" class="twitter-icon">connect to your Twitter account</a>
