@@ -109,6 +109,8 @@
 			
 			if ($this->validateFile($strTemplate = $this->strTemplateDir . $this->strThemeDir . 'beta.phtml')) {
 				AppDisplay::getInstance()->appendTemplate('content', $strTemplate, array_merge($this->arrPageVars, array(
+					'strCssUrl'			=> AppConfig::get('CssUrl'),
+					'strJsUrl'			=> AppConfig::get('JsUrl'),
 					'strSubmitUrl'		=> AppRegistry::get('Url')->getCurrentUrl(),
 					'strTokenField'		=> AppConfig::get('TokenField'),
 					'strUsernameField'	=> AppConfig::get('LoginUsernameField'),

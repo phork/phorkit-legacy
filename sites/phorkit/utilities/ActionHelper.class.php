@@ -4,6 +4,8 @@
 	 *
 	 * Generates and verifies action URLs by creating and
 	 * checking an encoded token to make sure it matches.
+	 * This works in conjunction with the ActionController
+	 * to allow safe GET, POST, PUT and DELETE API requests.
 	 *
 	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
 	 *

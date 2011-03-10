@@ -20,17 +20,17 @@
 		<?php if ($blnLoggedIn && !$blnUserIsSelf) { ?>
 		<div id="connect">
 			<?php if ($blnUserIsFollowed) { ?>
-			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/disconnect/follow/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Stop Following</a>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/disconnect/follow/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Stop Following</a>
 			<?php } else { ?>
-			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/connect/follow/' . $arrUser['username'] . '/')); ?>" class="button fan">Follow</a>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/connect/follow/' . $arrUser['username'] . '/')); ?>" class="button fan">Follow</a>
 			<?php } ?>
 			
 			<?php if ($blnUserIsFriend) { ?>
-			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/disconnect/friend/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Unfriend</a>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/disconnect/friend/' . $arrUser['username'] . '/')); ?>" class="button disconnect">Unfriend</a>
 			<?php } else if ($blnUserIsFriendPending) { ?>
-			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/approve/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Approve Friendship</a>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/approve/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Approve Friendship</a>
 			<?php } else { ?>
-			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/connect/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Send Friend Request</a>
+			<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/connect/friend/' . $arrUser['username'] . '/')); ?>" class="button connect">Send Friend Request</a>
 			<?php } ?>
 		</div>
 		<?php } ?>
@@ -96,8 +96,8 @@
 						<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" class="username"><?php echo($arrUser['username']); ?></a>
 					</div>
 					<div class="actions">
-						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/approve/friend/' . $arrUser['username'] . '.json')); ?>" class="confirm accept" data-confirm="accept friendship">accept</a>
-						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/users/deny/friend/' . $arrUser['username'] . '.json')); ?>" class="confirm deny" data-confirm="deny friendship">deny</a>
+						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/approve/friend/' . $arrUser['username'] . '/')); ?>" class="confirm accept" data-confirm="accept friendship">accept</a>
+						<a href="<?php echo(ActionHelper::generateUrl($strBaseUrl . '/action/method=put/result=refresh/users/deny/friend/' . $arrUser['username'] . '/')); ?>" class="confirm deny" data-confirm="deny friendship">deny</a>
 					</div>
 				</div>
 				<?php } ?>
