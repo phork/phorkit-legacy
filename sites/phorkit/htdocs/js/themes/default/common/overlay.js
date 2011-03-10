@@ -118,11 +118,23 @@ $(function() {
 					}
 					
 					if (typeof self.config.initialized == 'function') {
-						self.config.initialized(self, [status == 'success']);
+						self.config.initialized(self, status == 'success', xhr);
 					}
 					
 					self.resize();
 				});
+				break;
+				
+			case 'iframe':
+				var url = this.$element && this.$element.attr('href') ? this.$element.attr('href') : this.config.href;
+				this.$content
+					.empty()
+					.append($('<iframe></iframe>')
+						.attr('src', url)
+						.width('100%')
+						.height('100%')
+					)
+				;
 				break;
 				
 			default:
@@ -181,6 +193,10 @@ $(function() {
 		if ((!properties || properties.height) && increaseHeight > 0) {
 			this.$overlay.height(this.$overlay.height() + increaseHeight);
 			this.$content.height(contentHeight + increaseHeight);
+		}
+		
+		if (this.$toolbar) {
+			this.$toolbar.width(this.$content.width());
 		}
 		
 		return this.position();
@@ -409,4 +425,16 @@ $(function() {
 			}
 		})
 	;
+	
+	
+	//--------------------- CLOSE ON ESC -----------------
+	
+	
+	$(window).bind('keydown', function(e) {
+		if (e.keyCode == 27) {
+			if (registry.overlay) {
+				registry.overlay.hide();
+			}
+		}
+	});
 });

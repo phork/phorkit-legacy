@@ -1,5 +1,7 @@
 $(function() {
-	var utils = PHORK.utils;
+	var utils = PHORK.utils,
+		overlay = PHORK.overlay
+	;
 
 	//add back to top elements to each headline
 	$('h3').each(function() {
@@ -105,5 +107,35 @@ $(function() {
 				break;
 		}
 		$this.addClass('pointer');
+	});
+	
+	//initialize the login overlay which will reload the page upon successful login
+	$('.code a.output').each(function() {
+		var $this = $(this);
+		new PHORK.overlay.core()
+			.init($this, {
+				source: 'url',
+				type: 'code',
+				position: 'center',
+				modal: true,
+				toolbar: true,
+				width: 800,
+				initialized: function(self, success, xhr) {
+					if (xhr.responseText) {
+						self.$toolbar.prepend($('<span></span>').text(self.$element.attr('href')));
+						self.$content
+							.empty()
+							.append($('<div></div>')
+								.addClass('scrollable')
+								.append($('<pre></pre>')
+									.text(xhr.responseText)
+								)
+							)
+						;
+					}
+				}
+			})
+			.bind('click')
+		;
 	});
 });

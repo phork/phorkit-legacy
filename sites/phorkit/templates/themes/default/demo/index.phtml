@@ -5,6 +5,41 @@
 	<h2><?php echo($strSiteTitle); ?> is a starter kit for building websites on top of the <a href="http://phork.org" rel="external">Phork Framework</a>.</h2> 
 	
 	<div class="columns cleared">
+		<div class="column right">
+			<div class="highlight">
+				<ul id="toc" class="inner">
+					<li><a href="#intro">Introduction</a></li>
+					<li><a href="#install">Installation</a></li>
+					<li><a href="#users">User management</a>
+						<ul>
+							<li><a href="#users-facebook">Facebook integration</a></li>
+							<li><a href="#users-twitter">Twitter integration</a></li>
+							<li><a href="#users-connections">User connections</a></li>
+							<li><a href="#users-events">Event stream</a></li>
+							<li><a href="#users-beta">Beta access</a></li>
+						</ul>
+					</li>
+					<li><a href="#api">API framework</a>
+					<li><a href="#javascript">Javascript enhancements</a>
+						<ul>
+							<li><a href="#javascript-overlays">Overlays</a></li>
+							<li><a href="#javascript-alerts">Alerts</a></li>
+							<li><a href="#javascript-forms">Forms</a></li>
+						</ul>
+					</li>
+					<li><a href="#email">Email</a></li>
+					<li><a href="#zend">Zend integration</a></li>
+				</ul>
+			</div>
+			
+			<div id="credits" class="cleared">
+				<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="image tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
+				<div class="blurb">
+					<?php echo($strSiteTitle); ?> was developed by <a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/"><?php echo($arrUser['displayname']); ?></a><br />
+				</div>	
+			</div>
+		</div>
+		
 		<div class="column left">
 			<div id="intro" class="section">
 				<h3>Introduction</h3>
@@ -22,34 +57,23 @@
 					<em>For more information on how the Phork Framework works, check out the 
 					<a href="http://phork.org/manual/" rel="external">Phork manual</a>.</em>
 				</p>
+			</div>
+			
+			<div id="install" class="section">
+				<h3>Installation</h3>
+				<ol>
+					<li>Download and install the <a href="https://github.com/phork/phork" rel="external">Phork package</a></li>
+					<li>Download <a href="https://github.com/phork/phorkit" rel="external">Phork/it</a> and copy the sites/phorkit directory into Phork's sites/ directory</li>
+					<li>Copy sites/phorkit/config/example and its contents to sites/phorkit/config/live</li>
+					<li>Point your server's document root to /path/to/phork/sites/phorkit/htdocs/</li>
+					<li>Open <?php echo($strSiteTitle); ?> in your browser and follow the instructions</li>
+				</ol>
 				
 				<div class="images">
 					<img src="/img/themes/default/demo/install/1.png" width="200" class="first tipped" title="The installation tests make it easy to get up and running" /></a>
 					<img src="/img/themes/default/demo/install/2.png" width="200" class="second tipped" title="Quickly see which modules have been installed" /></a>
 					<img src="/img/themes/default/demo/install/3.png" width="200" class="third tipped" title="Get help and tips to install missing and broken modules" /></a>
 				</div>
-			</div>
-			
-			<div id="api" class="section">
-				<h3>API Framework</h3>
-				<p>
-					<?php echo($strSiteTitle); ?> includes a REST API framework that supports XML, JSON and JSONP
-					calls. The API is set up so that your application can use its own API internally without having
-					to make additional HTTP requests. This is accomplished using the ApiHelper utility class. 
-					We recommend developing an API concurrently, using internal API calls, and doing all your caching
-					at the API level.
-				</p>
-				<p>
-					<?php echo($strSiteTitle); ?> also includes a batch API method to allow multiple API calls to
-					be run from a single request. A batch request accepts a post containing JSON data with all the
-					calls to make and the type of call (GET, POST, PUT, or DELETE).
-				</p>
-				<p>
-					<?php echo($strSiteTitle); ?> comes pre-packaged with fully-featured user and event APIs. These
-					allow you to get user information, request friendships, follow and unfollow users, post status 
-					updates, see friends' status updates and much more. Each API call can easily be tuned to require 
-					authentication or not.
-				</p>
 			</div>
 			
 			<div id="users" class="section">
@@ -129,6 +153,51 @@
 				</p>
 			</div>
 			
+			<div id="api" class="section">
+				<h3>API Framework</h3>
+				<p>
+					<?php echo($strSiteTitle); ?> includes a REST API framework that supports XML, JSON and JSONP
+					calls. The API is set up so that your application can use its own API internally without having
+					to make additional HTTP requests. This is accomplished using the ApiHelper utility class. 
+					We recommend developing an API concurrently, using internal API calls, and doing all your caching
+					at the API level.
+				</p>
+				<p>
+					<?php echo($strSiteTitle); ?> also includes a batch API method to allow multiple API calls to
+					be run from a single request. A batch request accepts a post containing JSON data with all the
+					calls to make and the type of call (GET, POST, PUT, or DELETE).
+				</p>
+				<p>
+					<?php echo($strSiteTitle); ?> comes pre-packaged with fully-featured user, tag and event APIs. These
+					allow you to get user information, request friendships, follow and unfollow users, post status 
+					updates, see friends' status updates and much more. Each API call can easily be tuned to require 
+					authentication or not.
+				</p>
+				<p>
+					Try it out now in your shell. Copy and paste the following examples into your terminal (excluding
+					the dollar sign) and watch what happens. Calls with user:pass require your own username
+					and password. Passing raw=1 as an argument for XML calls leaves the results uncompressed.
+				</p>
+				
+				<div class="code scrollable">
+					<p>$ curl -X GET <a href="<?php echo($strFullUrl = $strApiUrl . '/api/users/sort=username/all.xml'); ?>?raw=1" class="output"><?php echo($strFullUrl); ?></a> -Gd "raw=1"</p>
+					<p>$ curl -X GET <a href="<?php echo($strFullUrl = $strApiUrl . '/api/users/sort=username/all.json'); ?>" class="output"><?php echo($strFullUrl); ?></a></p>
+					<p>$ curl -X GET <a href="<?php echo($strFullUrl = $strApiUrl . '/api/events/latest.xml'); ?>?raw=1" class="output"><?php echo($strFullUrl); ?></a> -Gd "raw=1"</p>
+					<p>$ curl -X GET <a href="<?php echo($strFullUrl = $strApiUrl . '/api/events/latest.json'); ?>" class="output"><?php echo($strFullUrl); ?></a></p>
+				</div>
+				<div class="code scrollable">
+					<p>$ curl -X POST -u user:pass <?php echo($strApiUrl . '/api/events/add/status.json'); ?> -d "status=This is fun"</p>
+					<p>$ curl -X POST -u user:pass <?php echo($strApiUrl . '/api/tags/for=user/add/[user id].json'); ?> -d "tag=Awesome"</p>
+				</div>
+				<div class="code scrollable">
+					<p>$ curl -X PUT -u user:pass <?php echo($strApiUrl . '/api/users/connect/follow/[username].json'); ?></p>
+					<p>$ curl -X PUT -u user:pass <?php echo($strApiUrl . '/api/users/approve/friend/[username].json'); ?></p>
+				</div>
+				<div class="code scrollable">
+					<p>$ curl -X DELETE -u user:pass <?php echo($strApiUrl . '/api/events/delete/[event id].json'); ?></p>
+				</div>
+			</div>
+			
 			<div id="javascript" class="section">
 				<h3>Javascript Enhancements</h3>
 				<p>
@@ -201,42 +270,6 @@
 					if the Zend Framework is installed, it will use the improved Zend_Json encoding and decoding
 					tools instead of PHP's native functions.
 				</p>
-			</div>
-		</div>
-		
-		<div class="column right">
-			<div class="highlight">
-				<ul id="toc" class="inner">
-					<li><a href="#intro">Introduction</a></li>
-					<li><a href="#api">API framework</a>
-					<li><a href="#users">User management</a>
-						<ul>
-							<li><a href="#users-facebook">Facebook integration</a></li>
-							<li><a href="#users-twitter">Twitter integration</a></li>
-							<li><a href="#users-connections">User connections</a></li>
-							<li><a href="#users-events">Event stream</a></li>
-							<li><a href="#users-beta">Beta access</a></li>
-						</ul>
-					</li>
-					<li><a href="#javascript">Javascript enhancements</a>
-						<ul>
-							<li><a href="#javascript-overlays">Overlays</a></li>
-							<li><a href="#javascript-alerts">Alerts</a></li>
-							<li><a href="#javascript-forms">Forms</a></li>
-						</ul>
-					</li>
-					<li><a href="#email">Email</a></li>
-					<li><a href="#zend">Zend integration</a></li>
-				</ul>
-			</div>
-			
-			<div id="credits">
-				<div class="image">
-					<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
-				</div>
-				<div class="blurb">
-					<?php echo($strSiteTitle); ?> was developed by <a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/"><?php echo($arrUser['displayname']); ?></a><br />
-				</div>	
 			</div>
 		</div>
 	</div>

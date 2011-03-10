@@ -219,8 +219,42 @@
 		protected function testDatabase() {
 			if ($blnEnabled = AppConfig::get('DatabaseEnabled')) {
 				if ($objDb = AppRegistry::get('Database', false)) {
-					$objDb->initRead();
-					$objDb->initWrite();
+					if ($objDb->initRead() && $objDb->initWrite()) {
+						if (($mxdResult = $objDb->read('SHOW TABLES')) !== false) {
+							$arrTables = array(
+								'cache',
+								'countries',
+								'facebook',
+								'promo',
+								'roles',
+								'sessions',
+								'tags',
+								'twitter',
+								'user_connections',
+								'user_events',
+								'user_login',
+								'user_logs',
+								'user_passwords',
+								'user_tags',
+								'users',
+								'verify'
+							);
+							
+							while ($arrTable = $objDb->fetchRow($mxdResult)) {
+								if (($intKey = array_search($arrTable[0], $arrTables)) !== false) {
+									unset($arrTables[$intKey]);
+								}
+							}
+							$objDb->freeResult($mxdResult);
+							
+							if (!empty($arrTables)) {
+								trigger_error(AppLanguage::translate('Missing the following database tables: %s', implode(', ', $arrTables)));
+								$this->arrTips['database']['tables'] = AppLanguage::translate('The SQL create and insert queries for all the required tables can be found in sites/phorkit/sql/initial.sql');
+							}
+						} else {
+							trigger_error(AppLanguage::translate('Unable to load the list of database tables'));
+						}
+					}
 				} else {
 					trigger_error(AppLanguage::translate('Unable to load the database from the registry'));
 				}

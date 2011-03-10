@@ -53,6 +53,7 @@
 			list($blnResult, $arrUsers) = ApiHelper::get('/api/users/include=extended/filter/by=id/' . AppConfig::get('SystemBotUserId') . '.json');
 		
 			$this->displayNode('content', $this->getTemplatePath('demo/index'), array(
+				'strApiUrl'	=> AppConfig::get('ApiUrl'),
 				'arrUser'	=> !empty($arrUsers['users']) ? $arrUsers['users'][0] : null
 			));
 		}

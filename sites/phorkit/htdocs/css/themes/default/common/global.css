@@ -700,3 +700,35 @@ a.button {
 	font-size: 11px;
 	color: #666;
 }
+
+
+/* WEBKIT SCROLLBARS */
+
+.scrollable::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    padding: 18px;
+    -webkit-border-radius: 1ex;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+    background-color: rgba(053, 057, 071, .3);
+    padding: 8px;
+    width: 6px;
+    height: 6px;
+    -webkit-border-radius: 1ex;
+}
+
+.scrollable::-webkit-scrollbar-button:start:decrement,
+.scrollable::-webkit-scrollbar-button:end:increment {
+    display: block;
+    width: 5px;
+    height: 10px;
+}
+
+.scrollable::-webkit-scrollbar-thumb:vertical,
+.scrollable::-webkit-scrollbar-thumb:horizontal {
+    height: 3px;
+    width: 3px;
+    margin: 3px;
+}
