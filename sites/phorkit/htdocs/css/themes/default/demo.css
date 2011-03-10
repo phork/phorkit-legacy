@@ -49,7 +49,7 @@ h4 {
 
 .column.right {
 	position: absolute;
-	width: 230px;
+	width: 235px;
 	top: 20px;
 	right: 0;
 }
@@ -136,13 +136,15 @@ h4 {
 	margin-top: 30px;
 }
 
-#credits .left img {
-	margin-right: 5px;
+#credits .image img {
+	float: left;
+	margin-right: 7px;
 	-moz-border-radius: 3px; 
 	-webkit-border-radius: 3px; 
 	border-radius: 3px;
 }
 
-#credits .right {
+#credits .blurb {
+	float: left;
 	margin-top: 5px;
 }
