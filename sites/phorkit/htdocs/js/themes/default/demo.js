@@ -76,38 +76,40 @@ $(function() {
 	});
 	
 	//set up the various example triggers
-	$('.trigger').bind('click', function() {
-		var $this = $(this);
-		switch ($this.data('trigger')) {
-			case 'subnav':
-				$('#nav-about').data('trigger').trigger('click');
-				setTimeout(function() {
-					$('#nav-about').data('trigger').trigger('click')
-				}, 1000);
-				break;
-				
-			case 'confirm':
-				new utils.notify.overlay('This is a pretty awesome overlay, right?', {
-					cancelled: {
-						type: 'cancel',
-						value: 'Not really',
-						close: true
-					},
-					confirmed: {
-						value: 'Yes it is!',
-						close: true,
-						action: function() {
-							$(window).trigger('goto', [0]);
-							setTimeout(function() {
-								new utils.notify.insert('Thanks! You get another alert demo for that. Ta-da!', false);
-							}, 400);
+	$('.trigger')
+		.bind('click', function() {
+			var $this = $(this);
+			switch ($this.data('trigger')) {
+				case 'subnav':
+					$('#nav-about').data('trigger').trigger('click');
+					setTimeout(function() {
+						$('#nav-about').data('trigger').trigger('click')
+					}, 1000);
+					break;
+					
+				case 'confirm':
+					new utils.notify.overlay('This is a pretty awesome overlay, right?', {
+						cancelled: {
+							type: 'cancel',
+							value: 'Not really',
+							close: true
+						},
+						confirmed: {
+							value: 'Yes it is!',
+							close: true,
+							action: function() {
+								$(window).trigger('goto', [0]);
+								setTimeout(function() {
+									new utils.notify.insert('Thanks! You get another alert demo for that. Ta-da!', false);
+								}, 400);
+							}
 						}
-					}
-				});
-				break;
-		}
-		$this.addClass('pointer');
-	});
+					});
+					break;
+			}
+		})
+		.addClass('pointer')
+	;
 	
 	//initialize the login overlay which will reload the page upon successful login
 	$('.code a.output').each(function() {
