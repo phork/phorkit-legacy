@@ -242,7 +242,7 @@
 							
 							while ($arrTable = $objDb->fetchRow($mxdResult)) {
 								if (($intKey = array_search($arrTable[0], $arrTables)) !== false) {
-								//	unset($arrTables[$intKey]);
+									unset($arrTables[$intKey]);
 								}
 							}
 							$objDb->freeResult($mxdResult);

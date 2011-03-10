@@ -137,7 +137,7 @@
 				extract($this->getResultParams());
 				
 				$objUserEvent = $this->initModel();
-				if ($objUserEvent->loadLatest(true, $arrFilters, false)) {
+				if ($objUserEvent->loadLatest(false, $arrFilters, false)) {
 					$this->blnSuccess = true;
 					if ($objUserEvent->count()) {
 						$this->arrResult = array(
@@ -455,6 +455,7 @@
 						);
 					} else {
 						$arrEvents[] = array(
+							'id'		=> $objUserEventRecord->get('__id'),
 							'userid'	=> $objUserEventRecord->get('userid'),
 							'username'	=> $objUserEventRecord->get('username'),
 							'avatars'	=> $this->formatAvatars($objUserEventRecord->get('avatar')),
