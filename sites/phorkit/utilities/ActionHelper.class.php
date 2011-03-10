@@ -41,7 +41,7 @@
 				}
 			}
 			
-			return $strUrl . '?' . self::QUERY_ARG . '=' . self::encodeUrl($arrSegments, time());
+			return $strUrl . ($intQueryPos !== false ? '&' : '?') . self::QUERY_ARG . '=' . self::encodeUrl($arrSegments, time());
 		}
 		
 		

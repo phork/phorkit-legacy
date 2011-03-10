@@ -147,9 +147,8 @@
 					AppLoader::includeUtility('Token');
 					$blnFailed = !Token::verifyRequest();
 				}
-						
-				return empty($blnFailed);
 			}
+			return empty($blnFailed);
 		}
 		
 		
