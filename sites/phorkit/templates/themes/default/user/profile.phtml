@@ -7,7 +7,11 @@
 			<h1><?php echo($arrUser['displayname']); ?></h1>
 			
 			<?php if ($arrUser['location']) { ?>
-			<div id="location"><?php echo($arrUser['location']); ?></div>
+			<span id="location"><?php echo($arrUser['location']); ?></span>
+			<?php } ?>
+			
+			<?php if ($arrUser['url']) { ?>
+			<span id="url"><a href="<?php echo($arrUser['url']); ?>" rel="external"><?php echo($arrUser['url']); ?></a></span>
 			<?php } ?>
 			
 			<div id="blurb"><?php echo($arrUser['blurb']); ?></div>
@@ -136,19 +140,8 @@
 	</div>
 </div>
 
-<?php if (!AppConfig::get('UserTooltip', false)) { ?>
-<?php AppConfig::set('UserTooltip', true); ?>
-<script type="text/html" id="user-tmpl">
-	<div class="arrow"></div>
-	<div class="overlay-content noscroll cleared">
-		<div class="avatar">
-			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/"><img src="[[THUMBNAIL]]" width="60" height="60" alt="[[USERNAME]]" /></a>
-		</div>
-		<div class="info">
-			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/">[[DISPLAY-NAME]]</a>
-			<div class="location">[[LOCATION]]</div>
-		</div>
-		<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/" class="permalink">view profile</a>
-	</div>
-</script>
-<?php } ?>
+<?php 
+	if (!AppConfig::get('UserTooltip', false)) {
+		$objController->includeCommon('tooltips/user');
+	} 
+?>

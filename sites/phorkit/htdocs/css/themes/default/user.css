@@ -36,6 +36,7 @@
 }
 
 #content #profile #about #location {
+	padding-right: 20px;
 	font-style: italic;
 	color: #666;
 }

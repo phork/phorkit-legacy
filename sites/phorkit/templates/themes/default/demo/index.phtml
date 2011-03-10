@@ -1,3 +1,5 @@
+<?php $objController = AppRegistry::get('Controller'); ?>
+
 <div id="content" class="constrained">
 	<h1 class="chunkfive">Hello and welcome to <?php echo($strSiteTitle); ?>!</h1>
 	<h2><?php echo($strSiteTitle); ?> is a starter kit for building websites on top of the <a href="http://phork.org" rel="external">Phork Framework</a>.</h2> 
@@ -202,29 +204,46 @@
 			</div>
 		</div>
 		
-		<div class="column right highlight">
-			<ul id="toc" class="inner">
-				<li><a href="#intro">Introduction</a></li>
-				<li><a href="#api">API framework</a>
-				<li><a href="#users">User management</a>
-					<ul>
-						<li><a href="#users-facebook">Facebook integration</a></li>
-						<li><a href="#users-twitter">Twitter integration</a></li>
-						<li><a href="#users-connections">User connections</a></li>
-						<li><a href="#users-events">Event stream</a></li>
-						<li><a href="#users-beta">Beta access</a></li>
-					</ul>
-				</li>
-				<li><a href="#javascript">Javascript enhancements</a>
-					<ul>
-						<li><a href="#javascript-overlays">Overlays</a></li>
-						<li><a href="#javascript-alerts">Alerts</a></li>
-						<li><a href="#javascript-forms">Forms</a></li>
-					</ul>
-				</li>
-				<li><a href="#email">Email</a></li>
-				<li><a href="#zend">Zend integration</a></li>
-			</ul>
+		<div class="column right">
+			<div class="highlight">
+				<ul id="toc" class="inner">
+					<li><a href="#intro">Introduction</a></li>
+					<li><a href="#api">API framework</a>
+					<li><a href="#users">User management</a>
+						<ul>
+							<li><a href="#users-facebook">Facebook integration</a></li>
+							<li><a href="#users-twitter">Twitter integration</a></li>
+							<li><a href="#users-connections">User connections</a></li>
+							<li><a href="#users-events">Event stream</a></li>
+							<li><a href="#users-beta">Beta access</a></li>
+						</ul>
+					</li>
+					<li><a href="#javascript">Javascript enhancements</a>
+						<ul>
+							<li><a href="#javascript-overlays">Overlays</a></li>
+							<li><a href="#javascript-alerts">Alerts</a></li>
+							<li><a href="#javascript-forms">Forms</a></li>
+						</ul>
+					</li>
+					<li><a href="#email">Email</a></li>
+					<li><a href="#zend">Zend integration</a></li>
+				</ul>
+			</li>
+		</div>
+		
+		<div id="credits">
+			<div class="left">
+				<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
+			</div>
+			<div class="right">
+				<?php echo($strSiteTitle); ?> was developed by <a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/"><?php echo($arrUser['displayname']); ?></a><br />
+			</div>	
 		</div>
 	</div>
 </div>
+
+<?php 
+	if (!AppConfig::get('UserTooltip', false)) {
+		$objController->includeCommon('tooltips/user');
+	} 
+?>

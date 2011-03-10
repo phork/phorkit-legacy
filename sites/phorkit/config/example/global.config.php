@@ -57,8 +57,9 @@
 	//the developer role is a special role
 	$arrConfig['DeveloperRole'] = 1;
 	
-	//the default user ID for the robot account
-	$arrConfig['SystemBotUser'] = 1;
+	//the default user ID and username for the robot
+	$arrConfig['SystemBotUserId'] = 1;
+	$arrConfig['SystemBotUsername'] = 'admin';
 	
 	
 	/*******************************************/

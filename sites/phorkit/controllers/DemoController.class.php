@@ -33,7 +33,8 @@
 				AppConfig::get('CssUrl') . $this->strThemeCssDir . 'demo.css'
 			));	
 			$this->assignPageVar('arrJavascript', array(
-				AppConfig::get('JsUrl') . $this->strThemeJsDir . 'demo.js'
+				AppConfig::get('JsUrl') . $this->strThemeJsDir . 'demo.js',
+				AppConfig::get('JsUrl') . $this->strThemeJsDir . 'user.js'
 			));
 		}
 		
@@ -49,6 +50,10 @@
 		 * @access protected
 		 */
 		protected function displayIndex() {
-			$this->displayNode('content', $this->getTemplatePath('demo/index'));
+			list($blnResult, $arrUsers) = ApiHelper::get('/api/users/include=extended/filter/by=id/' . AppConfig::get('SystemBotUserId') . '.json');
+		
+			$this->displayNode('content', $this->getTemplatePath('demo/index'), array(
+				'arrUser'	=> !empty($arrUsers['users']) ? $arrUsers['users'][0] : null
+			));
 		}
 	}

@@ -1,0 +1,14 @@
+<?php AppConfig::set('UserTooltip', true); ?>
+<script type="text/html" id="user-tmpl">
+	<div class="arrow"></div>
+	<div class="overlay-content noscroll cleared">
+		<div class="avatar">
+			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/"><img src="[[THUMBNAIL]]" width="60" height="60" alt="[[USERNAME]]" /></a>
+		</div>
+		<div class="info">
+			<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/">[[DISPLAY-NAME]]</a>
+			<div class="location">[[LOCATION]]</div>
+		</div>
+		<a href="<?php echo($strBaseUrl); ?>/user/[[USERNAME]]/" class="permalink">view profile</a>
+	</div>
+</script>
