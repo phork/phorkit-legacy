@@ -69,12 +69,14 @@
 #content table tr.passed td.passed .icon,
 #content table tr.failed td.enabled .icon {
 	height: 30px;
-	background-position: 0 0;	
+	margin: 0 auto;
+	background-position: center 0;
 }
 
 #content table tr.failed td.passed .icon {
 	height: 30px;
-	background-position: 0 -33px;
+	margin: 0 auto;
+	background-position: center -33px;
 }
 
 #content table tr.disabled td.enabled .icon,

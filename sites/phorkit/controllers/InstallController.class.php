@@ -248,7 +248,7 @@
 							$objDb->freeResult($mxdResult);
 							
 							if (!empty($arrTables)) {
-								trigger_error(AppLanguage::translate('Missing the following database tables: %s', implode(', ', $arrTables)));
+								trigger_error(AppLanguage::translate('The following database tables are missing: %s', implode(', ', $arrTables)));
 								$this->arrTips['database']['tables'] = AppLanguage::translate('The SQL create and insert queries for all the required tables can be found in sites/phorkit/sql/initial.sql');
 							}
 						} else {
@@ -344,12 +344,20 @@
 					foreach ($arrSubDirs as $strSubDir) {
 						if (is_dir($strFilesDir . $strSubDir)) {
 							if (!is_writable($strFilesDir . $strSubDir)) {
-								trigger_error(AppLanguage::translate('%s%s must be web-writable', $strFilesDir, $strSubDir));
-								$this->arrTips['files']['writable'] = AppLanguage::translate('To set up a directory as web-writable it should be owned by the same user that runs your webserver (eg. chown apache:apache /path/to/dir) or, if you prefer, it can be set to world-writable (eg. chmod 777 /path/to/dir)');
+								$arrInvalid[] = $strFilesDir . $strSubDir;
 							}
 						} else {
-							trigger_error(AppLanguage::translate('Missing directory %s%s', $strFilesDir, $strSubDir));
+							$arrMissing[] = $strFilesDir . $strSubDir;
 						}
+					}
+					
+					if (!empty($arrMissing)) {
+						trigger_error(AppLanguage::translate('The following directories are missing: %s', implode(', ', $arrMissing)));
+					}
+					
+					if (!empty($arrInvalid)) {
+						trigger_error(AppLanguage::translate('The following directories must be web-writable: %s', implode(', ', $arrInvalid)));
+						$this->arrTips['files']['writable'] = AppLanguage::translate('To set up a directory as web-writable it should be owned by the same user that runs your webserver (eg. chown apache:apache /path/to/dir) or, if you prefer, it can be set to world-writable (eg. chmod 777 /path/to/dir)');
 					}
 				} else {
 					trigger_error(AppLanguage::translate('%s is not a valid directory', $strFilesDir));
@@ -378,7 +386,7 @@
 			
 			return array(
 				'name'		=> 'Installed',
-				'enabled'	=> $blnInstalled
+				'enabled'	=> true
 			);
 		}
 		
