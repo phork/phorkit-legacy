@@ -65,14 +65,20 @@
 	width: 200px;
 }
 
-#content table tr.passed td.enabled,
-#content table tr.failed td.enabled,
-#content table tr.passed td.passed {
-	background: url('/img/themes/default/icons.png') no-repeat center 8px;
+#content table tr.passed td.enabled .icon,
+#content table tr.passed td.passed .icon,
+#content table tr.failed td.enabled .icon {
+	height: 30px;
+	background-position: 0 0;	
 }
 
-#content table tr td.enabled span,
-#content table tr td.passed span {
+#content table tr.failed td.passed .icon {
+	height: 30px;
+	background-position: 0 -33px;
+}
+
+#content table tr.disabled td.enabled .icon,
+#content table tr.disabled td.passed .icon {
 	display: none;
 }
 

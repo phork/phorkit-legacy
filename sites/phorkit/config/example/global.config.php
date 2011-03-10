@@ -95,9 +95,9 @@
 	$arrConfig['ErrorLogFile'] = AppConfig::get('FilesDir') . 'app/logs/error.' . date('Ymd') . '.log';
 	
 	//whether to log specific error types
-	$arrConfig['ErrorLogNotice'] = true;
-	$arrConfig['ErrorLogWarning'] = true;
-	$arrConfig['ErrorLogError'] = true;
+	$arrConfig['ErrorLogNotice'] = false;
+	$arrConfig['ErrorLogWarning'] = false;
+	$arrConfig['ErrorLogError'] = false;
 	
 	
 	/*******************************************/

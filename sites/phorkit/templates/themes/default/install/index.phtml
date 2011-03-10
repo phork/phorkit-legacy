@@ -16,8 +16,8 @@
 				<?php foreach ($arrTests as $strTest=>$arrTest) { ?>
 				<tr class="smooth <?php echo($arrTest['enabled'] ? ($arrTest['passed'] ? 'passed' : 'failed') : 'disabled'); ?>">
 					<td class="name"><?php echo($arrTest['name']); ?></td>
-					<td class="enabled"><span><?php echo($arrTest['enabled'] ? 'Yes' : '&nbsp;'); ?></span></td>
-					<td class="passed"><span><?php echo($arrTest['passed'] ? 'Yes' : '&nbsp;'); ?></span></td>
+					<td class="enabled"><div class="icon"><span><?php echo($arrTest['enabled'] ? 'Yes' : 'No'); ?></span></div></td>
+					<td class="passed"><div class="icon"><span><?php echo($arrTest['passed'] ? 'Yes' : 'No'); ?></span></div></td>
 					<td class="notices"><?php echo($arrTest['errors'] ? implode('<br />', $arrTest['errors']) : '&nbsp;'); ?></td>
 					<td class="tips">
 						<?php if (!empty($arrTips[$strTest])) { ?>
