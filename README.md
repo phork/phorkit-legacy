@@ -8,7 +8,7 @@ by Phork Labs
 Introduction
 ------------
 
-Phork/it is a starter kit for building websites on top of the [Phork Framework](http://phork.org). Check out a [live demo](http://phorkit.phork.org).
+Phork/it is a starter kit for building websites on top of the [Phork Framework](http://phork.org). Check out a [live demo](http://phorkit.org).
 
 
 Quick Start
@@ -16,7 +16,7 @@ Quick Start
 
 1.  Download and install the [Phork package](https://github.com/phork/phork).
 
-2.  Download Phork/it and copy the sites/phorkit directory into Phork's sites/ directory.
+2.  Download Phork/it into Phork's sites/ directory (eg. phork/sites/phorkit/).
 
 3.  Point your server's document root to /path/to/phork/sites/phorkit/htdocs/.
 
