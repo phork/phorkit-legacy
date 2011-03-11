@@ -14,11 +14,15 @@ Phork/it is a starter kit for building websites on top of the [Phork Framework](
 Quick Start
 -----------
 
-1.  Download and install the [Phork package](https://github.com/phork/phork).
+1.  Download and install the [Phork package](https://github.com/phork/phork)
 
-2.  Download Phork/it into Phork's sites/ directory (eg. phork/sites/phorkit/).
+2.  Download Phork/it into Phork's sites/ directory (eg. phork/sites/phorkit/)
 
-3.  Point your server's document root to /path/to/phork/sites/phorkit/htdocs/.
+3.  Copy phorkit/config/example and its contents to phorkit/config/live
+
+4.  Point your server's document root to /path/to/phork/sites/phorkit/htdocs/
+
+5.  Open Phork/it in your browser and follow the instructions
 
 
 Todo
@@ -27,6 +31,7 @@ Todo
 *  Change the status post to an AJAX post
 *  Add "post to Twitter/Facebook" options for status posts
 *  Add page to connect with Twitter/Facebook friends
+*  Documentation
 
 
 License
