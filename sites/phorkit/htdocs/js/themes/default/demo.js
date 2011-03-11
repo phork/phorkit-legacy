@@ -16,7 +16,7 @@ $(function() {
 	$('#toc li a').bind('click', function() {
 		var $content = $($(this).attr('href'));
 		if ($content.size()) {
-			$(window).trigger('goto', [$content.position().top]);
+			$(window).trigger('goto', [$content.offset().top] - $('div.columns .column.left').position().top);
 		}
 	});
 	

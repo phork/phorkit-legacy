@@ -27,7 +27,7 @@
 		 * @static
 		 */
 		static public function isPermissionSet($intCheckFor, $intCheckIn) {
-			return ($intCheckFor & $intCheckIn != 0);
+			return ($intCheckFor & $intCheckIn) != 0;
 		}
 		
 		
