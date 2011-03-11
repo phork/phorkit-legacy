@@ -13,7 +13,9 @@ $(function() {
 	});
 
 	//attach a click event to each nav item to scroll to the right position
-	$('#toc li a').bind('click', function() {
+	$('#toc li a').bind('click', function(e) {
+		e.preventDefault();
+		
 		var $content = $($(this).attr('href'));
 		if ($content.size()) {
 			$(window).trigger('goto', [$content.offset().top] - $('div.columns .column.left').position().top);
