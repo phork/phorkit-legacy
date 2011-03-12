@@ -5,7 +5,7 @@
 	 * Extension of Zend's Twitter client with additional
 	 * support for oAuth login and to retrieve friend IDs.
 	 *
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.

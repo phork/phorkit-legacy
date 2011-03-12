@@ -11,7 +11,7 @@
 	 * This should also require the default controller
 	 * at the top of the file. 
 	 *
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.

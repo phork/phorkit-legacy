@@ -5,7 +5,7 @@
 	 * Clears the appropriate caches after a record has
 	 * been saved or deleted.
 	 *
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.
@@ -28,13 +28,14 @@
 		 * that are used in the associated API classes.
 		 *
 		 * The delete feature works best if the deleted records
-		 * have been loaded into the model object.
+		 * are still loaded in the model object as they will no
+		 * longer be available in the database.
 		 *
 		 * @access public
 		 * @param object $objModel The model object operated on
 		 * @param string $strFunction The save or delete function called
 		 * @param boolean $blnInserted True if one or more records were inserted if post-save
-		 * @param array $arrDeleted An array of filters used to deleted records if post-delete
+		 * @param array $arrDeleted An array of filters used to delete records if post-delete
 		 * @return boolean True on success
 		 * @static
 		 */

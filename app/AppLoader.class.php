@@ -11,7 +11,7 @@
 	 * This is a singleton class and therefore it must
 	 * be instantiated using the getInstance() method.
 	 *
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.
@@ -24,9 +24,8 @@
 	class AppLoader extends CoreLoader {
 	
 		/**
-		 * Includes a hook class. This first checks the global
-		 * directory, then the site-specific directory and then
-		 * the admin directory.
+		 * Includes a hook class. This checks the site-specific
+		 * directory first, then the shared global directory.
 		 *
 		 * @access public
 		 * @param string $strClass The hook class name
@@ -34,14 +33,14 @@
 		 * @static
 		 */
 		static public function includeHooks($strClass) {
-			return self::getInstance()->includeClass(AppConfig::get('InstallDir') . 'php/hooks/', $strClass, false) ||
-			       self::getInstance()->includeClass(AppConfig::get('SiteDir') . 'hooks/', $strClass);
+			return self::getInstance()->includeClass(AppConfig::get('SiteDir') . 'hooks/', $strClass, false) ||
+			       self::getInstance()->includeClass(AppConfig::get('InstallDir') . 'php/hooks/', $strClass);			           
 		}
 		
 		
 		/**
-		 * Includes an extension class. This first checks the global
-		 * directory, then the site-specific directory.
+		 * Includes an extension class. This checks the site-specific
+		 * directory first, then the shared global directory.
 		 *
 		 * @access public
 		 * @param string $strExtension The extension sub-directory
@@ -52,15 +51,14 @@
 		 */
 		static public function includeExtension($strExtensionDir, $strClass, $blnFile = false) {
 			$strMethod = $blnFile ? 'includeFile' : 'includeClass';
-			return self::getInstance()->$strMethod(AppConfig::get('InstallDir') . 'php/ext/' . $strExtensionDir, $strClass, false) ||
-			       self::getInstance()->$strMethod(AppConfig::get('SiteDir') . 'ext/' . $strExtensionDir, $strClass);
+			return self::getInstance()->$strMethod(AppConfig::get('SiteDir') . 'ext/' . $strExtensionDir, $strClass, false) ||
+			       self::getInstance()->$strMethod(AppConfig::get('InstallDir') . 'php/ext/' . $strExtensionDir, $strClass);
 		}
 		
 		
 		/**
-		 * Includes a utility class. Has additional handling
-		 * to check the site-specific and admin utilities as
-		 * well.
+		 * Includes a utility class. This checks the site-specific
+		 * directory first, then the shared global directory.
 		 *
 		 * @access public
 		 * @param string $strClass The utility class name

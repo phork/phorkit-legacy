@@ -9,7 +9,7 @@
 	 *
 	 * php -d memory_limit=64M /path/to/phork/sites/public/scripts/index.php dev LogScript commonQueries
 	 * 
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.
@@ -23,7 +23,13 @@
 	
 		/**
 		 * Parses the debug logs for SQL queries to get the
-		 * most common queries.
+		 * most common queries. This will output a real query
+		 * with actual data (eg. WHERE id = '1') but strips
+		 * all values with single quotes as well as all IN
+		 * and NOT IN values order to get a query template
+		 * (eg. WHERE id = '') which is used for grouping 
+		 * and counting the number of times that query template
+		 * has been run.
 		 *
 		 * @access protected
 		 */

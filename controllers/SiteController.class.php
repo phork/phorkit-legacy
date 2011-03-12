@@ -12,7 +12,7 @@
 	 * templates. Themed templates are used to override the
 	 * standard templates if a design calls for a different look.
 	 * 
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.

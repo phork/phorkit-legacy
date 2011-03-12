@@ -7,7 +7,7 @@
 	 * This works in conjunction with the ActionController
 	 * to allow safe GET, POST, PUT and DELETE API requests.
 	 *
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.

@@ -50,6 +50,9 @@
 	/*****************************************/
 	
 	
+	//include the app loader override class
+	require_once("{$strSiteDir}app/AppLoader.class.php");
+	
 	//include the bootstrap class
 	require_once("{$strSiteDir}bootstraps/ScriptBootstrap.class.php");
 	

@@ -7,7 +7,7 @@
 	 * This controller handles all the miscellaneous pages
 	 * of the site that are, for the most part, static.
 	 * 
-	 * Copyright 2006-2011, Phork Labs. (http://www.phorklabs.com)
+	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
 	 * Licensed under The MIT License
 	 * Redistributions of files must retain the above copyright notice.
