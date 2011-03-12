@@ -40,7 +40,6 @@
 					unset($arrSegments[$intKey]);
 				}
 			}
-			
 			return $strUrl . ($intQueryPos !== false ? '&' : '?') . self::QUERY_ARG . '=' . self::encodeUrl($arrSegments, time());
 		}
 		
@@ -57,7 +56,7 @@
 			if (!empty($_GET[self::QUERY_ARG])) {
 				list($intTimestamp, $strSecretKey) = explode(self::DIVIDER, $_GET[self::QUERY_ARG]);
 				if (time() - $intTimestamp < AppConfig::get('ActionKeyTTL')) {
-					return self::encodeUrl(explode('/', AppRegistry::get('Url')->getUrl()), $intTimestamp) == $_GET[self::QUERY_ARG];
+					return self::encodeUrl(explode('/', AppConfig::get('BaseUrl') . AppRegistry::get('Url')->getUrl()), $intTimestamp) == $_GET[self::QUERY_ARG];
 				}
 			}
 		}

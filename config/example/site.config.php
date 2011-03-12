@@ -1,5 +1,5 @@
 <?php
-	//comment this line out when the site has been installed
+	//comment this line out when the site has been installed and the install tests have passed
 	require('installing.config.php');
 	
 

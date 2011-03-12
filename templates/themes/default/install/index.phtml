@@ -39,8 +39,12 @@
 			<div class="title"><?php echo($arrTests[$strTest]['name']); ?> tips</div>
 			<hr />
 			<ul>
-				<?php foreach ($arrTestTips as $strTip) { ?>
+				<?php foreach ($arrTestTips as $strKey=>$strTip) { ?>
 				<li><?php echo($strTip); ?></li>
+				
+				<?php if (!empty($arrCode[$strTest][$strKey])) { ?>
+				<li class="code"><pre><?php echo($arrCode[$strTest][$strKey]); ?></pre></li>
+				<?php } ?>
 				<?php } ?>
 			</ul>
 		</div>

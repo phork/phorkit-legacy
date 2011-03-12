@@ -23,6 +23,7 @@
 		protected $blnDeveloper;
 		protected $arrTests = array();
 		protected $arrTips = array();
+		protected $arrCode = array();
 		
 		
 		/**
@@ -358,6 +359,7 @@
 					if (!empty($arrInvalid)) {
 						trigger_error(AppLanguage::translate('The following directories must be web-writable: %s', implode(', ', $arrInvalid)));
 						$this->arrTips['files']['writable'] = AppLanguage::translate('To set up a directory as web-writable it should be owned by the same user that runs your webserver (eg. chown apache:apache /path/to/dir) or, if you prefer, it can be set to world-writable (eg. chmod 777 /path/to/dir)');
+						$this->arrCode['files']['writable'] = 'chmod -R 777 ' . $strFilesDir . '*';
 					}
 				} else {
 					trigger_error(AppLanguage::translate('%s is not a valid directory', $strFilesDir));
@@ -469,6 +471,33 @@
 		
 		
 		/**
+		 * Tests whether the developer's user account has
+		 * been set up. Runs the database prerequisite.
+		 *
+		 * @access protected
+		 * @return array The name of the test and whether it's been enabled
+		 */
+		protected function testUser() {
+			if ($this->runTest('database')) {
+				AppLoader::includeModel('UserModel');
+				$objUser = new UserModel();
+				if (!$objUser->loadByRoleId($intRoleId = AppConfig::get('DeveloperRole')) || !$objUser->count()) {
+					trigger_error(AppLanguage::translate('Missing developer user account'));
+					$this->arrTips['user']['account'] = AppLanguage::translate('Sign up for an account using the sign up form and then update the users table and set the roles column for that account to %d', $intRoleId);
+					$this->arrCode['user']['account'] = AppLanguage::translate("UPDATE %s SET roles = %d WHERE username = 'yourname';", $objUser->getTable(), $intRoleId);
+				}
+			} else {
+				trigger_error(AppLanguage::translate('User accounts require a database connection'));
+			}
+			
+			return array(
+				'name'		=> 'Developer account',
+				'enabled'	=> true
+			);
+		}
+		
+		
+		/**
 		 * Tests whether the Zend framework has been installed.
 		 *
 		 * @access protected
@@ -535,7 +564,7 @@
 				$objError->setDebugMode(false);
 			}
 			
-			foreach (array('installed', 'files', 'database', 'cache', 'facebook', 'twitter', 'zend', 'amazonS3', 'postmark') as $strTest) {
+			foreach (array('installed', 'files', 'user', 'database', 'cache', 'facebook', 'twitter', 'zend', 'amazonS3', 'postmark') as $strTest) {
 				if (empty($this->arrTests[$strTest])) {
 					$this->runTest($strTest);
 				}
@@ -548,7 +577,8 @@
 			$this->displayNode('content', $this->getTemplatePath('install/index'), array(
 				'strConfigPath'	=> AppConfig::get('ConfigDir'),
 				'arrTests'		=> $this->arrTests,
-				'arrTips'		=> $this->arrTips
+				'arrTips'		=> $this->arrTips,
+				'arrCode'		=> $this->arrCode
 			));
 		}
 	}

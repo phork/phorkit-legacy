@@ -6,12 +6,12 @@
 }
 
 #content .highlight {
-	margin-top: 20px;
+	margin: 20px 0;
 	padding: 1px 0 2px 1px;
 }
 
 #content table {
-	width: 100%;	
+	width: 100%;
 }
 
 #content table thead tr {
@@ -131,4 +131,10 @@
 
 #content #tips ul li {
 	margin-bottom: 15px;
+}
+
+#content #tips ul li.code {
+	padding: 10px;
+	border: 1px solid #CCC;
+	background: #FFF;
 }

@@ -53,7 +53,7 @@
 					<label for="avatar">Picture</label>
 					<div>
 						<?php if ($arrUser['avatar']) { ?>
-						<img src="<?php echo(sprintf($arrUser['avatar'], 'thumb') . '?' . time()); ?>" height="43" alt="avatar" />
+						<img src="<?php echo($strBaseUrl . sprintf($arrUser['avatar'], 'thumb') . '?' . time()); ?>" height="43" alt="avatar" />
 						<?php } ?>
 						
 						<?php echo(Form::getFile('avatar', array(

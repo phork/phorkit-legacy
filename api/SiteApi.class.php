@@ -174,8 +174,9 @@
 					$strAvatarUrl = AppConfig::get('DefaultAvatar');
 				}
 				
+				$strBaseUrl = AppConfig::get('BaseUrl');
 				foreach ($arrSizes as $arrSize) {
-					$arrAvatars[$arrSize['Name']] = sprintf($strAvatarUrl, $arrSize['Name']);
+					$arrAvatars[$arrSize['Name']] = $strBaseUrl . sprintf($strAvatarUrl, $arrSize['Name']);
 				}
 			}
 			

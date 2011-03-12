@@ -424,6 +424,40 @@
 		
 		
 		/**
+		 * A shortcut function to load a record or an array
+		 * of records by the role ID passed. This does not 
+		 * clear out any previously loaded data. That should
+		 * be done explicitly.
+		 *
+		 * @access public
+		 * @param mixed $intRoleId The role ID to load by
+		 * @param array $arrFilters Any additional filters as well as the limits
+		 * @param boolean $blnCalcFoundRows Whether to calculate the total number of matching rows
+		 * @return boolean True if the query executed successfully
+		 */
+		public function loadByRoleId($intRoleId, $arrFilters = array(), $blnCalcFoundRows = false) {
+			$arrFunctionArgs = func_get_args();
+			$this->setLoading(__FUNCTION__, $arrFunctionArgs);
+			
+			AppLoader::includeUtility('Permissions');
+			
+			if (!array_key_exists('Conditions', $arrFilters)) {
+				$arrFilters['Conditions'] = array();
+			}
+			$arrFilters['Conditions'][] = array(
+				'Column'	=> $this->strTable . '.roles',
+				'Value' 	=> Permissions::calcBitFromId($intRoleId),
+				'Operator'	=> '&'
+			);
+			
+			$blnResult = $this->load($arrFilters, $blnCalcFoundRows);
+			
+			$this->clearLoading();
+			return $blnResult;
+		}
+		
+		
+		/**
 		 * Returns the query to load a record from the database.
 		 * Has additional handling to join on the friends table.
 		 *
