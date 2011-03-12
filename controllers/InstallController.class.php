@@ -88,6 +88,34 @@
 		
 		
 		/**
+		 * Tests whether the user is logged in and will have
+		 * access to this page once the install process is
+		 * complete.
+		 *
+		 * @access protected
+		 * @return array The name of the test and whether it's been enabled
+		 */
+		protected function testAccess() {
+			if ($this->runTest('user')) {
+				if ($this->blnLoggedIn) {
+					if (!$this->blnDeveloper) {
+						trigger_error(AppLanguage::translate('You must be a developer in order to access this page once the installation is complete'));
+					}
+				} else {
+					trigger_error(AppLanguage::translate('You must <a href="%s">log in</a> to access this page once the installation is complete', AppConfig::get('BaseUrl') . '/account/login/'));
+				}
+			} else {
+				trigger_error(AppLanguage::translate('Developer access requires a user account'));
+			}
+			
+			return array(
+				'name'		=> 'Developer access',
+				'enabled'	=> true
+			);
+		}
+		
+		
+		/**
 		 * Tests whether Amazon S3 support has been set up.
 		 *
 		 * @access protected
@@ -159,7 +187,7 @@
 		
 		
 		/**
-		 * Tests whether the database has been configured and is
+		 * Tests whether the cache has been configured and is
 		 * able to connect.
 		 *
 		 * @access protected
@@ -203,7 +231,7 @@
 			}
 			
 			return array(
-				'name'		=> 'Cache',
+				'name'		=> 'Caching',
 				'enabled'	=> $blnEnabled
 			);
 		}
@@ -264,7 +292,7 @@
 			}
 						
 			return array(
-				'name'		=> 'Database',
+				'name'		=> 'Database setup',
 				'enabled'	=> $blnEnabled
 			);
 		}
@@ -564,7 +592,7 @@
 				$objError->setDebugMode(false);
 			}
 			
-			foreach (array('installed', 'files', 'user', 'database', 'cache', 'facebook', 'twitter', 'zend', 'amazonS3', 'postmark') as $strTest) {
+			foreach (array('installed', 'files', 'user', 'access', 'database', 'cache', 'twitter', 'facebook', 'zend', 'amazonS3', 'postmark') as $strTest) {
 				if (empty($this->arrTests[$strTest])) {
 					$this->runTest($strTest);
 				}
