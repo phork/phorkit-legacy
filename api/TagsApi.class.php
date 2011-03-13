@@ -34,6 +34,7 @@
 	class TagsApi extends SiteApi {
 	
 		protected $strTagFor;
+		protected $intCacheExpire = 300;
 		
 	
 		/**
@@ -173,7 +174,7 @@
 							);
 						}
 						
-						$this->saveToCache(300);
+						$this->saveToCache($this->intCacheExpire);
 					} else {
 						trigger_error(AppLanguage::translate('There was an error loading the tag data'));
 						$this->error();
@@ -218,7 +219,7 @@
 							);
 						}
 						
-						$this->saveToCache(300);
+						$this->saveToCache($this->intCacheExpire);
 					} else {
 						trigger_error(AppLanguage::translate('There was an error loading the tag data'));
 						$this->error(400);

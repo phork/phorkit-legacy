@@ -35,6 +35,9 @@
 	 */
 	class EventsApi extends SiteApi {
 	
+		protected $intCacheExpire = 300;
+		
+	
 		/**
 		 * Maps the API method to a method within this class
 		 * and returns the response. If no method is mapped
@@ -151,7 +154,7 @@
 						);
 					}
 					
-					$this->saveToCache(300);
+					$this->saveToCache($this->intCacheExpire);
 				} else {
 					trigger_error(AppLanguage::translate('There was an error loading the event data'));
 					$this->error();
@@ -212,9 +215,9 @@
 						
 						if (isset($blnCached)) { 
 							if (isset($strNamespace)) {
-								$this->saveToCache(300, $strNamespace);
+								$this->saveToCache($this->intCacheExpire, $strNamespace);
 							} else {
-								$this->saveToCache(300);
+								$this->saveToCache($this->intCacheExpire);
 							}
 						}
 					} else {

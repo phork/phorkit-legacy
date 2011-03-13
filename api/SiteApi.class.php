@@ -107,7 +107,11 @@
 		/**
 		 * Caches a deleted ID in a user-specific cache so that
 		 * the item can appear deleted to them before the other
-		 * caches it's in have been refreshed.
+		 * caches it's in have been refreshed. This should be
+		 * called after an item has been deleted successfully,
+		 * and used in conjunction with removeDeleted, which
+		 * should be called after a load call that successfully 
+		 * loads from the cache.
 		 *
 		 * @access protected
 		 * @param integer $intId The ID of the item that was deleted
@@ -130,7 +134,9 @@
 		
 		
 		/**
-		 * Removes any deleted items by ID.
+		 * Removes any deleted items by ID. This should be
+		 * called after a list of records has been successfully
+		 * loaded from the cache.
 		 *
 		 * @access protected
 		 * @param array $arrRecords The item list to filter

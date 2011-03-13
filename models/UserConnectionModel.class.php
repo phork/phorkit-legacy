@@ -161,14 +161,14 @@
 		 */
 		protected function addSaveHelpers() {
 			if (!$this->blnSaveHelpers) {
-				AppEvent::register($this->strEventKey . '.pre-save', array($this, 'setDefaults'));
-				AppEvent::register($this->strEventKey . '.post-save', array($this, 'postSave'));
-				
-				if (!empty($this->arrConfig['Validate'])) {
-					$this->initHelper('validation', array('validateAll'));
-				}
-				
 				if (empty($this->arrConfig['NoSaveHelpers'])) {
+					AppEvent::register($this->strEventKey . '.pre-save', array($this, 'setDefaults'));
+					AppEvent::register($this->strEventKey . '.post-save', array($this, 'postSave'));
+					
+					if (!empty($this->arrConfig['Validate'])) {
+						$this->initHelper('validation', array('validateAll'));
+					}
+					
 					if (!array_key_exists('cache-bust-save', $this->arrHelpers)) {
 						if (AppLoader::includeExtension('helpers/', 'ModelCache')) {
 							$this->appendHelper('cache-bust-save', 'ModelCache');
@@ -751,5 +751,24 @@
 		 */
 		public function setSkipReciprocate($blnSkipReciprocate) {
 			$this->blnSkipReciprocate = $blnSkipReciprocate;
+		}
+		
+		
+		/*****************************************/
+		/**     MAGIC METHODS                   **/
+		/*****************************************/
+		
+		
+		/**
+		 * Method called when the object is cloned. Resets
+		 * the event key and helpers and then calls init()
+		 * to re-initialize them with a new event key.
+		 * Also clears the blnSaveHelpers flag.
+		 *
+		 * @access public
+		 */
+		public function __clone() {
+			parent::__clone();
+			$this->blnSaveHelpers = false;
 		}
 	}

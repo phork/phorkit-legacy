@@ -62,6 +62,7 @@
 	class UsersApi extends SiteApi {
 	
 		protected $blnExtended;
+		protected $intCacheExpire = 300;
 		
 	
 		/**
@@ -214,7 +215,7 @@
 							);
 						}
 						
-						$this->saveToCache(300);
+						$this->saveToCache($this->intCacheExpire);
 					} else {
 						trigger_error(AppLanguage::translate('There was an error loading the user data'));
 						$this->error();
@@ -270,7 +271,7 @@
 							);
 						}
 						
-						$this->saveToCache(300);
+						$this->saveToCache($this->intCacheExpire);
 					} else {
 						trigger_error(AppLanguage::translate('There was an error loading the user data'));
 						$this->error();
@@ -314,7 +315,7 @@
 							);
 						}
 						
-						$this->saveToCache(300);
+						$this->saveToCache($this->intCacheExpire);
 					} else {
 						trigger_error(AppLanguage::translate('There was an error loading the user data'));
 						$this->error(400);
@@ -397,7 +398,7 @@
 							}
 							
 							if (isset($blnCached)) {
-								$this->saveToCache(300, $strNamespace);
+								$this->saveToCache($this->intCacheExpire, $strNamespace);
 							}
 						}
 					} else {
@@ -472,7 +473,7 @@
 											);
 										}
 										
-										$this->saveToCache(300, $strNamespace);
+										$this->saveToCache($this->intCacheExpire, $strNamespace);
 									} else {
 										trigger_error(AppLanguage::translate('There was an error loading the connections'));
 										$this->error(400);
@@ -545,7 +546,7 @@
 										);
 									}
 									
-									$this->saveToCache(300, $strNamespace);
+									$this->saveToCache($this->intCacheExpire, $strNamespace);
 								} else {
 									trigger_error(AppLanguage::translate('There was an error loading the pending connections'));
 									$this->error(400);

@@ -25,6 +25,8 @@
 		protected $arrInsertCols = array('userid', 'tagid', 'weight');
 		protected $arrUpdateCols = array('weight');
 		
+		protected $blnSaveHelpers;
+		
 		
 		/**
 		 * Includes the record class, sets up an iterator 
@@ -143,12 +145,15 @@
 		 * @access protected
 		 */
 		protected function addSaveHelpers() {
-			if (empty($this->arrConfig['NoSaveHelpers'])) {
-				if (!array_key_exists('cache-bust-save', $this->arrHelpers)) {
-					if (AppLoader::includeExtension('helpers/', 'ModelCache')) {
-						$this->appendHelper('cache-bust-save', 'ModelCache');
-						$this->initHelper('cache-bust-save', array('postSave'));
+			if (!$this->blnSaveHelpers) {
+				if (empty($this->arrConfig['NoSaveHelpers'])) {
+					if (!array_key_exists('cache-bust-save', $this->arrHelpers)) {
+						if (AppLoader::includeExtension('helpers/', 'ModelCache')) {
+							$this->appendHelper('cache-bust-save', 'ModelCache');
+							$this->initHelper('cache-bust-save', array('postSave'));
+						}
 					}
+					$this->blnSaveHelpers = true;
 				}
 			}
 		}
@@ -402,5 +407,24 @@
 		public function save($blnForceInsert = false) {
 			$this->addSaveHelpers();
 			return parent::save($blnForceInsert);
+		}
+		
+		
+		/*****************************************/
+		/**     MAGIC METHODS                   **/
+		/*****************************************/
+		
+		
+		/**
+		 * Method called when the object is cloned. Resets
+		 * the event key and helpers and then calls init()
+		 * to re-initialize them with a new event key.
+		 * Also clears the blnSaveHelpers flag.
+		 *
+		 * @access public
+		 */
+		public function __clone() {
+			parent::__clone();
+			$this->blnSaveHelpers = false;
 		}
 	}

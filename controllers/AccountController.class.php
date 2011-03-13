@@ -389,10 +389,6 @@
 								CoreAlert::alert(AppLanguage::translate('Your account was updated successfully.'));
 								AppRegistry::get('UserLogin')->setUserRecord($objUserRecord);
 								
-								if (!empty($_POST['password'])) {
-									AppRegistry::get('UserLogin')->setCookie($intUserId);
-								}
-								
 								if (!empty($blnReverify)) {
 									$this->sendVerificationEmail($objUserRecord, true);
 								}
