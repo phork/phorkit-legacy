@@ -537,11 +537,10 @@
 				
 				try {
 					AppLoader::includeExtension('zend/', 'ZendLoader');
-					
-					if (file_exists($strLoaderPath = $arrConfig['ZendBase'] . '/Zend/Loader.php')) {
+					if (ZendLoader::isAvailable()) {
 						$blnEnabled = true;
 					} else {
-						trigger_error(AppLanguage::translate('Missing Zend framework (' . $strLoaderPath . ')'));
+						trigger_error(AppLanguage::translate('Missing Zend framework (' . $arrConfig['ZendBase'] . '/Zend/Loader.php)'));
 						$this->arrTips['zend']['library'] = AppLanguage::translate('The Zend framework can be downloaded from <a href="http://framework.zend.com/download/current/" rel="external">Zend</a>. Only the minimal package is required.');
 					}
 				} catch (Exception $objException) {

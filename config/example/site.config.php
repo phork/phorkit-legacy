@@ -44,7 +44,7 @@
 	//the site urls
 	$arrConfig['SiteUrl'] = 'http://example.org';
 	$arrConfig['SecureUrl'] = 'https://example.org';
-	$arrConfig['ApiUrl'] = 'http://api.example.org';
+	$arrConfig['ApiUrl'] = 'http://example.org';
 	$arrConfig['ImageUrl'] = 'http://example.org';
 	$arrConfig['CssUrl'] = '';
 	$arrConfig['JsUrl'] = '';
