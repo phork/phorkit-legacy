@@ -72,9 +72,12 @@
 	
 	//the avatar names and optional resize dimensions
 	$arrConfig['Avatar']['Full']['Name'] = 'full';
+	$arrConfig['Avatar']['Tiny']['Name'] = 'tiny';
+	$arrConfig['Avatar']['Tiny']['Width'] = 25;
+	$arrConfig['Avatar']['Tiny']['Height'] = 25;
 	$arrConfig['Avatar']['Thumb']['Name'] = 'thumb';
-	$arrConfig['Avatar']['Thumb']['Width'] = 73;
-	$arrConfig['Avatar']['Thumb']['Height'] = 59;
+	$arrConfig['Avatar']['Thumb']['Width'] = 60;
+	$arrConfig['Avatar']['Thumb']['Height'] = 60;
 	$arrConfig['Avatar']['Large']['Name'] = 'large';
 	$arrConfig['Avatar']['Large']['Width'] = 100;
 	$arrConfig['Avatar']['Large']['Height'] = 100;
