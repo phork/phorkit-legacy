@@ -248,6 +248,38 @@ ul#alert li .close {
 }
 
 
+/* SUBNAV */
+
+#subnav {
+	margin-top: 10px;
+	margin-bottom: 25px;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #666;
+	-moz-box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+	-webkit-box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+	box-shadow: 0 1px 1px rgba(255, 255, 255, .7);
+}
+
+#subnav .title {
+	font-size: 15px;
+	font-weight: normal;
+}
+
+#subnav .title,
+#subnav ul li {
+	float: left;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 1);
+}
+
+#subnav ul {
+	float: right;
+}
+
+#subnav ul li {
+	margin-left: 20px;
+}
+
+
 /* CONTENT */
 
 #content {
