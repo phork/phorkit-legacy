@@ -140,20 +140,6 @@
 		}
 		
 		
-		/**
-		 * Generates a token to be used to validate that
-		 * a request hasn't been spoofed. To be used with
-		 * some GET requests.
-		 *
-		 * @access public
-		 * @return string The token string
-		 */
-		public function generateTokenString() {
-			AppLoader::includeUtility('Token');
-			return AppConfig::get('TokenField') . '=' . Token::initToken();
-		}
-		
-		
 		/*****************************************/
 		/**     INCLUDE METHODS                 **/
 		/*****************************************/

@@ -37,7 +37,7 @@ h4 {
 }
 
 
-/* SECTIONS */
+/* COLUMNS */
 
 .columns {
 	margin-top: 30px;
@@ -57,6 +57,9 @@ h4 {
 .column.right.fixed {
 	position: fixed;
 }
+
+
+/* LEFT SIDE */
 
 .section {
 	position: relative;
@@ -150,22 +153,58 @@ h4 {
 }
 
 
-/* CREDITS */
+/* ETC */
 
-#credits {
-	margin-top: 30px;
-}
-
-#credits img {
+.right div .image {
 	float: left;
 	margin-right: 7px;
+}
+
+.right div .blurb {
+	float: left;
+	width: 200px;
+	font-size: 10px;
+	line-height: 13px;
+}
+
+#walkthrough {
+	margin-top: 40px;
+}
+
+#walkthrough .image {
+	width: 23px;
+	height: 23px;
+	border: 1px solid #24AFC9;
+	-moz-border-radius: 3px; 
+	-webkit-border-radius: 3px; 
+	border-radius: 3px;
+	background: #FFF;
+	color: #24AFC9;
+}
+
+#walkthrough .image span {
+	display: none;
+}
+
+#walkthrough .image:after {
+	position: absolute;
+	content: '!';
+	font-size: 22px;
+	padding: 6px 0 0 8px;
+}
+
+#credits {
+	margin-top: 20px;
+}
+
+#credits .image img {
+	float: left;
 	-moz-border-radius: 3px; 
 	-webkit-border-radius: 3px; 
 	border-radius: 3px;
 }
 
 #credits .blurb {
-	float: left;
 	margin-top: 5px;
 }
 

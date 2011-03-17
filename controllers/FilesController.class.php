@@ -10,7 +10,8 @@
 	 * extended to check for the correct access permissions 
 	 * first. Currently only developers can access files.
 	 *
-	 * The URL format is http://www.example.org/files/private/foo.png
+	 * The URL format is http://example.com/files/private/foo.png
+	 * or http://example.com/files/filesystem=AmazonS3/private/foo.png
 	 * 
 	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *
@@ -58,16 +59,23 @@
 		 * @access public
 		 */
 		public function run() {
-			if (!($objFileSystem = AppRegistry::get('FileSystem', false))) {
-				if (AppLoader::includeExtension('files/', $strFileSystem = AppConfig::get('FileSystem') . 'FileSystem')) {
-					AppRegistry::register('FileSystem', $objFileSystem = new $strFileSystem());
-				}
+			$objUrl = AppRegistry::get('Url');
+			if (!($strFileSystemType = $objUrl->getFilter('filesystem'))) {
+				$strFileSystemType = 'Local';
 			}
+			$strFileSystem = $strFileSystemType . 'FileSystem';
 			
-			$strFilePath = str_replace('/files/', '', AppRegistry::get('Url')->getUrl());
+			if (!($objFileSystem = AppRegistry::get('FileSystem', false)) || !($objFileSystem instanceof $strFileSystem)) {
+				AppLoader::includeExtension('files/', $strFileSystem);
+				$objFileSystem = new $strFileSystem();
+			}
+						
+			$strFilePath = str_replace('/files/', '', $objUrl->getUrl());
+			$strFilePath = preg_replace('|/?filesystem=[^/]*/|', '', $strFilePath);
+			
 			$strFileName = substr($strFilePath, strrpos($strFilePath, '/') + 1);
 			$strFileExt = substr($strFileName, strrpos($strFileName, '.') + 1);
-			
+		
 			if ($strContent = $objFileSystem->readFile($strFilePath)) {
 				$objDisplay = AppDisplay::getInstance();
 								
