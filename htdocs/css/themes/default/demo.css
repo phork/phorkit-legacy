@@ -182,11 +182,17 @@ h4 {
 	color: #24AFC9;
 }
 
-#walkthrough .image span {
+#walkthrough .image a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#walkthrough .image a span {
 	display: none;
 }
 
-#walkthrough .image:after {
+#walkthrough .image a:after {
 	position: absolute;
 	content: '!';
 	font-size: 22px;
