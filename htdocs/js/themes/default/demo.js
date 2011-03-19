@@ -86,9 +86,9 @@ $(function() {
 			var $this = $(this);
 			switch ($this.data('trigger')) {
 				case 'subnav':
-					$('#nav-about').data('trigger').trigger('click');
+					$('#nav-errors').data('trigger').trigger('click');
 					setTimeout(function() {
-						$('#nav-about').data('trigger').trigger('click')
+						$('#nav-errors').data('trigger').trigger('click')
 					}, 1000);
 					break;
 					

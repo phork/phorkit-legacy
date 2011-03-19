@@ -32,6 +32,10 @@ $(function() {
 			this.$parent.data('items').hover(function(e) {
 				self.show(e);
 			});
+			
+			$(window).bind('scroll', function() {
+				self.position();
+			});
 		};
 		
 		//adds the subnav list items
@@ -78,16 +82,18 @@ $(function() {
 		
 		//shows and positions the subnav
 		this.show = function(e) {
-			this.$parent.addClass('hover');
-			this.$parent.data('items')
-				.css({
-					position: 'absolute',
-					left: this.$parent.offset().left + this.offset.left,
-					top: this.$parent.offset().top + this.$parent.height() + this.offset.top
-				})
-				.stop(true, true)
-				.slideDown('fast')
-				.show();
+			this.$parent
+				.addClass('hover')
+				.data('items')
+					.css({
+						position: 'absolute',
+						left: this.$parent.offset().left + this.offset.left,
+						top: this.$parent.offset().top + this.$parent.height() + this.offset.top
+					})
+					.stop(true, true)
+					.slideDown('fast')
+					.show()
+			;
 		};
 		
 		//hides the subnav if there's no hover flag
@@ -102,6 +108,17 @@ $(function() {
 			this.$parent.data('items').slideUp('slow', function() {
 				$(this).data('parent').removeClass('hover');
 			});
+		};
+		
+		//
+		this.position = function() {
+			if (this.$parent.data('items').is(':visible')) {
+				this.$parent.data('items').css({
+					position: 'absolute',
+					left: this.$parent.offset().left + this.offset.left,
+					top: this.$parent.offset().top + this.$parent.height() + this.offset.top
+				});
+			}
 		};
 	};
 });
