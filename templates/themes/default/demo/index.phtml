@@ -1,11 +1,15 @@
 <?php $objController = AppRegistry::get('Controller'); ?>
 
 <div id="content" class="constrained">
-	<h1 class="headline">Hello and welcome to <?php echo($strSiteTitle); ?>!</h1>
+	<h1 class="headline">Hello and welcome to the <?php echo($strSiteTitle); ?> demo!</h1>
 	<h2><?php echo($strSiteTitle); ?> is a starter kit for building websites on top of the <a href="http://phork.org" rel="external">Phork Framework</a>.</h2> 
 	
 	<div class="columns cleared">
 		<div class="column right">
+			<div id="download">
+				<a href="http://github.com/phork/phorkit" rel="external">Download Now!</a>
+			</div>
+			
 			<div class="highlight">
 				<ul id="toc" class="inner">
 					<li><a href="#intro">Introduction</a></li>
@@ -16,6 +20,7 @@
 							<li><a href="#users-twitter">Twitter integration</a></li>
 							<li><a href="#users-connections">User connections</a></li>
 							<li><a href="#users-events">Event stream</a></li>
+							<li><a href="#users-profile">Profile pages</a></li>
 							<li><a href="#users-beta">Beta access</a></li>
 						</ul>
 					</li>
@@ -35,15 +40,8 @@
 			<div id="walkthrough" class="cleared">
 				<div class="image chunkfive"><a href="http://projeqt.com/elenor#lsi19007ci6496q" rel="external"><span>Tip!</span></a></div>
 				<div class="blurb">
-					Feeling less adventurous? There's a <a href="http://projeqt.com/elenor#lsi19007ci6496q" rel="external">walkthrough of Phork/it</a> too.
+					Feeling less adventurous? See the <a href="http://projeqt.com/elenor#lsi19007ci6496q" rel="external">walkthrough of Phork/it</a>.
 				</div>
-			</div>
-			
-			<div id="credits" class="cleared">
-				<a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/" title="<?php echo($arrUser['username']); ?>" class="image tooltip userbox" data-template="user" data-username="<?php echo($arrUser['username']); ?>" data-display-name="<?php echo($arrUser['displayname']); ?>" data-thumbnail="<?php echo($arrUser['avatars']['thumb']); ?>" data-location="<?php echo(htmlentities($arrUser['location'])); ?>"><img src="<?php echo($arrUser['avatars']['tiny']); ?>" width="25" height="25" alt="<?php echo($arrUser['username']); ?>" /></a>
-				<div class="blurb">
-					<?php echo($strSiteTitle); ?> was developed by <a href="<?php echo($strBaseUrl); ?>/user/<?php echo($arrUser['username']); ?>/"><?php echo($arrUser['displayname']); ?></a><br />
-				</div>	
 			</div>
 		</div>
 		
@@ -152,6 +150,15 @@
 					events, or all events in reverse chronological order.
 				</p>
 				
+				<h4 id="users-profile">Profile Pages</h4>
+				<p>
+					<?php echo($strSiteTitle); ?> includes user profile pages with each user's picture, bio,
+					location, and website, as well as their event stream and their friends and followers.
+					There are also buttons to allow a logged in user to friend or unfriend and to follow or 
+					unfollow the user. When a user is on their own profile page they can post a status message
+					to their event stream and approve or deny pending friend requests.
+				</p>
+				
 				<h4 id="users-beta">Beta Access</h4>
 				<p>
 					<?php echo($strSiteTitle); ?> can be set up to only allow pre-selected beta users to access to 
@@ -254,7 +261,7 @@
 				<h3>Email</h3>
 				<p>
 					<?php echo($strSiteTitle); ?> makes it easy to send emails to registered users using either PHP's
-					built in mail function, or through a 3rd party's API. It even comes packaged with optional wrapper
+					built in mail function, or through a 3rd party's API. It even comes packaged with an optional wrapper
 					for <a href="http://postmarkapp.com" rel="external">Postmark</a> integration.
 				</p>
 				<p>

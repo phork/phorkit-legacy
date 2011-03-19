@@ -22,13 +22,16 @@
 }
 
 #content table thead tr th {
+	height: 24px;
 	background: #24AFC9;
 	background: -webkit-gradient(linear, center top, center bottom, from(#59CBE6), to(#24AFC9));
 	background: -moz-linear-gradient(top, #59CBE6, #24AFC9);
 	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#59CBE6, endColorstr=#24AFC9);
-	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
-	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
-	box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
+	-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 -1px 0 rgba(0, 0, 0, .1) inset, 0 21px 0 rgba(255, 255, 255, .05) inset;
+	-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 -1px 0 rgba(0, 0, 0, .1) inset, 0 21px 0 rgba(255, 255, 255, .05) inset;
+	box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset, 0 -1px 0 rgba(0, 0, 0, .1) inset, 0 21px 0 rgba(255, 255, 255, .05) inset;
+	line-height: 24px;
+	font-size: 12px;
 }
 
 #content table thead tr th.first {
@@ -68,7 +71,7 @@
 #content table tr.passed td.enabled .icon,
 #content table tr.passed td.passed .icon,
 #content table tr.failed td.enabled .icon {
-	height: 30px;
+	height: 20px;
 	margin: 0 auto;
 	background-position: center 0;
 }

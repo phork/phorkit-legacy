@@ -92,7 +92,7 @@
 	
 	
 	//whether to use verbose error messages with file names and line numbers (recommended for dev only)
-	$arrConfig['ErrorVerbose'] = true;
+	$arrConfig['ErrorVerbose'] = false;
 	
 	//the error log file relative to the files dir (must be writable by the webserver and whatever user runs scripts)
 	$arrConfig['ErrorLogFile'] = AppConfig::get('FilesDir') . 'app/logs/error.' . date('Ymd') . '.log';

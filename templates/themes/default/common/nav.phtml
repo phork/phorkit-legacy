@@ -1,12 +1,13 @@
 <div id="header">
 	<div id="header-bar"></div>
 	<div id="header-content" class="constrained">
-		<a id="header-text" href="<?php echo($strBaseUrl); ?>/" class="chunkfive"><?php echo($strSiteTitle); ?></a>
-		<a id="header-logo" class="sprite" href="<?php echo($strBaseUrl); ?>/"><strong>Home</strong></a>
+		<a id="header-text" class="sprite" href="<?php echo($strBaseUrl); ?>/"><strong><?php echo($strSiteTitle); ?></strong></a>
+		<a id="header-logo" class="sprite" href="<?php echo($strBaseUrl); ?>/"><span>Home</span></a>
 		
 		<ul id="header-nav">
-			<li id="nav-about"><a href="<?php echo($strBaseUrl); ?>/about/">About Us</a></li>
 			<li id="nav-install"><a href="<?php echo($strBaseUrl); ?>/install/">Installation Tests</a></li>
+			<li id="nav-manual" class="arrow"><a href="http://phork.org/manual/" rel="external">Documentation</a></li>
+			<li id="nav-errors"><a href="<?php echo($strBaseUrl); ?>/404/">Errors</a></li>
 			
 			<?php if ($blnLoggedIn) { ?>
 			<li id="nav-profile"><a href="<?php echo($strBaseUrl); ?>/user/<?php echo($strUsername); ?>/">My Profile</a></li>

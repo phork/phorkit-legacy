@@ -118,13 +118,10 @@ hr {
 
 #header-text {
 	float: right;
-	height: 29px;
-	margin: 2px 0;
-	color: #FFF;
-	font-size: 28px;
-	line-height: 55px;
-	font-weight: normal;
-	text-decoration: none;
+	width: 97px;
+	height: 18px;
+	margin: 20px 0 0 0;
+	background-position: 0 -94px;
 }
 
 #header-logo {
@@ -153,9 +150,37 @@ hr {
 	-webkit-transition: background-color 0.2s linear;
 }
 
+#header-nav li:last-child {
+	margin-right: 0;
+}
+
 #header-nav li.hover,
 #header-nav li:hover {
 	background: #24AFC9;
+}
+
+
+
+#header-nav li.hover,
+#header-nav li:hover {
+	background: #24AFC9;
+}
+
+#header-nav li.arrow:after {
+	content: ' ';
+	position: absolute;
+	height: 0;
+	width: 0;
+	top: 50%;
+	left: 100%;
+	margin-top: -3px;
+	margin-left: 3px;
+	border: 4px solid transparent;
+	opacity: .3;
+}
+
+#header-nav li.arrow:hover:after {
+	border-left-color: #FFF;
 }
 
 #header-nav li a {

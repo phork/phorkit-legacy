@@ -25,43 +25,46 @@ $(function() {
 	//set up and event to turn the right column into fixed position
 	var $nav = $('div.columns .column.right').each(function() {
 		var $this = $(this)
-			$window = $(window)
+			$window = $(window),
+			position = $this.position()
 		;
 		
-		$this
-			.data('top', $this.position().top)
-			.data('left', $this.position().left)
-			.bind('affix', function() {
-				var $this = $(this);
-				$this
-					.css({
-						top: $this.offset().top,
-						left: $this.offset().left
-					})
-					.addClass('fixed')
-				;
-			})
-			.bind('unfix', function() {
-				var $this = $(this);
-				$this
-					.removeClass('fixed')
-					.css({
-						top: $this.data('top'),
-						left: $this.data('left')
-					})
-				;
-			})
-			.trigger('affix')
-		;
-		
-		$window
-			.bind('resizing', function() {
-				$this.trigger('unfix');
-			})
-			.bind('resized', function() {
-				$this.trigger('affix');
-			})
-		;
+		if ($this.height() + $this.offset().top < $window.height() - $('#footer-shift').height()) {
+			$this
+				.data('top', position.top)
+				.data('left', position.left)
+				.bind('affix', function() {
+					var $this = $(this);
+					$this
+						.css({
+							top: $this.offset().top,
+							left: $this.offset().left
+						})
+						.addClass('fixed')
+					;
+				})
+				.bind('unfix', function() {
+					var $this = $(this);
+					$this
+						.removeClass('fixed')
+						.css({
+							top: $this.data('top'),
+							left: $this.data('left')
+						})
+					;
+				})
+				.trigger('affix')
+			;
+			
+			$window
+				.bind('resizing', function() {
+					$this.trigger('unfix');
+				})
+				.bind('resized', function() {
+					$this.trigger('affix');
+				})
+			;
+		}
 	});
 	
 	//show a delayed alert when the page loads the first time
@@ -113,7 +116,7 @@ $(function() {
 		.addClass('pointer')
 	;
 	
-	//initialize the login overlay which will reload the page upon successful login
+	//initialize each API link to open in an overlay
 	$('.code a.output').each(function() {
 		var $this = $(this);
 		new PHORK.overlay.core()
