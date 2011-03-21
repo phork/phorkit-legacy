@@ -76,8 +76,7 @@
 			if (AppConfig::get('SessionsEnabled', false)) {
 				if ($strSessionHandler = AppConfig::get('SessionHandler', false)) {
 					AppLoader::includeClass('php/core/', 'CoreSession');
-					AppLoader::includeClass('php/ext/sessions/', $strSessionHandler);
-					CoreSession::setHandler(new $strSessionHandler());
+					CoreSession::setHandler(AppLoader::newObject('php/ext/sessions/' . strtolower($strSessionHandler) . '/', 'Session' . $strSessionHandler));
 				}
 			}
 			parent::startSession();

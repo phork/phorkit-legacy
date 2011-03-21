@@ -120,7 +120,7 @@
 	$arrConfig['SessionGcLifetime'] = 86400;
 	
 	//the custom session handler, if any
-	//$arrConfig['SessionHandler'] = 'SessionDatabase';
+	//$arrConfig['SessionHandler'] = 'Database';
 	
 	
 	/*******************************************/

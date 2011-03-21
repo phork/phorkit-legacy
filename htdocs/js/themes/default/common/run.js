@@ -10,7 +10,7 @@ $(function() {
 		cookiePath:	'/'
 	};
 	
-	//set up external links to open new windows and remove clicked outline
+	//remove outline from clicked links and set up external links open a new window
 	$('a[rel=external]').attr('target','_blank');
 	$('a').click(function() { this.blur(); });
 	
