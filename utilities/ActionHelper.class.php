@@ -24,9 +24,9 @@
 		
 		
 		/**
-		 * Generates an action URL including a secret
-		 * key used to protect spoofed data. This doesn't
-		 * work with query strings.
+		 * Generates an action URL including a secret key
+		 * used to protect spoofed data. This doesn't work
+		 * with query strings.
 		 *
 		 * @access public
 		 * @param string $strUrl The URL to turn into an action URL

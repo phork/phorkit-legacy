@@ -1,7 +1,8 @@
 $(function() {
 	var registry = PHORK.registry,
 		utils = PHORK.utils,
-		overlay = PHORK.overlay
+		overlay = PHORK.overlay,
+		$window = $(window)
 	;
 	
 	//define any constants and save them in the registry
@@ -19,11 +20,6 @@ $(function() {
 		rel: 'stylesheet',
 		type: 'text/css',
 		href: '/css/themes/default/common/javascript.css'
-	});
-	
-	//set up the scroll top action
-	$(window).bind('goto', function(e, position) {
-		$('html, body').animate({scrollTop: position}, 'fast');
 	});
 	
 	//replace all the email placeholders with the real address
@@ -204,8 +200,27 @@ $(function() {
 		utils.counted($(this), $(this).next());
 	});
 	
+	//set up custom window resizing and resized events
+	$window
+		.data('timeout', null)
+		.bind('resize', function(e) {
+			var $this = $(this);
+			$this.trigger('resizing');
+			
+			clearTimeout($this.data('timeout'));
+			$this.data('timeout', setTimeout(function() {
+				$this.trigger('resized');
+			}, 500));
+		})
+	;
+	
+	//set up the scroll top action
+	$window.bind('goto', function(e, position) {
+		$('html, body').animate({scrollTop: position}, 'fast');
+	});
+	
 	//store the cursor position
-	$(window).bind('mousemove', function(e) {
+	$window.bind('mousemove', function(e) {
 		registry.mouse = {
 			x: e.pageX,
 			y: e.pageY

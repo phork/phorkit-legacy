@@ -22,3 +22,7 @@ body.user #content #columns #connections .inner {
 body.install #content table tbody tr {
 	border-top: 1px dotted #DDD;
 }
+
+body.install #content .highlight {
+	padding-right: 1px;
+}

@@ -7,7 +7,7 @@
 	$arrConfig['Tiers']['Base']['Database'] = array(
 		'Type'	=> 'MySql',
 		'Connections' => array(
-			'Read' => array(
+			'Read'			=> array(
 				'User'			=> 'YOUR_USERNAME',
 				'Password'		=> 'YOUR_PASSWORD',
 				'Host'			=> 'localhost',
@@ -15,7 +15,7 @@
 				'Database'		=> 'phork',
 				'Persistent'	=> false
 			),
-			'Write' => array(
+			'Write'			=> array(
 				'User'			=> 'YOUR_USERNAME',
 				'Password'		=> 'YOUR_PASSWORD',
 				'Host'			=> 'localhost',
