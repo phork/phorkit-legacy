@@ -76,9 +76,10 @@
 			$strFileName = substr($strFilePath, strrpos($strFilePath, '/') + 1);
 			$strFileExt = substr($strFileName, strrpos($strFileName, '.') + 1);
 		
-			if ($strContent = $objFileSystem->readFile($strFilePath)) {
+			if (($intFileSize = $objFileSystem->getFileSize($strFilePath)) !== false) {
 				$objDisplay = AppDisplay::getInstance();
-								
+				$objDisplay->appendHeader('Content-length: ' . $intFileSize);
+							
 				switch ($strFileExt) {
 					case 'gif':
 						$objDisplay->appendHeader('Content-type: image/gif');
@@ -94,10 +95,10 @@
 						
 					default:
 						$objDisplay->appendHeader('Content-type: application/force-download');
-						$objDisplay->appendHeader('Content-Disposition: attachment; filename="' . $strFileName . '"');
+						$objDisplay->appendHeader('Content-disposition: attachment; filename="' . $strFileName . '"');
 						break;
-				}	
-				$objDisplay->appendString('content', $strContent);
+				}
+				$objFileSystem->outputFile($strFilePath);
 			} else {
 				$this->error();
 			}

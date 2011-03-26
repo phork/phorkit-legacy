@@ -200,7 +200,7 @@ $(function() {
 		utils.counted($(this), $(this).next());
 	});
 	
-	//set up custom window resizing and resized events
+	//set up custom resizing and a debounced resized event
 	$window
 		.data('timeout', null)
 		.bind('resize', function(e) {
