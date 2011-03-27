@@ -145,4 +145,7 @@ $(function() {
 			.bind('click')
 		;
 	});
+	
+	//log to the console and the debugger
+	console.log('Javascript initialized');
 });

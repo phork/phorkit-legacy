@@ -89,32 +89,32 @@
 }
 
 #debug-content .debug .text {
-	margin-right: 220px;
+	margin-right: 140px;
 }
 
 #debug-content .debug .time {
 	float: right;
-	width: 200px;
+	width: 120px;
 }
 
 
 /* WEBKIT SCROLLBARS */
 
-.scrollable::-webkit-scrollbar {
+#debug .scrollable::-webkit-scrollbar {
 	width: 6px;
 	height: 6px;
 	-webkit-border-radius: 1ex;
 }
 
-.scrollable::-webkit-scrollbar-thumb {
+#debug .scrollable::-webkit-scrollbar-thumb {
 	background-color: rgba(255, 255, 255, .7);
 	width: 6px;
 	height: 6px;
 	-webkit-border-radius: 1ex;
 }
 
-.scrollable::-webkit-scrollbar-button:start:decrement,
-.scrollable::-webkit-scrollbar-button:end:increment {
+#debug .scrollable::-webkit-scrollbar-button:start:decrement,
+#debug .scrollable::-webkit-scrollbar-button:end:increment {
 	display: block;
 	width: 5px;
 	height: 10px;

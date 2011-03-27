@@ -30,6 +30,7 @@
 							<li><a href="#javascript-overlays">Overlays</a></li>
 							<li><a href="#javascript-alerts">Alerts</a></li>
 							<li><a href="#javascript-forms">Forms</a></li>
+							<li><a href="#javascript-debug">Debugging</a></li>
 						</ul>
 					</li>
 					<li><a href="#email">Email</a></li>
@@ -254,6 +255,15 @@
 				<p>
 					It's also easy to add labels inside form fields that will clear on focus and come back again
 					on blur if no data has been entered.
+				</p>
+				
+				<h4 id="javascript-debug">Debugging</h4>
+				<p>
+					Phork comes with three separate debugging handlers - it can log the debugging data to a file, print
+					it to the screen immediately, or save it to a session variable. <?php echo($strSiteTitle); ?> takes
+					advantage of the session-based debugging and integrates it with an AJAX powered debugging system that
+					builds a toggleable overlay at the top of each page with everything that has been run through both 
+					the Phork debugger as well as the Javascript console.log() function.
 				</p>
 			</div>
 			

@@ -50,6 +50,8 @@
 		 * @access protected
 		 */
 		protected function displayIndex() {
+			CoreDebug::debug(AppLanguage::translate('This was triggered from DemoController::displayIndex()'));
+			
 			$this->displayNode('content', $this->getTemplatePath('demo/index'), array(
 				'strApiUrl'		=> AppConfig::get('ApiUrl'),
 				'strImageUrl'	=> AppConfig::get('ImageUrl')

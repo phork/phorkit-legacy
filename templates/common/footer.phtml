@@ -42,12 +42,12 @@
 				"{$strJsUrl}/js/themes/{$strTheme}/common/" . ($blnLoggedIn ? 'user' : 'guest') . ($blnConcat ? $strMinified : '') . '.js'
 			));
 			
-			if (!empty($arrJavascript)) {
-				print $objConcatHelper->js($arrJavascript);
-			}
-			
 			if (AppConfig::get('DebugDisplay', false)) {
 				$objController->includeCommon('debug', array(), true);
+			}
+			
+			if (!empty($arrJavascript)) {
+				print $objConcatHelper->js($arrJavascript);
 			}
 		?>
 	</body>
