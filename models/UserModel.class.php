@@ -489,7 +489,7 @@
 				return $objQuery->buildQuery(); 
 			}
 		}
-				
+		
 		
 		/*****************************************/
 		/**     VALIDATION METHODS              **/

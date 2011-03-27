@@ -120,7 +120,7 @@
 						}
 					}
 				} else {
-					$strRedirectUrl = AppRegistry::get('Url')->getCompleteUrl();
+					$strRedirectUrl = AppRegistry::get('Url')->getCurrentUrl(false);
 				}
 				
 				if (AppLoader::includeModel('UserLogModel')) {

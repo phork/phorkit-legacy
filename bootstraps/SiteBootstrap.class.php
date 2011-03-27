@@ -73,7 +73,7 @@
 		 */
 		protected function parseUrl() {
 			parent::parseUrl();
-			$objUrl = AppUrl::getInstance();
+			$objUrl = AppRegistry::get('Url');
 			
 			AppConfig::set('Overlay', !empty($_GET['overlay']));
 			AppConfig::set('Insert', !empty($_GET['insert']));
