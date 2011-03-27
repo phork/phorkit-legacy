@@ -73,7 +73,7 @@ $(function() {
 	//builds authorized API URLs and parses result errors
 	var api = {
 		'authorize': function(url) {
-			return url + (authorize ? '?sid=' + cookies.get('PHPSESSID') : '');
+			return url + '?sid=' + cookies.get('PHPSESSID');
 		},
 		
 		'error': function(xhr, status, error) {

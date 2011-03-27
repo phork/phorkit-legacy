@@ -12,3 +12,9 @@ Function.prototype.inheritsFrom = function(parentClassOrObject) {
 	}
 	return this;
 };
+
+if (typeof console == 'undefined') {
+	var console = { 
+		log: function() {}
+	};
+}

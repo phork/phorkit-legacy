@@ -110,7 +110,7 @@ $(function() {
 			});
 		};
 		
-		//
+		//positions the nav relative to its parent
 		this.position = function() {
 			if (this.$parent.data('items').is(':visible')) {
 				this.$parent.data('items').css({

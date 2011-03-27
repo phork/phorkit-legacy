@@ -104,6 +104,28 @@
 			$this->display();
 		}
 		
+		
+		/**
+		 * Appends data to a page var or sets it if it doesn't
+		 * exist. This is used to merge arrays of page vars
+		 * such as the stylesheets and javascript.
+		 *
+		 * @access public
+		 * @param string $strName The variable name
+		 * @param array $arrValue The variable value
+		 */
+		public function appendPageVar($strName, $arrValue) {
+			if (!empty($this->arrPageVars[$strName])) {
+				if (is_array($this->arrPageVars[$strName])) {
+					$this->arrPageVars[$strName] = array_merge($this->arrPageVars[$strName], $arrValue);
+				} else {
+					throw new CoreException(AppLanguage::translate('Cannot append to a non-array page var'));
+				}
+			} else {
+				$this->arrPageVars[$strName] = $arrValue;
+			}
+		}
+		
 				
 		/**
 		 * Returns the template path for the page templates.

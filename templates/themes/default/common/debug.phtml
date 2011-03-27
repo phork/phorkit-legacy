@@ -1,0 +1,20 @@
+<?php 
+	$objController = AppRegistry::get('Controller');
+	$strDebugJs = sprintf('%s/js/themes/%s/common/debug.js',
+		$objController->getPageVar('strJsUrl'),
+		$objController->getPageVar('strTheme')
+	);
+?>
+
+<script type="text/html" id="debug-tmpl">
+	<div class="debug cleared">
+		<div class="time">[[TIME]]</div>
+		<div class="text">[[TEXT]]</div>
+	</div>
+</script>
+
+<script type="text/javascript">
+	var debugApiUrl = '<?php echo(AppConfig::get('ApiUrl')); ?>/api/debug/session.json';
+</script>
+
+<script type="text/javascript" src="<?php echo($strDebugJs); ?>"></script>

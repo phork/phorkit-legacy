@@ -1,0 +1,121 @@
+#debug {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+
+/* ICON */
+
+#debug-icon {
+	position: absolute;
+	top: 4px;
+	left: 3px;
+	width: 23px;
+	height: 26px;
+	background: url('/img/themes/default/debug.png');
+	opacity: .5;
+	-moz-transition: opacity 0.2s linear;
+	-o-transition: opacity 0.2s linear;
+	-webkit-transition: opacity 0.2s linear;
+	cursor: pointer;
+	z-index: 400;
+}
+
+#debug-icon:hover {
+	opacity: 1;
+}
+
+#debug-icon:after {
+	content: ' ';
+	position: absolute;
+	top: 50%;
+	left: 100%;
+	height: 0;
+	width: 0;
+	margin-top: -3px;
+	margin-left: 5px;
+	border: 4px solid transparent;
+	border-top-color: #FFF;
+	opacity: .3;
+}
+
+#debug-icon.active:after {
+	margin-top: -7px;
+	border-top-color: transparent;
+	border-bottom-color: #FFF;
+}
+
+#debug-icon span {
+	display: none;
+}
+
+
+/* CONTENT */
+
+#debug-wrapper {
+	position: absolute;
+	display: none;
+	width: 100%;
+	margin-top: 53px;
+	padding: 30px 0 20px 0;
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #000;
+	color: #FFF;
+	background: #000;
+	background: -webkit-gradient(linear, center top, center bottom, from(#333333), to(#000000));
+	background: -moz-linear-gradient(top, #333333, #000000);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#333333, endColorstr=#000000);
+	-moz-border-radius-bottomleft: 6px;
+	-moz-border-radius-bottomright: 6px;
+	-webkit-border-borrom-left-radius: 6px;
+	-webkit-border-bottom-right-radius: 6px;
+	border-bottom-left-radius: 6px;
+	border-bottom-right-radius: 6px;
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+	z-index: 100;
+	overflow: hidden;
+}
+
+#debug-content.scrollable {
+	overflow: auto;
+}
+
+#debug-content .debug {
+	position: relative;
+	padding: 5px 20px;
+}
+
+#debug-content .debug .text {
+	margin-right: 220px;
+}
+
+#debug-content .debug .time {
+	float: right;
+	width: 200px;
+}
+
+
+/* WEBKIT SCROLLBARS */
+
+.scrollable::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+	-webkit-border-radius: 1ex;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+	background-color: rgba(255, 255, 255, .7);
+	width: 6px;
+	height: 6px;
+	-webkit-border-radius: 1ex;
+}
+
+.scrollable::-webkit-scrollbar-button:start:decrement,
+.scrollable::-webkit-scrollbar-button:end:increment {
+	display: block;
+	width: 5px;
+	height: 10px;
+}

@@ -46,6 +46,25 @@
 		
 		
 		/**
+		 * Initializes the debugging dispatcher and adds
+		 * the handler objects to it. The default handler
+		 * logs the debugging data to a file.
+		 *
+		 * @access protected
+		 */
+		protected function initDebugging() {
+			parent::initDebugging();
+			
+			if (AppConfig::get('DebugDisplay')) {
+				AppLoader::includeExtension('debug/', 'DebugSession');
+			
+				$objDebug = CoreDebug::getInstance();
+				$objDebug->addHandler('session', new DebugSession());
+			}
+		}
+		
+		
+		/**
 		 * Loads and parses the current URL. Also sets up the
 		 * overlay, insert (for dynamically inserting a div in 
 		 * the page), API and callback flags.

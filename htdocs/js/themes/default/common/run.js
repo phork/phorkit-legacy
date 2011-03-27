@@ -52,7 +52,7 @@ $(function() {
 		});
 	});
 	
-	//add the clear functionality to all clearable forms
+	//add the pre-populated labels to all the labeled inputs
 	$('div.labeled').livequery(function() {
 		$(this).find('input,textarea').each(function() {
 			var $this = $(this),

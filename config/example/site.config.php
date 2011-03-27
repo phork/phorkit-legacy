@@ -20,6 +20,9 @@
 	//all session tokens are joined with this to further increase security
 	$arrConfig['FingerprintSessionSalt'] = 'YOUR_SESSION_SALT';
 	
+	//whether to include the debug data in the pages
+	$arrConfig['DebugDisplay'] = false;
+	
 	
 	/*******************************************/
 	/**     THIRD PARTY APPS                  **/

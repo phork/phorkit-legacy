@@ -35,7 +35,7 @@
 			$this->assignPageVar('arrStylesheets', array(
 				AppConfig::get('CssUrl') . $this->strThemeCssDir . 'account.css'
 			));
-			$this->assignPageVar('arrJavascript', array(
+			$this->appendPageVar('arrJavascript', array(
 				AppConfig::get('JsUrl') . $this->strThemeJsDir . 'account.js'
 			));
 		}
