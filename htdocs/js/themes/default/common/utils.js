@@ -67,7 +67,7 @@ $(function() {
 			}
 		}
 	};
-	PHORK.utils.notify = notify;	
+	utils.notify = notify;	
 		
 	
 	//builds authorized API URLs and parses result errors

@@ -55,7 +55,7 @@
 		protected function initDebugging() {
 			parent::initDebugging();
 			
-			if (AppConfig::get('DebugDisplay')) {
+			if (AppConfig::get('DebugDisplay', false)) {
 				AppLoader::includeExtension('debug/', 'DebugSession');
 			
 				$objDebug = CoreDebug::getInstance();

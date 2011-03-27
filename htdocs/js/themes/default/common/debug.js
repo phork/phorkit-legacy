@@ -69,8 +69,6 @@ $(function() {
 					.addClass('scrollable')
 					.height(max)
 				;
-			} else {
-				$this.removeClass('scrollable');
 			}
 		})
 	;	
