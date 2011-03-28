@@ -22,6 +22,10 @@
 	z-index: 400;
 }
 
+#debug-icon.loading {
+	background: url('/img/loading-arrows-dark.gif') no-repeat 3px 3px;
+}
+
 #debug-icon:hover {
 	opacity: 1;
 }

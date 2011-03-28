@@ -41,6 +41,26 @@ $(function() {
 	
 	//set up the content element to be appended to and resizable
 	$content
+		.bind('load', function() {
+			$icon.addClass('loading');
+			$.ajax({
+				url: PHORK.utils.api.authorize(debugApiUrl),
+				success: function(data, status, xhr) {
+					if (data.items) {
+						for (var i in data.items) {
+							$content.trigger('append', data.items[i]);
+						}
+					}
+					
+					if (PHORK.utils.cookies.get('debug') == 1) {
+						$icon.trigger('click', true);
+					}
+				},
+				complete: function(xhr, status) {
+					$icon.removeClass('loading');
+				}
+			});
+		})
 		.bind('append', function(e, time, text) {
 			$(this)
 				.append(template
@@ -71,7 +91,8 @@ $(function() {
 				;
 			}
 		})
-	;	
+		.trigger('load')
+	;
 	
 	//bind the escape key to close the debugger
 	$(document)
@@ -81,22 +102,6 @@ $(function() {
 			}
 		})
 	;
-		
-	//load the debugging data from the API
-	$.ajax({
-		url: PHORK.utils.api.authorize(debugApiUrl),
-		success: function(data, status, xhr) {
-			if (data.items) {
-				for (var i in data.items) {
-					$content.trigger('append', data.items[i]);
-				}
-			}
-			
-			if (PHORK.utils.cookies.get('debug') == 1) {
-				$icon.trigger('click', true);
-			}
-		}
-	});
 		
 	//override the console log to also display the content in the debug window
 	PHORK.registry.log = console.log;
