@@ -36,7 +36,7 @@
 				'session'		=> 'GetSession'
 			);
 			
-			$strSegment = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(2));
+			$strSegment = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(2));
 			if (!empty($arrHandlers[$strSegment])) {
 				$strMethod = $this->strMethodPrefix . $arrHandlers[$strSegment];
 				$this->$strMethod();

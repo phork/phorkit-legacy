@@ -88,7 +88,7 @@
 				'deny'			=> 'DoDeny',
 			);
 			
-			$strSegment = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(2));
+			$strSegment = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(2));
 			if (!empty($arrHandlers[$strSegment])) {
 				$strMethod = $this->strMethodPrefix . $arrHandlers[$strSegment];
 				$this->$strMethod();
@@ -119,17 +119,20 @@
 		 * @return array The compacted data
 		 */
 		protected function getResultParams() {
-			$objUrl = AppRegistry::get('Url');
+			if (!($intNumResults = (int) $this->objUrl->getVariable('num'))) {
+				$intNumResults = 10;
+			}
+			if (!($intPage = (int) $this->objUrl->getVariable('page'))) {
+				$intPage = 1;
+			}
 			
-			$intNumResults = (int) !empty($this->arrParams['num']) ? $this->arrParams['num'] : 10;
-			$intPage = (int) !empty($this->arrParams['p']) ? $this->arrParams['p'] : 1;
 			$arrFilters = array(
 				'Conditions' => array(),
 				'Limit' => $intNumResults, 
 				'Offset' => ($intPage - 1) * $intNumResults
 			);
 			
-			if ($strSortBy = $objUrl->getFilter('sort')) {
+			if ($strSortBy = $this->objUrl->getFilter('sort')) {
 				switch ($strSortBy) {
 					case 'username':
 					case 'displayname':
@@ -149,7 +152,7 @@
 			}
 			
 			if ($this->blnInternal) {
-				$arrInternal = explode(',', $objUrl->getFilter('internal'));
+				$arrInternal = explode(',', $this->objUrl->getFilter('internal'));
 				if (in_array('nocache', $arrInternal)) {
 					$this->blnNoCache = true;
 				}
@@ -157,7 +160,7 @@
 				$arrInternal = array();
 			}
 			
-			if ($arrInclude = explode(',', $objUrl->getFilter('include'))) {
+			if ($arrInclude = explode(',', $this->objUrl->getFilter('include'))) {
 				$this->blnExtended = in_array('extended', $arrInclude);
 			}
 			
@@ -175,7 +178,7 @@
 		protected function verifyParams() {
 			$blnResult = true;
 			
-			if (!empty($this->arrParams['num']) && $this->arrParams['num'] > ($intMaxResults = 50)) {
+			if ($this->objUrl->getVariable('num') > ($intMaxResults = 50)) {
 				$blnResult = false;
 				trigger_error(AppLanguage::translate('The maximum number of results allowed is %d', $intMaxResults));
 			}
@@ -238,9 +241,8 @@
 				extract($this->getResultParams());
 				
 				if (!$this->loadFromCache()) {
-					$objUrl = AppRegistry::get('Url');
-					$strFilterBy = $objUrl->getFilter('by');
-					$mxdFilter = str_replace('.' . $this->strFormat, '', $objUrl->getSegment(3));
+					$strFilterBy = $this->objUrl->getFilter('by');
+					$mxdFilter = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3));
 					
 					switch ($strFilterBy) {
 						case 'ids':
@@ -298,7 +300,7 @@
 					$arrFilters['Conditions'] = array(
 						array(
 							'Column'	=> 'username',
-							'Value'		=> $this->arrParams['term'],
+							'Value'		=> $this->objUrl->getVariable('term'),
 							'Operator'	=> 'begins with'
 						)
 					);
@@ -358,9 +360,8 @@
 		protected function handleGetRelationship() {
 			if ($this->verifyRequest('GET') && $this->verifyParams()) {			
 				if ($this->blnAuthenticated) {
-					$objUrl = AppRegistry::get('Url');
-					$strFilterBy = $objUrl->getFilter('by');
-					$mxdFilter = str_replace('.' . $this->strFormat, '', $objUrl->getSegment(3));
+					$strFilterBy = $this->objUrl->getFilter('by');
+					$mxdFilter = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3));
 					
 					switch ($strFilterBy) {
 						case 'id':
@@ -425,8 +426,7 @@
 				if ($this->blnAuthenticated || $this->blnInternal) {
 					extract($this->getResultParams());
 					
-					$objUrl = AppRegistry::get('Url');
-					if (($strConnectionType = $objUrl->getSegment(3)) && ($strUsernameSegment = $objUrl->getSegment(4))) {
+					if (($strConnectionType = $this->objUrl->getSegment(3)) && ($strUsernameSegment = $this->objUrl->getSegment(4))) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
 						
 						AppLoader::includeUtility('DataHelper');
@@ -510,7 +510,7 @@
 				if ($this->blnAuthenticated) {
 					extract($this->getResultParams());
 					
-					if ($strConnectionTypeSegment = AppRegistry::get('Url')->getSegment(3)) {
+					if ($strConnectionTypeSegment = $this->objUrl->getSegment(3)) {
 						$strConnectionType = str_replace('.' . $this->strFormat, '', $strConnectionTypeSegment);
 						$intUserId = AppRegistry::get('UserLogin')->getUserId();
 						
@@ -585,14 +585,14 @@
 		protected function handleDoConnect() {
 			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
-					if ($strUsernameSegment = AppRegistry::get('Url')->getSegment(4)) {
+					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
 						
 						AppLoader::includeUtility('DataHelper');
 						if ($intUserId = DataHelper::getUserIdByUsername($strUsername)) {				
 							AppLoader::includeModel('UserConnectionModel');
 							
-							switch (AppRegistry::get('Url')->getSegment(3)) {
+							switch ($this->objUrl->getSegment(3)) {
 								case 'friend':
 									$intStatus = UserConnectionModel::STATUS_FRIEND;
 									$strSuccessMessage = AppLanguage::translate('%s has been sent a friend request.', $strUsername);
@@ -658,14 +658,14 @@
 		protected function handleDoDisconnect() {
 			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
-					if ($strUsernameSegment = AppRegistry::get('Url')->getSegment(4)) {
+					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
 						
 						AppLoader::includeUtility('DataHelper');
 						if ($intUserId = DataHelper::getUserIdByUsername($strUsername)) {				
 							AppLoader::includeModel('UserConnectionModel');
 							
-							switch (AppRegistry::get('Url')->getSegment(3)) {
+							switch ($this->objUrl->getSegment(3)) {
 								case 'friend':
 									$intStatus = UserConnectionModel::STATUS_FRIEND;
 									$strSuccessMessage = AppLanguage::translate('%s has been removed from your connections.', $strUsername);
@@ -726,14 +726,14 @@
 		protected function handleDoApprove() {
 			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
-					if ($strUsernameSegment = AppRegistry::get('Url')->getSegment(4)) {
+					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
 						
 						AppLoader::includeUtility('DataHelper');
 						if ($intUserId = DataHelper::getUserIdByUsername($strUsername)) {				
 							AppLoader::includeModel('UserConnectionModel');
 							
-							switch (AppRegistry::get('Url')->getSegment(3)) {
+							switch ($this->objUrl->getSegment(3)) {
 								case 'friend':
 									$intStatus = UserConnectionModel::STATUS_FRIEND;
 									$strSuccessMessage = AppLanguage::translate('%s has been approved as a friend.', $strUsername);
@@ -784,14 +784,14 @@
 		protected function handleDoDeny() {
 			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
-					if ($strUsernameSegment = AppRegistry::get('Url')->getSegment(4)) {
+					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
 						
 						AppLoader::includeUtility('DataHelper');
 						if ($intUserId = DataHelper::getUserIdByUsername($strUsername)) {				
 							AppLoader::includeModel('UserConnectionModel');
 							
-							switch (AppRegistry::get('Url')->getSegment(3)) {
+							switch ($this->objUrl->getSegment(3)) {
 								case 'friend':
 									$intStatus = UserConnectionModel::STATUS_FRIEND;
 									$strSuccessMessage = AppLanguage::translate('%s has been denied as a friend.', $strUsername);

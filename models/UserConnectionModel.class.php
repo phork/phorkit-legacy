@@ -172,6 +172,7 @@
 					if (!array_key_exists('cache-bust-save', $this->arrHelpers)) {
 						if (AppLoader::includeExtension('helpers/', 'ModelCache')) {
 							$this->appendHelper('cache-bust-save', 'ModelCache');
+							$this->initHelper('cache-bust-save', array('postSave'));
 						}
 					}
 				}

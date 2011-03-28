@@ -55,7 +55,7 @@
 				'delete'		=> 'DoDelete'
 			);
 			
-			$strSegment = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(2));
+			$strSegment = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(2));
 			if (!empty($arrHandlers[$strSegment])) {
 				$strMethod = $this->strMethodPrefix . $arrHandlers[$strSegment];
 				$this->$strMethod();
@@ -86,10 +86,13 @@
 		 * @return array The compacted data
 		 */
 		protected function getResultParams() {
-			$objUrl = AppRegistry::get('Url');
+			if (!($intNumResults = (int) $this->objUrl->getVariable('num'))) {
+				$intNumResults = 10;
+			}
+			if (!($intPage = (int) $this->objUrl->getVariable('page'))) {
+				$intPage = 1;
+			}
 			
-			$intNumResults = !empty($this->arrParams['num']) ? $this->arrParams['num'] : 10;
-			$intPage = !empty($this->arrParams['p']) ? $this->arrParams['p'] : 1;
 			$arrFilters = array(
 				'Conditions' => array(),
 				'Limit' => $intNumResults, 
@@ -97,7 +100,7 @@
 			);
 			
 			if ($this->blnInternal) {
-				$arrInternal = explode(',', $objUrl->getFilter('internal'));
+				$arrInternal = explode(',', $this->objUrl->getFilter('internal'));
 				if (in_array('nocache', $arrInternal)) {
 					$this->blnNoCache = true;
 				}
@@ -175,9 +178,8 @@
 			if ($this->verifyRequest('GET') && $this->verifyParams()) {
 				extract($this->getResultParams());
 				
-				$objUrl = AppRegistry::get('Url');
-				$strFilterBy = $objUrl->getFilter('by');
-				$mxdFilter = str_replace('.' . $this->strFormat, '', $objUrl->getSegment(3));
+				$strFilterBy = $this->objUrl->getFilter('by');
+				$mxdFilter = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3));
 				
 				if ($strFilterBy == 'username') {
 					AppLoader::includeUtility('DataHelper');
@@ -242,7 +244,7 @@
 				if ($this->blnAuthenticated) {
 					extract($this->getResultParams());
 					
-					$strFilterBy = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(3));
+					$strFilterBy = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3));
 					switch ($strFilterBy) {
 						case 'connections':
 							$strMethod = 'loadConnectionsByUserId';
@@ -299,11 +301,13 @@
 		protected function handleDoAdd() {
 			if ($this->verifyRequest('POST') && $this->verifyParams()) {
 				if ($this->blnAuthenticated) {
+					$arrVariables = $this->objUrl->getVariables();
+					
 					AppLoader::includeUtility('Sanitizer');
-					if (!($arrUnsanitary = Sanitizer::sanitizeArray($this->arrParams))) {
-						if (!empty($this->arrParams['status'])) {
+					if (!($arrUnsanitary = Sanitizer::sanitizeArray($arrVariables))) {
+						if (!empty($arrVariables['status'])) {
 							AppLoader::includeUtility('EventHelper');
-							if (EventHelper::userStatus(AppRegistry::get('UserLogin')->getUserId(), $this->arrParams['status'])) {
+							if (EventHelper::userStatus(AppRegistry::get('UserLogin')->getUserId(), $arrVariables['status'])) {
 								CoreAlert::alert('The status was posted successfully.');
 								$this->blnSuccess = true;
 								$this->intStatusCode = 201;
@@ -337,7 +341,7 @@
 		protected function handleDoDelete() {
 			if ($this->verifyRequest('DELETE') && $this->verifyParams()) {
 				if ($this->blnAuthenticated) {
-					if ($intEventId = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(3))) {
+					if ($intEventId = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3))) {
 						$objUserEvent = $this->initModel();
 						if ($objUserEvent->loadById($intEventId) && $objUserEvent->count()) {
 							if ($objUserEvent->current()->get('userid') == AppRegistry::get('UserLogin')->getUserId()) {

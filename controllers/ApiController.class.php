@@ -34,10 +34,12 @@
 		 * @access public
 		 */
 		public function run() {
-			$this->strFormat = AppRegistry::get('Url')->getExtension();
+			$objUrl = AppRegistry::get('Url');
+			$this->strFormat = $objUrl->getExtension();
+			
 			try {
 				AppLoader::includeClass('php/core/', 'CoreApi');
-				$this->objApi = new CoreApi($this->authenticate(), false);
+				$this->objApi = new CoreApi($objUrl, $this->authenticate(), false);
 				list(
 					$this->blnSuccess, 
 					$this->arrResult, 

@@ -52,7 +52,7 @@
 				'add'			=> 'DoAdd'
 			);
 			
-			$strSegment = str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(2));
+			$strSegment = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(2));
 			if (!empty($arrHandlers[$strSegment])) {
 				$strMethod = $this->strMethodPrefix . $arrHandlers[$strSegment];
 				$this->$strMethod();
@@ -90,10 +90,13 @@
 		 * @return array The compacted data
 		 */
 		protected function getResultParams() {
-			$objUrl = AppRegistry::get('Url');
+			if (!($intNumResults = (int) $this->objUrl->getVariable('num'))) {
+				$intNumResults = 10;
+			}
+			if (!($intPage = (int) $this->objUrl->getVariable('page'))) {
+				$intPage = 1;
+			}
 			
-			$intNumResults = !empty($this->arrParams['num']) ? $this->arrParams['num'] : 10;
-			$intPage = !empty($this->arrParams['p']) ? $this->arrParams['p'] : 1;
 			$arrFilters = array(
 				'Conditions' => array(),
 				'Limit' => $intNumResults, 
@@ -101,7 +104,7 @@
 			);
 			
 			if ($this->blnInternal) {
-				$arrInternal = explode(',', $objUrl->getFilter('internal'));
+				$arrInternal = explode(',', $this->objUrl->getFilter('internal'));
 				if (in_array('nocache', $arrInternal)) {
 					$this->blnNoCache = true;
 				}
@@ -124,7 +127,7 @@
 		 * @return boolean True if valid
 		 */
 		protected function verifyParams() {
-			$this->strTagFor = AppRegistry::get('Url')->getFilter('for');
+			$this->strTagFor = $this->objUrl->getFilter('for');
 			return true;
 		}
 		
@@ -147,9 +150,8 @@
 				if (!$this->loadFromCache()) {
 					$objTag = $this->initModel();
 					
-					$objUrl = AppRegistry::get('Url');
-					$strFilterBy = $objUrl->getFilter('by');
-					$mxdFilter = str_replace('.' . $this->strFormat, '', $objUrl->getSegment(3));
+					$strFilterBy = $this->objUrl->getFilter('by');
+					$mxdFilter = str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3));
 					
 					switch ($strFilterBy) {
 						case 'tag':
@@ -201,7 +203,7 @@
 					$arrFilters['Conditions'] = array(
 						array(
 							'Column'	=> 'abbr',
-							'Value'		=> TagModel::formatTag($this->arrParams['term']),
+							'Value'		=> TagModel::formatTag($this->objUrl->getVariable('term')),
 							'Operator'	=> 'begins with'
 						)
 					);
@@ -245,12 +247,14 @@
 		protected function handleDoAdd() {
 			if ($this->verifyRequest('POST') && $this->verifyParams()) {
 				if ($this->blnAuthenticated) {
-					if ($intUserId = (int) str_replace('.' . $this->strFormat, '', AppRegistry::get('Url')->getSegment(3))) {
+					if ($intUserId = (int) str_replace('.' . $this->strFormat, '', $this->objUrl->getSegment(3))) {
+						$arrVariables = $this->objUrl->getVariables();
+						
 						AppLoader::includeUtility('Sanitizer');
-						if (!($arrUnsanitary = Sanitizer::sanitizeArray($this->arrParams))) {
-							if (!empty($this->arrParams['tag'])) {
+						if (!($arrUnsanitary = Sanitizer::sanitizeArray($arrVariables))) {
+							if (!empty($arrVariables['tag'])) {
 								$objTag = $this->initModel();
-								$strTag = $this->arrParams['tag'];
+								$strTag = $arrVariables['tag'];
 								
 								switch ($this->strTagFor) {
 									case 'user':
