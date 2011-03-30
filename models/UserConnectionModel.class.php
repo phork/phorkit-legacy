@@ -487,7 +487,7 @@
 						$objQuery->addWhere($this->strTable . '.approved', $arrFilters['Status'], '&');
 						$objQuery->addWhere($this->strTable . '.approved & ' . self::STATUS_BLOCKED, self::STATUS_BLOCKED, '!=', true);
 						if ($blnConnectionJoin) {
-							$objQuery->addWhere('(CASE WHEN uc2.approved IS NULL THEN 1 ELSE uc2.approved & ' . self::STATUS_BLOCKED . ' != ' . self::STATUS_BLOCKED. ' END)', 1, '=', true);
+							$objQuery->addWhereRaw('(CASE WHEN uc2.approved IS NULL THEN 1 ELSE uc2.approved & ' . self::STATUS_BLOCKED . ' != ' . self::STATUS_BLOCKED. ' END) = 1');
 						}
 						break;
 					
@@ -495,7 +495,7 @@
 						$objQuery->addWhere($this->strTable . '.approved', $arrFilters['Status'], '&');
 						$objQuery->addWhere($this->strTable . '.approved & ' . self::STATUS_BLOCKED, self::STATUS_BLOCKED, '!=', true);
 						if ($blnConnectionJoin) {
-							$objQuery->addWhere('(CASE WHEN uc2.approved IS NULL THEN 1 ELSE uc2.approved & ' . self::STATUS_BLOCKED . ' != ' . self::STATUS_BLOCKED. ' END)', 1, '=', true);
+							$objQuery->addWhereRaw('(CASE WHEN uc2.approved IS NULL THEN 1 ELSE uc2.approved & ' . self::STATUS_BLOCKED . ' != ' . self::STATUS_BLOCKED. ' END) = 1');
 						}
 						break;
 						
