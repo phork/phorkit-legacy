@@ -32,13 +32,8 @@
 		
 		
 		/**
-		 * Includes the record class, sets up an iterator 
-		 * object to hold the records, and sets up an event 
-		 * key which is used to register and run events in
-		 * the event object. This also sets up the relations
-		 * helper to load relations and a validation helper.
-		 * The step and statuses should be defined in order
-		 * of first step/status to last.
+		 * Initializes the model and sets up the step and status
+		 * option arrays.
 		 *
 		 * @access public
 		 * @param array $arrConfig The config vars, including which helpers to use
@@ -57,8 +52,6 @@
 				'approved'		=> AppLanguage::translate('Approved'),
 				'rejected'		=> AppLanguage::translate('Rejected')
 			);
-			
-			$this->init($arrConfig);
 		}
 		
 		
@@ -71,6 +64,7 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function init($arrConfig) {
+			parent::init($arrConfig);
 			AppEvent::register($this->strEventKey . '.pre-save', array($this, 'setDefaults'));
 			
 			if (!empty($arrConfig['Validate'])) {

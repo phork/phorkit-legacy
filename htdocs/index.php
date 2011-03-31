@@ -67,7 +67,7 @@
 			'strConfigDir'		=> $strConfigDir
 		));
 		unset($strInstallDir, $strSiteDir, $strConfigDir, $strConfigType);
-			
+		
 		AppRegistry::register('Bootstrap', $objBootstrap);
 		$objBootstrap->run();
 	}
@@ -77,7 +77,6 @@
 		if (AppConfig::get('ErrorVerbose')) {
 			$objException->handleException();
 		} else {
-			$objException->flushBuffer();
 			if ($objError = AppRegistry::get('Error', false)) {
 				$arrErrors = $objError->flushErrors();
 			}

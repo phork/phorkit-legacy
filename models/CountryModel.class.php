@@ -29,11 +29,7 @@
 		
 		
 		/**
-		 * Includes the record class, sets up an iterator 
-		 * object to hold the records, and sets up an event 
-		 * key which is used to register and run events in
-		 * the event object. This also sets up the validation 
-		 * helper.
+		 * Initializes the model and sets up the continents.
 		 *
 		 * @access public
 		 * @param array $arrConfig The config vars, including which helpers to use
@@ -50,8 +46,6 @@
 				'OC' => 'Oceania',
 				'SA' => 'South America'
 			);
-			
-			$this->init($arrConfig);
 		}
 				
 		
@@ -64,6 +58,8 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function init($arrConfig) {
+			parent::init($arrConfig);
+			
 			if (!empty($arrConfig['Validate'])) {
 				if (AppLoader::includeExtension('helpers/', 'ModelValidation')) {
 					$this->appendHelper('validation', 'ModelValidation', array(

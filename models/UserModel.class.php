@@ -29,19 +29,14 @@
 		
 		
 		/**
-		 * Includes the record class, sets up an iterator 
-		 * object to hold the records, and sets up an event 
-		 * key which is used to register and run events in
-		 * the event object. This also sets up the relations
-		 * helper to load relations and a validation helper.
+		 * Initializes the model and includes the password
+		 * helper utility.
 		 *
 		 * @access public
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function __construct($arrConfig = array()) {
 			parent::__construct($arrConfig);
-			$this->init($arrConfig);
-		
 			AppLoader::includeUtility('PasswordHelper');
 		}
 		
@@ -55,6 +50,7 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function init($arrConfig) {		
+			parent::init($arrConfig);
 			AppEvent::register($this->strEventKey . '.pre-save', array($this, 'setDefaults'));
 			
 			if (!empty($arrConfig['Validate'])) {
