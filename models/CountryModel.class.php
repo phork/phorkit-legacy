@@ -35,8 +35,6 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function __construct($arrConfig = array()) {
-			parent::__construct($arrConfig);
-			
 			$this->arrContinents = array(
 				'AF' => 'Africa',
 				'AN' => 'Antarctica',
@@ -46,6 +44,8 @@
 				'OC' => 'Oceania',
 				'SA' => 'South America'
 			);
+			
+			parent::__construct($arrConfig);
 		}
 				
 		

@@ -36,8 +36,8 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function __construct($arrConfig = array()) {
-			parent::__construct($arrConfig);
 			AppLoader::includeUtility('PasswordHelper');
+			parent::__construct($arrConfig);
 		}
 		
 		

@@ -39,8 +39,6 @@
 		 * @param array $arrConfig The config vars, including which helpers to use
 		 */
 		public function __construct($arrConfig = array()) {
-			parent::__construct($arrConfig);
-			
 			$this->arrStepOptions = array(
 				'drafted'		=> AppLanguage::translate('Drafted'),
 				'queued'		=> AppLanguage::translate('Queued'),
@@ -52,6 +50,8 @@
 				'approved'		=> AppLanguage::translate('Approved'),
 				'rejected'		=> AppLanguage::translate('Rejected')
 			);
+			
+			parent::__construct($arrConfig);
 		}
 		
 		
