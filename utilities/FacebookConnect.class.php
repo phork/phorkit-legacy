@@ -1,5 +1,5 @@
 <?php
-	require_once('php/core/CoreObject.class.php');
+	require_once('php/core/CoreStatic.class.php');
 	
 	/**
 	 * FacebookConnect.class.php
@@ -20,7 +20,7 @@
 	 * @package phorkit
 	 * @subpackage utilities
 	 */
-	class FacebookConnect extends CoreObject {
+	class FacebookConnect extends CoreStatic {
 	
 		/**
 		 * Attempts to load the Facebook Connect object from

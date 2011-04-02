@@ -98,10 +98,7 @@
 			$strContent = $this->encode($this->blnSuccess, $this->arrResult);
 			if ($this->strFormat == 'jsonp' && !empty($_GET['callback'])) {
 				$strCallback = preg_replace('/[^a-z0-9_\.]/i', '', $_GET['callback']);
-				$strContent = $strCallback . ' = function() { return "'
-				            . str_replace('"', '\"', str_replace('\"', '\\\"', $strContent))
-				            . '"; }'
-				;
+				$strContent = $strCallback . '(' . $strContent . ')';
 			}
 			
 			$objDisplay = AppDisplay::getInstance();

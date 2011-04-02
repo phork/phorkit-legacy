@@ -1,5 +1,5 @@
 <?php
-	require_once('php/core/CoreObject.class.php');
+	require_once('php/core/CoreStatic.class.php');
 	
 	/**
 	 * TwitterConnect.class.php
@@ -22,7 +22,7 @@
 	 * @package phorkit
 	 * @subpackage utilities
 	 */
-	class TwitterConnect extends CoreObject {
+	class TwitterConnect extends CoreStatic {
 		
 		/**
 		 * Returns the oAuth config options.
