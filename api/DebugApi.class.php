@@ -59,23 +59,18 @@
 		 */
 		protected function handleGetSession() {
 			if ($this->verifyRequest('GET')) {
-				if ($this->blnAuthenticated) {
-					if (AppConfig::get('DebugDisplay', false)) {
-						$strDebugSession = AppConfig::get('DebugSessionName');
-						
-						$this->blnSuccess = true;
-						$this->arrResult = array(
-							'items' => isset($_SESSION[$strDebugSession]) ? $_SESSION[$strDebugSession] : array()
-						);
-						
-						$_SESSION[$strDebugSession] = array();
-					} else {
-						trigger_error(AppLanguage::translate('Debugging via the display is not available'));
-						$this->error(400);
-					}
+				if (AppConfig::get('DebugDisplay', false)) {
+					$strDebugSession = AppConfig::get('DebugSessionName');
+					
+					$this->blnSuccess = true;
+					$this->arrResult = array(
+						'items' => isset($_SESSION[$strDebugSession]) ? $_SESSION[$strDebugSession] : array()
+					);
+					
+					$_SESSION[$strDebugSession] = array();
 				} else {
-					trigger_error(AppLanguage::translate('Missing or invalid authentication'));
-					$this->error(401);
+					trigger_error(AppLanguage::translate('Debugging via the display is not available'));
+					$this->error(400);
 				}
 			} else {
 				$this->error(400);
