@@ -13,7 +13,7 @@
 	$arrConfig['PrivateBeta'] = false;
 	$arrConfig['BetaPromoCodes'] = array('YOUR_SECRET_BETA_CODE');
 	
-	//the secret key to add to encoded action urls and the number of seconds the key is good for
+	//the secret key to add to encoded action URLs and the number of seconds the key is good for
 	$arrConfig['ActionKey'] = 'YOUR_SECRET_ACTION_KEY';
 	$arrConfig['ActionKeyTTL'] = 600;
 	
@@ -44,20 +44,23 @@
 	/*******************************************/
 	
 	
-	//the site urls
-	$arrConfig['SiteUrl'] = 'http://example.org';
-	$arrConfig['SecureUrl'] = 'https://example.org';
-	$arrConfig['ApiUrl'] = 'http://example.org';
-	$arrConfig['ImageUrl'] = 'http://example.org';
+	//the site and secure URLs should just contain the schema and the domain
+	$arrConfig['SiteUrl'] = 'http://' . $_SERVER['HTTP_HOST'];
+	$arrConfig['SecureUrl'] = 'https://' . $_SERVER['HTTP_HOST'];
+	
+	//the URLs to the API and assets relative to the document root (the schema and domain are optional) 
+	$arrConfig['ApiUrl'] = '';                      //eg. http://api.example.org or /phorkit/htdocs/
+	$arrConfig['ImageUrl'] = '';                    //eg. http://img.example.org or /phorkit/htdocs/
 	$arrConfig['CssUrl'] = '';
 	$arrConfig['JsUrl'] = '';
 	
-	//the url of the front controller (no trailing slash) excluding the filename if using mod rewrite
-	//$arrConfig['BaseUrl'] = '';					//mod rewrite enabled
-	$arrConfig['BaseUrl'] = '/index.php';			//no mod rewrite
+	//the URL of the front controller relative to the document root (excluding the filename if using mod rewrite)
+	//$arrConfig['BaseUrl'] = '';                   //mod rewrite enabled
+	$arrConfig['BaseUrl'] = '/index.php';           //no mod rewrite
 	
-	//the domain to use for cookies
-	$arrConfig['CookieDomain'] = 'example.org';
+	//the domain and path to use for cookies
+	$arrConfig['CookieDomain'] = $_SERVER['HTTP_HOST'];
+	$arrConfig['CookiePath'] = '/';
 	
 		
 	/*******************************************/
@@ -157,7 +160,7 @@
 	/*******************************************/
 	
 	
-	//define the url patterns for full page caches
+	//define the URL patterns for full page caches
 	$arrConfig['CacheUrls'] = array(
 		'#^/concat/(.*)#'	=> array(
 			'Namespace'		=> null,

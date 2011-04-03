@@ -5,12 +5,6 @@ $(function() {
 		$window = $(window)
 	;
 	
-	//define any constants and save them in the registry
-	registry.constants = {
-		baseUrl:	'',
-		cookiePath:	'/'
-	};
-	
 	//remove outline from clicked links and set up external links open a new window
 	$('a[rel=external]').attr('target','_blank');
 	$('a').click(function() { this.blur(); });
@@ -19,7 +13,7 @@ $(function() {
 	$('<link>').appendTo('head').attr({
 		rel: 'stylesheet',
 		type: 'text/css',
-		href: '/css/themes/default/common/javascript.css'
+		href: registry.constants.baseUrl + '/css/themes/default/common/javascript.css'
 	});
 	
 	//replace all the email placeholders with the real address
@@ -38,9 +32,8 @@ $(function() {
 		$(this).append($('<span></span>').addClass('close'));
 	});
 	
-	//add the close functionality to all new alerts
-	$('li span.close').live('click', function(e) {
-		var $window = $(window);
+	//add the close functionality to all existing and future alerts
+	$('ul#alert li span.close').live('click', function(e) {
 		$window.trigger('resizing');
 		
 		$(this).closest('li').hide('blind', 300, function() {
@@ -108,7 +101,7 @@ $(function() {
 		}
 	});
 	
-	//set up current and future AJAX forms
+	//set up the existing and future AJAX forms
 	$('form.ajax').live('submit', function(e) {
 		e.preventDefault();
 		
@@ -195,12 +188,12 @@ $(function() {
 		$this.attr('title', '');
 	});
 	
-	//add the form field counters
+	//add the string length counters to the counted textareas
 	$('textarea.counted').each(function() {
 		utils.counted($(this), $(this).next());
 	});
 	
-	//set up custom resizing and a debounced resized event
+	//set up a resizing event and a debounced resized event
 	$window
 		.data('timeout', null)
 		.bind('resize', function(e) {
@@ -219,7 +212,7 @@ $(function() {
 		$('html, body').animate({scrollTop: position}, 'fast');
 	});
 	
-	//store the cursor position
+	//store the current cursor position
 	$window.bind('mousemove', function(e) {
 		registry.mouse = {
 			x: e.pageX,

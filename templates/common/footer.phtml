@@ -31,7 +31,19 @@
 				"{$strJsUrl}/lib/jquery/js/jquery-1.5.1.min.js",
 				"{$strJsUrl}/lib/jquery/js/jquery-ui-1.8.10.custom.min.js",
 				"{$strJsUrl}/lib/jquery/js/jquery.livequery.min.js",
-				"{$strJsUrl}/js/common/global" . ($blnConcat ? $strMinified : '') . '.js',
+				"{$strJsUrl}/js/common/global" . ($blnConcat ? $strMinified : '') . '.js'
+			));
+		?>
+		
+		<script type="text/javascript">
+			PHORK.registry.constants = {
+				baseUrl:	'<?php echo($strBaseUrl); ?>',
+				cookiePath:	'<?php echo(AppConfig::get('CookiePath')); ?>'
+			};
+		</script>
+		
+		<?php	
+			print $objConcatHelper->js(array(
 				"{$strJsUrl}/js/themes/{$strTheme}/common/overlay" . ($blnConcat ? $strMinified : '') . '.js',
 				"{$strJsUrl}/js/themes/{$strTheme}/common/utils" . ($blnConcat ? $strMinified : '') . '.js',
 				"{$strJsUrl}/js/themes/{$strTheme}/common/nav" . ($blnConcat ? $strMinified : '') . '.js',

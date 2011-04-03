@@ -22,7 +22,7 @@ $(function() {
 		}
 	});
 	
-	//set up and event to turn the right column into fixed position
+	//set up an event to turn the right column into fixed position if there's enough space
 	var $nav = $('div.columns .column.right').each(function() {
 		var $this = $(this)
 			$window = $(window),
@@ -67,7 +67,7 @@ $(function() {
 		}
 	});
 	
-	//show a delayed alert when the page loads the first time
+	//show a delayed alert when the page loads for the first time
 	if (!utils.cookies.get('demo')) {
 		setTimeout(function() {
 			new utils.notify.insert('Everything that you see on this site is included in the Phork/it package. Please look around, sign up, play with the UI, and see what it can do.');

@@ -180,9 +180,9 @@
 					$strAvatarUrl = AppConfig::get('DefaultAvatar');
 				}
 				
-				$strBaseUrl = AppConfig::get('BaseUrl');
+				$strImageUrl = AppConfig::get('ImageUrl');
 				foreach ($arrSizes as $arrSize) {
-					$arrAvatars[$arrSize['Name']] = $strBaseUrl . sprintf($strAvatarUrl, $arrSize['Name']);
+					$arrAvatars[$arrSize['Name']] = $strImageUrl . sprintf($strAvatarUrl, $arrSize['Name']);
 				}
 			}
 			
