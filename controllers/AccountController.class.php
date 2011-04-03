@@ -681,14 +681,17 @@
 								
 								if ($objFileSystem->createFile($strFullPath, $strImageContents)) {
 									$this->createAvatars($strFullPath, $strFilePath, $arrAvatarConfig);				
-									$objUserRecord->set('avatar', str_replace(AppConfig::get('PublicFilePath'), $objFileSystem->getPublicUrl(), $strFilePath));
+									$objUser->current()->set('avatar', str_replace(AppConfig::get('PublicFilePath'), $objFileSystem->getPublicUrl(), $strFilePath));
 									$objUser->save();
 								}
 							}
 						}
 						unset($strImageContents);
 					}
-					$this->sendVerificationEmail($objUser->first());
+					
+					if (!empty($_POST['email'])) {
+						$this->sendVerificationEmail($objUser->first());
+					}
 				
 					$objFacebookRecord->set('userid', $objUser->first()->get('__id'));
 					if ($objFacebook->save()) {
@@ -781,14 +784,17 @@
 								
 								if ($objFileSystem->createFile($strFullPath, $strImageContents)) {
 									$this->createAvatars($strFullPath, $strFilePath, $arrAvatarConfig);				
-									$objUserRecord->set('avatar', str_replace(AppConfig::get('PublicFilePath'), $objFileSystem->getPublicUrl(), $strFilePath));
+									$objUser->current()->set('avatar', str_replace(AppConfig::get('PublicFilePath'), $objFileSystem->getPublicUrl(), $strFilePath));
 									$objUser->save();
 								}
 							}
 						}
 						unset($strImageContents);
 					}
-					$this->sendVerificationEmail($objUser->first());
+					
+					if (!empty($_POST['email'])) {
+						$this->sendVerificationEmail($objUser->first());
+					}
 				
 					$objTwitterRecord->set('userid', $objUser->first()->get('__id'));
 					if ($objTwitter->save()) {
