@@ -1,5 +1,5 @@
 <?php
-	$arrConfig['TwitterAppId'] = YOUR_APP_ID;
+	$arrConfig['TwitterAppId'] = 'YOUR_APP_ID';
 	$arrConfig['TwitterApiKey'] = 'YOUR_API_KEY';
 	
 	$arrConfig['TwitterConsumerKey'] = 'YOUR_CONSUMER_KEY';
