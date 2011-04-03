@@ -1,0 +1,70 @@
+			<div id="footer-shift"></div>
+			
+			<div id="footer">
+				<div class="constrained">
+					<ul id="footer-nav">
+						<li id="nav-about"><a href="<?php echo($strBaseUrl); ?>/about/">About Us</a></li>
+						<li id="nav-help"><a href="<?php echo($strBaseUrl); ?>/help/">FAQ &amp; Help</a></li>
+						<li id="nav-terms"><a href="<?php echo($strBaseUrl); ?>/terms/">Terms &amp; Conditions</a></li>
+						<li id="nav-privacy"><a href="<?php echo($strBaseUrl); ?>/privacy/">Privacy Policy</a></li>
+						<li id="nav-contact"><a href="<?php echo($strBaseUrl); ?>/contact/">Contact Us</a></li>
+					</ul>
+					
+					<div id="footer-blurb">
+						This site is powered by <a href="http://phork.org" rel="external">Phork</a> and <a href="http://phorkit.org">Phork/it</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<?php
+			$objController = AppRegistry::get('Controller');
+			
+			AppLoader::includeUtility('ConcatHelper');
+			$objConcatHelper = new ConcatHelper();
+			$blnConcat = $objConcatHelper->getConcat();
+			
+			//minified javascript files include a '.min' suffix (eg. foo.min.js)
+			$strMinified = '.min';
+			
+			print $objConcatHelper->js(array(
+				"{$strJsUrl}/lib/jquery/js/jquery-1.5.1.min.js",
+				"{$strJsUrl}/lib/jquery/js/jquery-ui-1.8.10.custom.min.js",
+				"{$strJsUrl}/lib/jquery/js/jquery.livequery.min.js",
+				"{$strJsUrl}/js/common/global" . ($blnConcat ? $strMinified : '') . '.js'
+			));
+		?>
+		
+		<script type="text/javascript">
+			PHORK.registry.constants = {
+				baseUrl:	'<?php echo($strBaseUrl); ?>',
+				cookiePath:	'<?php echo(AppConfig::get('CookiePath')); ?>'
+			};
+		</script>
+		
+		<?php	
+			print $objConcatHelper->js(array(
+				"{$strJsUrl}/js/themes/{$strTheme}/common/overlay" . ($blnConcat ? $strMinified : '') . '.js',
+				"{$strJsUrl}/js/themes/{$strTheme}/common/utils" . ($blnConcat ? $strMinified : '') . '.js',
+				"{$strJsUrl}/js/themes/{$strTheme}/common/nav" . ($blnConcat ? $strMinified : '') . '.js',
+				"{$strJsUrl}/js/themes/{$strTheme}/common/run" . ($blnConcat ? $strMinified : '') . '.js'
+			));
+			
+			print $objConcatHelper->js(array(
+				"{$strJsUrl}/js/themes/{$strTheme}/common/" . ($blnLoggedIn ? 'user' : 'guest') . ($blnConcat ? $strMinified : '') . '.js'
+			));
+			
+			if (AppConfig::get('DebugDisplay', false)) {
+				$objController->includeCommon('debug', array(), true);
+			}
+			
+			if (!empty($arrJavascript)) {
+				print $objConcatHelper->js($arrJavascript);
+			}
+		?>
+	</body>
+</html>
+
+<?php if (AppConfig::get('DebugEnabled')) { ?>
+<!-- load time <[LOAD TIME]> seconds / peak memory usage <[PEAK MEMORY]> -->
+<?php } ?>
