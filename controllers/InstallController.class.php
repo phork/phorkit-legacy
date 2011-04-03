@@ -480,6 +480,8 @@
 							} else {
 								trigger_error(AppLanguage::translate('There was an error connecting to Twitter'));
 							}
+						} else {
+							trigger_error(AppLanguage::translate('The callback URL registered with Twitter should be %s', AppConfig::get('SiteUrl') . AppConfig::get('BaseUrl') . '/account/connect/twitter/'));
 						}
 					} catch (Exception $objException) {
 						trigger_error(AppLanguage::translate('Missing Twitter configuration file (twitter.config.php)'));
