@@ -79,24 +79,6 @@
 		
 		
 		/*****************************************/
-		/**     INCLUDE METHODS                 **/
-		/*****************************************/
-		
-		
-		/**
-		 * Includes the user info and the connection buttons. 
-		 *
-		 * @access public
-		 * @param array $arrUser The user record data
-		 */
-		public function includeUserInfo($arrUser, $arrParams = array()) {
-			$this->includeTemplateFile($this->getTemplatePath('user/common/userinfo'), array_merge($arrParams, array(
-				'arrUser' => $arrUser
-			)));
-		}
-		
-		
-		/*****************************************/
 		/**     DISPLAY METHODS                 **/
 		/*****************************************/
 		

@@ -338,9 +338,7 @@
 		 * @access protected
 		 */
 		protected function displaySettings() {
-			if (!$this->blnLoggedIn) {
-				return $this->requireLogin();
-			}
+			$this->blnLoggedIn || $this->requireLogin();
 			
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'account';
@@ -452,9 +450,7 @@
 		 * @access protected
 		 */
 		protected function displayProfile() {
-			if (!$this->blnLoggedIn) {
-				return $this->requireLogin();
-			}
+			$this->blnLoggedIn || $this->requireLogin();
 			
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'profile';
@@ -538,9 +534,7 @@
 		 * @access protected
 		 */
 		protected function displayVerify() {
-			if (!$this->blnLoggedIn) {
-				return $this->requireLogin();
-			}
+			$this->blnLoggedIn || $this->requireLogin();
 			
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'verify';
@@ -965,9 +959,7 @@
 		 * @access protected
 		 */
 		protected function displayDisconnect() {
-			if (!$this->blnLoggedIn) {
-				return $this->requireLogin();
-			}
+			$this->blnLoggedIn || $this->requireLogin();
 			
 			$objUrl = AppRegistry::get('Url');
 			$strApplication = $objUrl->getSegment(2);

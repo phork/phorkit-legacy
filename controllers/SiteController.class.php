@@ -159,6 +159,7 @@
 				CoreAlert::alert(AppLanguage::translate('You must be logged in for that.'), true);
 				$objDisplay->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/account/login/');
 			}
+			exit;
 		}
 		
 		
