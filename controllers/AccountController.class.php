@@ -656,7 +656,7 @@
 				
 				$objUser->import(array(
 					'username'		=> !empty($_POST['username']) ? $_POST['username'] : null,
-					'displayname'	=> !empty($_POST['username']) ? $_POST['username'] : null,
+					'displayname'	=> $objFacebookRecord->get('firstname') . ' ' . substr($objFacebookRecord->get('lastname'), 0, 1),
 					'email'			=> !empty($_POST['email']) ? $_POST['email'] : null,
 					'firstname'		=> $objFacebookRecord->get('firstname'),
 					'lastname'		=> $objFacebookRecord->get('lastname')
@@ -761,7 +761,7 @@
 				
 				$objUser->import(array(
 					'username'		=> !empty($_POST['username']) ? $_POST['username'] : null,
-					'displayname'	=> !empty($_POST['username']) ? $_POST['username'] : null,
+					'displayname'	=> $objTwitterRecord->get('displayname'),
 					'email'			=> !empty($_POST['email']) ? $_POST['email'] : null
 				));
 				

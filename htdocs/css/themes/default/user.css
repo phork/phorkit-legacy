@@ -5,9 +5,9 @@
 	-moz-border-radius: 8px; 
 	-webkit-border-radius: 8px; 
 	border-radius: 8px;
-	-moz-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 #content #profile #image {
@@ -32,7 +32,7 @@
 	margin-bottom: 5px;
 	font-size: 20px;
 	font-weight: bold;
-	text-shadow: 0px 1px 1px rgba(255, 255, 255, 1);
+	text-shadow: 0 1px 1px rgba(255, 255, 255, 1);
 }
 
 #content #profile #about #location {
@@ -79,9 +79,9 @@
 	border-radius: 10px;
 	background: #FFF;
 	font-size: 10px;
-	-moz-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
-	-webkit-box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
-	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+	-moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
 }
 
 #content #columns img {

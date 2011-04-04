@@ -97,6 +97,11 @@
 		}
 		
 		
+		/*****************************************/
+		/**     EVENT CALLBACKS                 **/
+		/*****************************************/		
+		
+		
 		/**
 		 * Sets any default values before saving including the
 		 * created date.

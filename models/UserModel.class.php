@@ -229,26 +229,7 @@
 			}
 		}
 		
-		
-		/**
-		 * Sets any default values before saving including the
-		 * created and updated dates.
-		 *
-		 * @access public
-		 */
-		public function setDefaults() {
-			$objDb = AppRegistry::get('Database');
-			if (!$this->current()->get(self::ID_PROPERTY)) {
-				$this->current()->set('created', date($objDb->getDatetimeFormat()));
-			}
-			$this->current()->set('updated', date($objDb->getDatetimeFormat()));
-			
-			if (!$this->current()->get('displayname')) {
-				$this->current()->set('displayname', $this->current()->get('username'));
-			}
-		}
-		
-		
+	
 		/**
 		 * Returns any incomplete fields that the user still needs
 		 * to fill out.
@@ -272,8 +253,32 @@
 			
 			return $arrMissing;
 		}
-
-
+			
+		
+		/*****************************************/
+		/**     EVENT CALLBACKS                 **/
+		/*****************************************/		
+		
+		
+		/**
+		 * Sets any default values before saving including the
+		 * created and updated dates.
+		 *
+		 * @access public
+		 */
+		public function setDefaults() {
+			$objDb = AppRegistry::get('Database');
+			if (!$this->current()->get(self::ID_PROPERTY)) {
+				$this->current()->set('created', date($objDb->getDatetimeFormat()));
+			}
+			$this->current()->set('updated', date($objDb->getDatetimeFormat()));
+			
+			if (!$this->current()->get('displayname')) {
+				$this->current()->set('displayname', $this->current()->get('username'));
+			}
+		}
+		
+		
 		/*****************************************/
 		/**     LOAD METHODS                    **/
 		/*****************************************/

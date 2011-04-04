@@ -69,6 +69,11 @@
 		}
 		
 		
+		/*****************************************/
+		/**     EVENT CALLBACKS                 **/
+		/*****************************************/		
+		
+		
 		/**
 		 * Sets any default values before saving including the
 		 * promo code and sent date.

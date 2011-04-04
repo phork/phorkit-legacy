@@ -71,7 +71,7 @@
 				if (AppLoader::includeExtension('helpers/', 'ModelValidation')) {
 					$this->appendHelper('validation', 'ModelValidation', array(
 						'Id'			=> array(
-							'Property'		=> 'workflowid',
+							'Property'		=> $this->strPrimaryKey,
 							'Unique'		=> true,
 							'Type'			=> 'integer',
 							'Error'			=> 'Invalid ID'
@@ -170,6 +170,11 @@
 		}
 		
 		
+		/*****************************************/
+		/**     EVENT CALLBACKS                 **/
+		/*****************************************/		
+		
+		
 		/**
 		 * Sets any default values before saving including the
 		 * created and updated dates.
@@ -191,6 +196,11 @@
 			}
 			$this->current()->set('updated', date($objDb->getDatetimeFormat()));
 		}
+		
+		
+		/*****************************************/
+		/**     SAVE METHODS                    **/
+		/*****************************************/
 		
 		
 		/**
@@ -248,7 +258,7 @@
 
 
 		/*****************************************/
-		/**     LOAD METHODS                   **/
+		/**     LOAD METHODS                    **/
 		/*****************************************/
 		
 		
