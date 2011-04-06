@@ -499,10 +499,10 @@
 						$objUserRecord->set('avatar', null);
 					}
 					
-					$objUserRecord->set('displayname', $_POST['displayname']);
-					$objUserRecord->set('location', $_POST['location']);
-					$objUserRecord->set('url', $_POST['url']);
-					$objUserRecord->set('blurb', $_POST['blurb']);
+					$objUserRecord->set('displayname', isset($_POST['displayname']) ? $_POST['displayname'] : null);
+					$objUserRecord->set('location', isset($_POST['location']) ? $_POST['location'] : null);
+					$objUserRecord->set('url', isset($_POST['url']) ? $_POST['url'] : null);
+					$objUserRecord->set('blurb', isset($_POST['blurb']) ? $_POST['blurb'] : null);
 					
 					if (!AppRegistry::get('Error')->getErrorFlag() && $objUser->save()) {
 						CoreAlert::alert(AppLanguage::translate('Your profile was updated successfully.'));
@@ -766,7 +766,7 @@
 							AppRegistry::register('FileSystem', $objFileSystem = new $strFileSystem());
 						}
 						
-						if ($strImageContents = file_get_contents($objTwitterRecord->get('avatar'))) {
+						if ($strImageContents = file_get_contents(str_replace('_normal.', '.', $objTwitterRecord->get('avatar')))) {
 							if (!strstr(substr($strImageContents, 0, 50), 'error')) {
 								$arrAvatarConfig = AppConfig::get('Avatar');
 								$strFullName = $arrAvatarConfig['Full']['Name'];
@@ -885,7 +885,7 @@
 					trigger_error(AppLanguage::translate('There was an error connecting your account. Please try again later.'));
 				}
 			} else {
-				trigger_error(AppLanguage::translate('There was an error logging in. Please try again later or login via %s.', AppConfig::get('SiteTitle')));
+				trigger_error(AppLanguage::translate('There was an error logging in. Please try again later or login via %s', AppConfig::get('SiteTitle')));
 			}
 			
 			$this->assignPageVar('strPageTitle', ucfirst($strApplication) . ' connect on ' . AppConfig::get('SiteTitle'));

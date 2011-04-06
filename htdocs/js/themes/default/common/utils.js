@@ -130,7 +130,7 @@ $(function() {
 	utils.classargs = classargs;
 	
 	
-	//displays a count for the number of characters in an form field
+	//displays a count for the number of characters in a form field
 	var counted = function($element, $result) {
 		var segments = classargs($element, 'range', 3);
 		if (segments) {

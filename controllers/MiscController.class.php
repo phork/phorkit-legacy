@@ -46,8 +46,7 @@
 		 * @access protected
 		 */
 		protected function displayAbout() {
-			$this->assignPageVar('strHeaderTitle', $strTitle = 'About ' . AppConfig::get('SiteTitle'));
-			$this->assignPageVar('strPageTitle', $strTitle);
+			$this->assignPageVar('strPageTitle', AppConfig::get('SiteTitle') . ' - About Us');
 			$this->displayNode('content', $this->getTemplatePath('misc/about'));
 		}
 		
@@ -58,8 +57,7 @@
 		 * @access protected
 		 */
 		protected function displayContact() {
-			$this->assignPageVar('strHeaderTitle', 'Contact ' . AppConfig::get('SiteTitle'));
-			$this->assignPageVar('strPageTitle', 'Contact Us');	
+			$this->assignPageVar('strPageTitle', AppConfig::get('SiteTitle') . ' - Contact Us');	
 			$this->displayNode('content', $this->getTemplatePath('misc/contact'));
 		}
 		
@@ -70,8 +68,7 @@
 		 * @access protected
 		 */
 		protected function displayHelp() {
-			$this->assignPageVar('strHeaderTitle', AppConfig::get('SiteTitle') . ' FAQ and Help');
-			$this->assignPageVar('strPageTitle', 'FAQ and Help');	
+			$this->assignPageVar('strPageTitle', AppConfig::get('SiteTitle') . ' - FAQ and Help');	
 			$this->displayNode('content', $this->getTemplatePath('misc/help'));
 		}
 		
@@ -82,8 +79,7 @@
 		 * @access protected
 		 */
 		protected function displayTerms() {
-			$this->assignPageVar('strHeaderTitle', AppConfig::get('SiteTitle') . ' Terms and Conditions');
-			$this->assignPageVar('strPageTitle', 'Terms and Conditions');	
+			$this->assignPageVar('strPageTitle', AppConfig::get('SiteTitle') . ' - Terms and Conditions');	
 			$this->displayNode('content', $this->getTemplatePath('misc/terms'));
 		}
 		
@@ -94,8 +90,7 @@
 		 * @access protected
 		 */
 		protected function displayPrivacy() {
-			$this->assignPageVar('strHeaderTitle', AppConfig::get('SiteTitle') . ' Privacy Policy');
-			$this->assignPageVar('strPageTitle', 'Privacy Policy');	
+			$this->assignPageVar('strPageTitle', AppConfig::get('SiteTitle') . ' - Privacy Policy');	
 			$this->displayNode('content', $this->getTemplatePath('misc/privacy'));
 		}
 	}

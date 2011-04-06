@@ -261,20 +261,25 @@
 					AppLoader::includeModel('UserModel');
 					$objUser = new UserModel();
 					
-					if (($arrFriends = $objApi->api('/me/friends')) && !empty($arrFriends['data'])) {
-						$intCount = count($arrFriends['data']);
-						$arrIds = array();
+					do {
+						if (($arrFriends = $objApi->api(isset($strNextPage) ? strstr($strNextPage, '/me/friends') : '/me/friends')) && !empty($arrFriends['data'])) {
+							$intCount = count($arrFriends['data']);
+							$strNextPage = !empty($arrFriends['paging']['next']) ? $arrFriends['paging']['next'] : null;
+							$arrIds = array();
 						
-						for ($i = 0; $i < $intCount; $i++) {
-							$arrIds[] = (int) $arrFriends['data'][$i]['id'];
-							
-							if ((!($i % 30) || $i == $intCount - 1) && !empty($arrIds)) {
-								$objUser->loadByFacebookId($arrIds);
-								$arrIds = array();
+							for ($i = 0; $i < $intCount; $i++) {
+								$arrIds[] = (int) $arrFriends['data'][$i]['id'];
+								
+								if ((!($i % 30) || $i == $intCount - 1) && !empty($arrIds)) {
+									$objUser->loadByFacebookId($arrIds);
+									$arrIds = array();
+								}
 							}
-						}
-					}
-					
+						} else {
+							$strNextPage = null;
+						}print_r($arrFriends);
+					} while (!empty($strNextPage));
+				
 					return $objUser;
 				} else {
 					trigger_error(AppLanguage::translate('Please <a href="%s">grant us access</a> to access your Facebook friends', AppConfig::get('BaseUrl') . '/account/connect/facebook/'));
