@@ -277,7 +277,7 @@
 							}
 						} else {
 							$strNextPage = null;
-						}print_r($arrFriends);
+						}
 					} while (!empty($strNextPage));
 				
 					return $objUser;
