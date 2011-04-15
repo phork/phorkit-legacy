@@ -271,7 +271,7 @@
 				if ($objUrl->getFilter('status') == 301) {
 					$objDisplay->setStatusCode(301);
 				}
-				$objDisplay->appendHeader('Location: ' . AppConfig::get('BaseUrl') . '/' . $strLocation);
+				$objDisplay->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/' . $strLocation);
 			} else {
 				$this->error(404);
 			}
