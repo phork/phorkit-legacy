@@ -437,21 +437,25 @@
 									case 'friends':
 										$intStatus = UserConnectionModel::STATUS_FRIEND;
 										$strMethod = 'loadByUserId';
+										$strUserIdProperty = 'connectionid';
 										break;
 										
 									case 'following':
 										$intStatus = UserConnectionModel::STATUS_FOLLOW;
 										$strMethod = 'loadByUserId';
+										$strUserIdProperty = 'connectionid';
 										break;
 										
 									case 'followers':
 										$intStatus = UserConnectionModel::STATUS_FOLLOW;
 										$strMethod = 'loadByConnectionId';
+										$strUserIdProperty = 'userid';
 										break;
 										
 									case 'blocked':
 										$intStatus = UserConnectionModel::STATUS_BLOCKED;
 										$strMethod = 'loadByUserId';
+										$strUserIdProperty = 'connectionid';
 										break;
 								}
 								
@@ -463,7 +467,7 @@
 										$this->blnSuccess = true;
 										if ($objUserConnection->count()) {
 											$this->arrResult = array(
-												'connections' => $this->formatConnections($objUserConnection),
+												'connections' => $this->formatConnections($objUserConnection, $strUserIdProperty),
 												'total' => $objUserConnection->getFoundRows()
 											);
 										} else {
@@ -536,7 +540,7 @@
 									$this->blnSuccess = true;
 									if ($objUserConnection->count()) {
 										$this->arrResult = array(
-											'connections' => $this->formatConnections($objUserConnection),
+											'connections' => $this->formatConnections($objUserConnection, 'userid'),
 											'total' => $objUserConnection->getFoundRows()
 										);
 									} else {
@@ -871,16 +875,17 @@
 		 *
 		 * @access public
 		 * @param object $objUserConnection The list of user connections to format
+		 * @param string $strUserIdProperty The property (userid or connectionid) to use for the ID value
 		 * @return array The connections in array format
 		 */
-		public function formatConnections($objUserConnection) {
+		public function formatConnections($objUserConnection, $strUserIdProperty = 'connectionid') {
 			$arrConnections = array();
 			
 			while (list(, $objUserConnectionRecord) = $objUserConnection->each()) {
 				$intUserApproved = $objUserConnectionRecord->get('approved');
 				
 				$arrConnections[] = array(
-					'id'			=> $objUserConnectionRecord->get('connectionid'),
+					'id'			=> $objUserConnectionRecord->get($strUserIdProperty),
 					'username'		=> $objUserConnectionRecord->get('username'),
 					'displayname'	=> $objUserConnectionRecord->get('displayname'),
 					'location'		=> $objUserConnectionRecord->get('location'),

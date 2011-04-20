@@ -330,7 +330,7 @@
 			
 			while (list(, $objTagRecord) = $objTag->each()) {
 				$arrTag = array(
-					'id'		=> $objTagRecord->get('tagid'),
+					'id'		=> $objTagRecord->get('__id'),
 					'tag'		=> $objTagRecord->get('tag'),
 					'abbr'		=> $objTagRecord->get('abbr')
 				);
