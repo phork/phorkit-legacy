@@ -285,38 +285,6 @@
 		
 		
 		/**
-		 * A shortcut function to load a record or an array
-		 * of records by the ID or array of IDs passed.
-		 * This does not clear out any previously loaded data.
-		 * That should be done explicitly.
-		 *
-		 * @access public
-		 * @param mixed $mxdId The ID or array of IDs to load by
-		 * @param array $arrFilters Any additional filters as well as the limits
-		 * @param boolean $blnCalcFoundRows Whether to calculate the total number of matching rows
-		 * @return boolean True if the query executed successfully
-		 */
-		public function loadById($mxdId, $arrFilters = array(), $blnCalcFoundRows = false) {
-			$arrFunctionArgs = func_get_args();
-			$this->setLoading(__FUNCTION__, $arrFunctionArgs);
-			
-			if (!array_key_exists('Conditions', $arrFilters)) {
-				$arrFilters['Conditions'] = array();
-			}
-			$arrFilters['Conditions'][] = array(
-				'Column'	=> $this->strTable . '.' . $this->strPrimaryKey,
-				'Value' 	=> $mxdId,
-				'Operator'	=> is_array($mxdId) ? 'IN' : '='
-			);
-			
-			$blnResult = $this->load($arrFilters, $blnCalcFoundRows);
-			
-			$this->clearLoading();
-			return $blnResult;
-		}
-		
-		
-		/**
 		 * A shortcut function to load a record by username.
 		 * This does not clear out any previously loaded data.
 		 * That should be done explicitly.

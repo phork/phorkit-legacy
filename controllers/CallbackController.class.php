@@ -20,4 +20,28 @@
 	 */
 	class CallbackController extends CoreControllerLite {
 	
+		/**
+		 * Handles any facebook callbacks including when
+		 * a user deauthorizes their account.
+		 *
+		 * @access public
+		 */
+		public function displayFacebook() {
+			switch (AppRegistry::get('Url')->getSegment(2)) {
+				case 'disconnect':
+					AppLoader::includeUtility('FacebookConnect');
+					if ($objConnect = FacebookConnect::getConnectObject()) {
+						if (($arrRequest = $objConnect->getSignedRequest()) && !empty($arrRequest['user_id'])) {
+							$intFacebookId = $arrRequest['user_id'];
+							
+							AppLoader::includeModel('FacebookModel');
+							$objFacebook = new FacebookModel();
+							if ($objFacebook->loadByExternalId($intFacebookId) && $objFacebook->count() == 1) {
+								print $objFacebook->destroy();
+							}
+						}
+					}
+					break;
+			}
+		}
 	}
