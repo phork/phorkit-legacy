@@ -311,7 +311,7 @@
 					break;
 					
 				case 'loadCombinedByUserId':
-					$objQuery->addTableJoin('user_connections', 'uc', array(array($this->strTable . '.userid', 'uc.connectionid')), 'LEFT JOIN');
+					$objQuery->addTableJoin('user_connections', 'uc', array(array($this->strTable . '.userid', 'uc.connectionid'), array('uc.userid', $this->arrLoading['Params'][0])), 'LEFT JOIN');
 					$objQuery->addDistinct();
 					$objQuery->useWhereOr();
 					break;
