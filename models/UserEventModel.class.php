@@ -275,7 +275,9 @@
 			$arrFunctionArgs = func_get_args();
 			$this->setLoading(__FUNCTION__, $arrFunctionArgs);
 			
+			$arrFilters['Grouped'] = $blnGrouped;
 			$this->addDefaultOrder($arrFilters);
+			
 			$blnResult = $this->load($arrFilters, $blnCalcFoundRows);
 						
 			$this->clearLoading();
@@ -313,15 +315,13 @@
 					$objQuery->addDistinct();
 					$objQuery->useWhereOr();
 					break;
-					
-				case 'loadLatest':
-					if (!empty($this->arrLoading['Params'][0])) {
-						$objQuery->addColumn($objQuery->buildFunction('COUNT', '*'), 'tally');
-						$objQuery->addGroupBy('type');
-						$objQuery->addGroupBy('typegroup');
-						$objQuery->addGroupBy($objQuery->buildFunction('DATE', $this->strTable . '.created'));
-					}
-					break;
+			}
+			
+			if (!empty($arrFilters['Grouped'])) {
+				$objQuery->addColumn($objQuery->buildFunction('COUNT', '*'), 'tally');
+				$objQuery->addGroupBy('type');
+				$objQuery->addGroupBy('typegroup');
+				$objQuery->addGroupBy($objQuery->buildFunction('DATE', $this->strTable . '.created'));
 			}
 			
 			if ($this->addQueryFilters($objQuery, $arrFilters)) {

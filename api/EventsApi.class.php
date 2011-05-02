@@ -19,6 +19,11 @@
 	 * /api/events/add/status.json										(POST: post a status event)
 	 * /api/events/delete/[event id].json								(DELETE: delete an event by ID)
 	 *
+	 * Additional formatting can be added to determine
+	 * what gets returned in the result.
+	 *
+	 * /include=grouped/												(groups the results by type)
+	 *
 	 * The following values can be used for internal calls.
 	 *
 	 * /internal=nocache/												(don't load from or save to the cache)
@@ -109,6 +114,10 @@
 				}
 			} else {
 				$arrInternal = array();
+			}
+			
+			if ($this->objUrl->getFilter('include') == 'grouped') {
+				$arrFilters['Grouped'] = true;
 			}
 			
 			return compact('arrFilters', 'arrInternal');
@@ -399,14 +408,14 @@
 				switch ($objUserEventRecord->get('type')) {
 					case 'friend:connected':
 						if ($objUserEventRecord->get('tally') > 1) {
-							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> and %d others became friends with <a href="%s/user/%s/">%s</a>', 
+							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> became friends with <a href="%s/user/%s/">%s</a> and %d others', 
 								$strUrlPrefix,
 								$objUserEventRecord->get('username'),
 								$objUserEventRecord->get('username'),
-								$objUserEventRecord->get('tally'),
 								$strUrlPrefix,
 								$arrMetaData['username'],
-								$arrMetaData['username']
+								$arrMetaData['username'],
+								$objUserEventRecord->get('tally') - 1
 							);
 						} else {
 							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> became friends with <a href="%s/user/%s/">%s</a>', 
@@ -422,14 +431,14 @@
 						
 					case 'follow:connected':
 						if ($objUserEventRecord->get('tally') > 1) {
-							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> and %d others started following <a href="%s/user/%s/">%s</a>', 
+							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> started following <a href="%s/user/%s/">%s</a> and %d others ', 
 								$strUrlPrefix,
 								$objUserEventRecord->get('username'),
 								$objUserEventRecord->get('username'),
-								$objUserEventRecord->get('tally'),
 								$strUrlPrefix,
 								$arrMetaData['username'],
-								$arrMetaData['username']
+								$arrMetaData['username'],
+								$objUserEventRecord->get('tally') - 1
 							);
 						} else {
 							$strEvent = sprintf('<a href="%s/user/%s/">%s</a> started following <a href="%s/user/%s/">%s</a>', 
@@ -454,9 +463,10 @@
 				}
 				
 				if ($strEvent) {
-					if ($objUserEventRecord->get('tally')) {
+					if ($objUserEventRecord->get('tally') > 1) {
 						$arrEvents[] = array(
 							'event'		=> $strEvent,
+							'username'	=> $objUserEventRecord->get('username'),
 							'avatars'	=> $this->formatAvatars($objUserEventRecord->get('avatar')),
 							'count'		=> $objUserEventRecord->get('tally')
 						);
