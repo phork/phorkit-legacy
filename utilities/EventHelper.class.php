@@ -137,7 +137,8 @@
 		
 		
 		/**
-		 * Adds a custom user status event.
+		 * Adds a custom user status event. This groups on the
+		 * time so all statuses are guaranteed ungrouped.
 		 *
 		 * @access public
 		 * @param integer $intUserId The user ID to add the status for
@@ -150,7 +151,7 @@
 				$intUserId,
 				$intUserId,
 				'user:status',
-				$intUserId,
+				time(),
 				array(
 					'status' => $strStatus
 				)

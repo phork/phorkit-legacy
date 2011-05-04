@@ -111,7 +111,7 @@
 			list(, $arrFriends) = ApiHelper::get('/api/users/include=extended/approved/friends/' . $this->arrUserRecord['username'] . '.json');
 			list(, $arrFollowing) = ApiHelper::get('/api/users/include=extended/approved/following/' . $this->arrUserRecord['username'] . '.json');
 			list(, $arrFollowers) = ApiHelper::get('/api/users/include=extended/approved/followers/' . $this->arrUserRecord['username'] . '.json');
-			list(, $arrEvents) = ApiHelper::get('/api/events/filter/by=userid/' . $this->intPageUserId . '.json');
+			list(, $arrEvents) = ApiHelper::get('/api/events/include=grouped/filter/by=userid/' . $this->intPageUserId . '.json');
 			
 			$this->assignPageVar('strPageTitle', $this->arrUserRecord['username'] . ' on ' . AppConfig::get('SiteTitle'));
 			$this->displayNode('content', $this->getTemplatePath('user/profile'), array(
