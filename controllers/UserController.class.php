@@ -90,13 +90,14 @@
 		 * @access protected
 		 */
 		protected function displayProfile() {
+			$objUrl = AppRegistry::get('Url');
 			AppLoader::includeUtility('ApiHelper');
 			
 			if ($this->getPageVar('blnUserIsSelf')) {
-				if ($_SERVER['REQUEST_METHOD'] == 'POST' && !empty($_POST['action'])) {
-					switch ($_POST['action']) {
+				if ($objUrl->getMethod() == 'POST') {
+					switch ($objUrl->getVariable('action')) {
 						case 'status':
-							list($blnSuccess, $arrResult) = ApiHelper::post('/api/events/add/status.json', $_POST);
+							list($blnSuccess, $arrResult) = ApiHelper::post('/api/events/add/status.json', $objUrl->getVariables());
 							if ($blnSuccess) {
 								CoreAlert::alert(AppLanguage::translate('Your status was posted successfully.'));
 							}

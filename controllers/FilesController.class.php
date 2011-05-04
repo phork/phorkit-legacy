@@ -29,9 +29,8 @@
 		
 		
 		/**
-		 * Sets up the common page variables to be used
-		 * across all node templates, including the styles
-		 * and javascript.
+		 * Verifies that the user has permission to access the
+		 * file. Currently only developers can access files.
 		 * 
 		 * @access public
 		 */

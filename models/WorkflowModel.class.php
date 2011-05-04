@@ -156,6 +156,20 @@
 										'Operator'	=> '='
 									)
 								)
+							),
+							
+							'Moderator'		=> array(
+								'LoadAs'		=> 'moderator',
+								'AutoLoad'		=> false,
+								'ClassName'		=> 'UserModel',
+								'Dependent'		=> false,
+								'Conditions'	=> array(
+									array(
+										'Column' 	=> 'userid',
+										'Property' 	=> 'moderatorid',
+										'Operator'	=> '='
+									)
+								)
 							)
 						)
 					));

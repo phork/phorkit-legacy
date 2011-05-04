@@ -81,8 +81,8 @@
 					}
 				}
 				
-				//handle any logout request
-				if (!empty($_REQUEST[AppConfig::get('LogoutFlag')])) {
+				//handle a logout request
+				if (AppRegistry::get('Url')->getVariable(AppConfig::get('LogoutFlag'))) {
 					$arrSessionBackup = $_SESSION;
 					$objUserLogin->handleLogout();
 					$this->afterLogout($arrSessionBackup);

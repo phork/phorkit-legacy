@@ -54,9 +54,10 @@
 		 * @access protected
 		 */
 		protected function display() {
+			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'signup';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				if (!empty($_POST['promo'])) {
 					if (!($blnValidCode = in_array($_POST['promo'], AppConfig::get('BetaPromoCodes')))) {
 						AppLoader::includeModel('PromoModel');

@@ -7,7 +7,9 @@
 	 * ScriptController.class.php
 	 * 
 	 * This controller handles the scripts. It must
-	 * implement the Controller interface.
+	 * implement the Controller interface. Scripts
+	 * are meant to be run from the command line and
+	 * usually should not be run from the browser.
 	 *
 	 * Copyright 2006-2011, Phork Labs. (http://phorklabs.com)
 	 *

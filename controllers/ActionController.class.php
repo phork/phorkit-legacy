@@ -90,7 +90,7 @@
 			if ($this->verifyRequest() && ActionHelper::verifyUrl()) {
 				switch ($strMethod) {
 					case 'get':
-						$arrResult = ApiHelper::get($strApiUrl . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : null), false);
+						$arrResult = ApiHelper::get($strApiUrl . (!empty($_GET) ? '?' . http_build_query($_GET) : null), false);
 						break;
 						
 					case 'post':
@@ -125,18 +125,18 @@
 		
 		/**
 		 * Verifies requests by making sure that any required
-		 * fields exist. Also verifies the request token
-		 * if the token verification is in use. Tokens should
-		 * not be used with page caching.
+		 * fields exist. Also verifies the request token if the
+		 * token verification is in use. Tokens should not be
+		 * used with page caching.
 		 *
 		 * @access protected
 		 * @return boolean True if valid
 		 */
 		protected function verifyRequest() {
-			if (!empty($_REQUEST)) {
+			if ($arrVars = AppRegistry::get('Url')->getVariables()) {
 				if (!empty($this->arrRequired)) {
 					foreach ($this->arrRequired as $strRequired) {
-						if (!array_key_exists($strRequired, $_REQUEST)) {
+						if (!array_key_exists($strRequired, $arrVars)) {
 							$blnFailed = true;
 							break;
 						}

@@ -195,7 +195,7 @@
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'signup';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				AppLoader::includeModel('UserModel');
 				$objUser = new UserModel(array('Validate' => true));
 				$objUser->import(array(
@@ -239,7 +239,7 @@
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'password';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				AppLoader::includeModel('UserModel');
 				$objUser = new UserModel();
 				if ($objUser->loadByEmail($_POST['email']) && $objUserRecord = $objUser->first()) {
@@ -288,7 +288,7 @@
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'reset';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				AppLoader::includeModel('UserModel');
 				$objUser = new UserModel(array('Validate' => true));
 				if ($objUser->loadByEmail($_POST['email']) && $objUserRecord = $objUser->first()) {
@@ -358,7 +358,7 @@
 			AppLoader::includeModel('UserModel');
 			$objUser = new UserModel(array('Validate' => true));
 			if ($objUser->loadById($this->intUserId) && $objUserRecord = $objUser->current()) {
-				if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+				if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 					$objUserRecord->set('firstname', $_POST['firstname']);
 					$objUserRecord->set('lastname', $_POST['lastname']);
 					$objUserRecord->set('countryid', $_POST['country']);
@@ -459,7 +459,7 @@
 			AppLoader::includeModel('UserModel');
 			$objUser = new UserModel(array('Validate' => true));
 			if ($objUser->loadById($this->intUserId) && $objUserRecord = $objUser->current()) {
-				if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+				if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 					if (!($objFileSystem = AppRegistry::get('FileSystem', false))) {
 						AppLoader::includeExtension('files/', $strFileSystem = AppConfig::get('FileSystem') . 'FileSystem');
 						AppRegistry::register('FileSystem', $objFileSystem = new $strFileSystem());
@@ -542,48 +542,46 @@
 			AppLoader::includeModel('UserModel');
 			$objUser = new UserModel();
 			if ($objUser->loadById($this->intUserId) && $objUserRecord = $objUser->current()) {
-				if (!empty($_GET['action'])) {
-					switch ($_GET['action']) {
-						case $strActionType:
-							$arrFilters = array(
-								'Conditions' => array(
-									array(
-										'Column' => 'token',
-										'Value'	=> $_GET['code']
-									)
+				switch ($objUrl->getVariable('action')) {
+					case $strActionType:
+						$arrFilters = array(
+							'Conditions' => array(
+								array(
+									'Column' => 'token',
+									'Value'	=> $_GET['code']
 								)
-							);
-							
-							AppLoader::includeModel('VerifyModel');
-							$objVerify = new VerifyModel();
-							if ($objVerify->loadByTypeAndId($this->intUserId, 'user', $arrFilters, false) && $objVerifyRecord = $objVerify->current()) {
-								if (!$objVerifyRecord->get('verified')) {
-									$objUserRecord->set('verified', 1);
-									if ($objUser->save()) {
-										$objVerifyRecord->set('verified', date(AppRegistry::get('Database')->getDatetimeFormat()));
-										$objVerify->save();
-										
-										CoreAlert::alert(AppLanguage::translate('Your account was verified successfully.'), true);
-										AppDisplay::getInstance()->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/account/settings/');
-										exit;
-									} else {
-										AppRegistry::get('Error')->error(AppLanguage::translate('There was an error verifying your account'), true);
-									}
+							)
+						);
+						
+						AppLoader::includeModel('VerifyModel');
+						$objVerify = new VerifyModel();
+						if ($objVerify->loadByTypeAndId($this->intUserId, 'user', $arrFilters, false) && $objVerifyRecord = $objVerify->current()) {
+							if (!$objVerifyRecord->get('verified')) {
+								$objUserRecord->set('verified', 1);
+								if ($objUser->save()) {
+									$objVerifyRecord->set('verified', date(AppRegistry::get('Database')->getDatetimeFormat()));
+									$objVerify->save();
+									
+									CoreAlert::alert(AppLanguage::translate('Your account was verified successfully.'), true);
+									AppDisplay::getInstance()->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/account/settings/');
+									exit;
 								} else {
-									trigger_error(AppLanguage::translate('This verification code has already been used'));
+									AppRegistry::get('Error')->error(AppLanguage::translate('There was an error verifying your account'), true);
 								}
 							} else {
-								trigger_error(AppLanguage::translate('There was an error loading the verification data'));
+								trigger_error(AppLanguage::translate('This verification code has already been used'));
 							}
-							break;
-							
-						case 'send':
-							if ($this->sendVerificationEmail($objUserRecord)) {
-								AppDisplay::getInstance()->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/account/settings/');
-								exit;
-							}
-							break;
-					}
+						} else {
+							trigger_error(AppLanguage::translate('There was an error loading the verification data'));
+						}
+						break;
+						
+					case 'send':
+						if ($this->sendVerificationEmail($objUserRecord)) {
+							AppDisplay::getInstance()->appendHeader('location: ' . AppConfig::get('BaseUrl') . '/account/settings/');
+							exit;
+						}
+						break;
 				}
 			} else {
 				trigger_error(AppLanguage::translate('There was an error loading your account information'));
@@ -640,7 +638,7 @@
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'connect';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				AppLoader::includeModel('UserModel');
 				$objUser = new UserModel(array('Validate' => true));
 				
@@ -745,7 +743,7 @@
 			$objUrl = AppRegistry::get('Url');
 			$strActionType = 'connect';
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				AppLoader::includeModel('UserModel');
 				$objUser = new UserModel(array('Validate' => true));
 				
@@ -916,7 +914,7 @@
 				}
 			}
 			
-			if (!empty($_POST['action']) && $_POST['action'] == $strActionType) {
+			if ($objUrl->getMethod() == 'POST' && $objUrl->getVariable('action') == $strActionType) {
 				$strConnectClass = ucfirst($strApplication) . 'Connect';
 				AppLoader::includeUtility($strConnectClass);
 				
