@@ -123,7 +123,7 @@
 		public function getPrivateKey($intUserId) {
 			if (@ini_get('browscap')) {
 				$objBrowser = get_browser();
-				$strIdentity = $objBrowser->platform . $objBrowser->parent;
+				$strIdentity = $objBrowser->platform . $objBrowser->browser . $objBrowser->majorver;
 			} else {
 				$strIdentity = $_SERVER['HTTP_USER_AGENT'];
 			}

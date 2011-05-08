@@ -185,7 +185,7 @@
 			AppLoader::includeUtility('Pagination');
 			$objPagination = new Pagination($intPage, $intTotalItems, $intPerPage);
 			
-			if (!$blnCollapse || !($objPagination->getTotalPages() == 1 && $objPagination->getCurrentPage() == 1)) {
+			if (!$blnCollapse || !($objPagination->getTotalPages() <= 1 && $objPagination->getCurrentPage() == 1)) {
 				$this->includeTemplateFile($this->getTemplatePath('common/pagination'), array(
 					'objPagination'		=> $objPagination,
 					'strPaginateUrl'	=> $strPaginateUrl,
