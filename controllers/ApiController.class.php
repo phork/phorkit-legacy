@@ -75,7 +75,7 @@
 		protected function authenticate() {
 			if (!AppConfig::get('ApiInternal', false)) {
 				if (AppRegistry::get('Url')->getVariable('sid') == session_id()) {
-					return true;
+					return AppRegistry::get('UserLogin')->isLoggedIn();
 				} else if (!empty($_SERVER['PHP_AUTH_USER']) && !empty($_SERVER['PHP_AUTH_PW'])) {
 					AppConfig::set('NoLoginCookie', true);
 					return AppRegistry::get('UserLogin')->handleFormLogin($_SERVER['PHP_AUTH_USER'], $_SERVER['PHP_AUTH_PW']);

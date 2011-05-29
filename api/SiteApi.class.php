@@ -24,22 +24,6 @@
 		
 		
 		/**
-		 * Determines the params, the page format based on the
-		 * URL extension, and whether the user is authenticated.
-		 * Then hands off processing to the handler function.
-		 * Has special handling to run the result through the
-		 * debugger.
-		 *
-		 * @access public
-		 * @return array The result data either to be encoded or handled as is
-		 */
-		public function run() {
-			$arrResult = parent::run();
-			return $arrResult;
-		}
-		
-	
-		/**
 		 * Returns the cache key consisting of the current URL
 		 * including the query string.
 		 *

@@ -587,7 +587,7 @@
 		 * @access protected
 		 */
 		protected function handleDoConnect() {
-			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
+			if ($this->verifyRequest('PUT') && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
 					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
@@ -660,7 +660,7 @@
 		 * @access protected
 		 */
 		protected function handleDoDisconnect() {
-			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
+			if ($this->verifyRequest('PUT') && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
 					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
@@ -728,7 +728,7 @@
 		 * @access protected
 		 */
 		protected function handleDoApprove() {
-			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
+			if ($this->verifyRequest('PUT') && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
 					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);
@@ -786,7 +786,7 @@
 		 * @access protected
 		 */
 		protected function handleDoDeny() {
-			if ($this->verifyRequest('PUT', true) && $this->verifyParams()) {		
+			if ($this->verifyRequest('PUT') && $this->verifyParams()) {		
 				if ($this->blnAuthenticated) {
 					if ($strUsernameSegment = $this->objUrl->getSegment(4)) {
 						$strUsername = str_replace('.' . $this->strFormat, '', $strUsernameSegment);

@@ -394,10 +394,9 @@
 		 *
 		 * @access public
 		 * @param object $objUserEvent The list of event records to format
-		 * @param boolean $blnCount Whether to add the event count
 		 * @return array The events in array format
 		 */
-		public function formatEvents($objUserEvent, $blnCount = false) {
+		public function formatEvents($objUserEvent) {
 			$arrEvents = array();
 			$strUrlPrefix = AppConfig::get('SiteUrl') . AppConfig::get('BaseUrl');
 			

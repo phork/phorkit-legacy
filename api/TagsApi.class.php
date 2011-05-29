@@ -213,11 +213,13 @@
 						
 						if ($objTag->count()) {
 							$this->arrResult = array(
-								'tags' => $this->formatTags($objTag)
+								'tags' => $this->formatTags($objTag),
+								'total' => $objTag->count()
 							);
 						} else {
 							$this->arrResult = array(
-								'tags' => array()
+								'tags' => array(),
+								'total' => 0
 							);
 						}
 						

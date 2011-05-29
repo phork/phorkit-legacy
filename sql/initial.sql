@@ -332,6 +332,12 @@ ALTER TABLE `user_events`
   ADD CONSTRAINT `user_events_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE CASCADE;
 
 --
+-- Constraints for table `user_login`
+--
+ALTER TABLE `user_login`
+  ADD CONSTRAINT `user_login_ibfk_1` FOREIGN KEY (`userid`) REFERENCES `users` (`userid`) ON DELETE CASCADE;
+
+--
 -- Constraints for table `user_logs`
 --
 ALTER TABLE `user_logs`
